@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Arvadites", "era": "Arwad Island City-State" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.82, 34.87], [35.87, 34.87], [35.87, 34.84], [35.82, 34.84], [35.82, 34.87] ]]
+  }
+}

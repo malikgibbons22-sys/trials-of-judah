@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Amalek", "era": "Early Period (~1800-1400 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [33.5, 30.8], [34.5, 30.5], [35.0, 30.0], [34.8, 29.5], [34.0, 29.0], [33.0, 29.5], [32.5, 30.0], [33.0, 30.5], [33.5, 30.8] ]]
+  }
+}

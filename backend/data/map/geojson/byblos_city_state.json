@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Byblos / Gebal", "era": "City-State (~3000-300 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.55, 34.18], [35.70, 34.18], [35.70, 34.08], [35.55, 34.08], [35.55, 34.18] ]]
+  }
+}

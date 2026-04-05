@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Amalek", "era": "Wilderness Period (~1400-1100 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [33.0, 31.0], [34.5, 30.8], [35.2, 30.2], [35.0, 29.5], [34.2, 28.8], [33.0, 29.0], [32.0, 29.5], [32.0, 30.2], [32.5, 30.8], [33.0, 31.0] ]]
+  }
+}

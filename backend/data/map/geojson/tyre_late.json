@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Tyre (City-State)", "era": "Late Period (~700-332 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.0, 33.5], [35.4, 33.5], [35.5, 33.3], [35.5, 33.1], [35.3, 32.9], [35.0, 32.9], [34.8, 33.1], [34.8, 33.3], [35.0, 33.5] ]]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Decapolis", "era": "League of Ten Cities (~63 BC - 106 AD)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.5, 33.2], [36.3, 33.3], [36.8, 33.0], [37.0, 32.5], [36.8, 32.0], [36.5, 31.5], [36.0, 31.3], [35.5, 31.5], [35.3, 32.0], [35.3, 32.5], [35.5, 33.2] ]]
+  }
+}

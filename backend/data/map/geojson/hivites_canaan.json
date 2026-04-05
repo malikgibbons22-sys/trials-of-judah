@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Hivites", "era": "Canaanite Territory" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.1, 32.0], [35.4, 32.0], [35.5, 31.8], [35.4, 31.6], [35.1, 31.6], [34.9, 31.8], [35.1, 32.0] ]]
+  }
+}

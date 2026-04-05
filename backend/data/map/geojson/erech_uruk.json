@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Erech / Uruk", "era": "City-State of Uruk" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [45.5, 31.6], [45.8, 31.6], [45.8, 31.2], [45.5, 31.2], [45.5, 31.6] ]]
+  }
+}

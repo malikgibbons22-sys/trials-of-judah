@@ -1,0 +1,514 @@
+{
+  "peoples": [
+    {
+      "id": 1,
+      "modern_name": "Egyptians",
+      "biblical_ancestor": "Mizraim",
+      "ancestor_ref": "Genesis 10:6",
+      "lineage": "Ham > Mizraim",
+      "kingdom_ids": ["egypt"],
+      "migration_summary": "Mizraim, son of Ham, settled in the Nile Valley and established one of the earliest and most enduring civilizations in scripture, dominating northeast Africa for millennia.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Mizraim, son of Ham, settled in the Nile Valley and founded the nation of Egypt (Genesis 10:6). His descendants became the dominant power of northeast Africa." },
+        { "era_id": "abrahams_journey", "text": "Abraham sojourned in Egypt during a famine in Canaan, where Pharaoh took Sarai into his house before the Most High plagued Pharaoh's household (Genesis 12:10-20)." },
+        { "era_id": "sojourn_in_egypt", "text": "Egypt hosted Jacob's family during the great famine, granting them the land of Goshen. Over generations, the Israelites multiplied until a new Pharaoh enslaved them (Genesis 46:1-7; Exodus 1:8-14)." },
+        { "era_id": "exodus_wilderness", "text": "The Most High brought ten plagues upon Egypt and delivered the Israelites through the Red Sea, destroying Pharaoh's army and demonstrating His power over Egypt's gods (Exodus 7-14)." },
+        { "era_id": "divided_kingdom", "text": "Pharaoh Shishak invaded Judah and plundered the Temple during Rehoboam's reign, reasserting Egyptian influence over the region (1 Kings 14:25-26; 2 Chronicles 12:2-9)." },
+        { "era_id": "babylonian_exile", "text": "Egypt offered Judah a false hope of military alliance against Babylon. Jeremiah warned against fleeing to Egypt, yet a remnant of Judah disobeyed and settled there (Jeremiah 42-44)." }
+      ]
+    },
+    {
+      "id": 2,
+      "modern_name": "Ethiopians / Cushites",
+      "biblical_ancestor": "Cush",
+      "ancestor_ref": "Genesis 10:6",
+      "lineage": "Ham > Cush",
+      "kingdom_ids": ["cush"],
+      "migration_summary": "Cush, son of Ham, settled south of Egypt in the regions of Nubia and the Upper Nile. The Cushites established powerful kingdoms including Kerma, Napata, and Meroe.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Cush, firstborn of Ham, settled in the regions south of Egypt along the Upper Nile (Genesis 10:6). His descendants became known as Ethiopians and Nubians." },
+        { "era_id": "exodus_wilderness", "text": "Moses married a Cushite woman, for which Miriam and Aaron spoke against him, and the Most High struck Miriam with leprosy as judgment (Numbers 12:1-15)." },
+        { "era_id": "united_kingdom", "text": "Cushite warriors and traders interacted with Solomon's kingdom. The Queen of Sheba, often associated with the Cushite sphere, visited Solomon (1 Kings 10:1-13)." },
+        { "era_id": "divided_kingdom", "text": "Zerah the Cushite came against Judah with a vast army, but King Asa cried out to the Most High and the Cushites were defeated (2 Chronicles 14:9-15)." },
+        { "era_id": "fall_of_samaria", "text": "The Cushite 25th Dynasty ruled Egypt and opposed Assyrian expansion. Tirhakah king of Cush came out to fight Sennacherib during the siege of Jerusalem (2 Kings 19:9; Isaiah 37:9)." },
+        { "era_id": "early_church", "text": "The Ethiopian eunuch, a court official of the Cushite queen Candace, believed and was baptized by Philip on the road from Jerusalem to Gaza (Acts 8:26-39)." }
+      ]
+    },
+    {
+      "id": 3,
+      "modern_name": "Libyans",
+      "biblical_ancestor": "Put",
+      "ancestor_ref": "Genesis 10:6",
+      "lineage": "Ham > Put",
+      "kingdom_ids": ["put"],
+      "migration_summary": "Put, son of Ham, settled west of Egypt in the regions of North Africa known today as Libya. The people of Put frequently served as mercenaries in Egyptian and other armies.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Put, son of Ham, settled in the lands west of Egypt along the North African coast (Genesis 10:6). His descendants became the Libyan peoples." },
+        { "era_id": "divided_kingdom", "text": "Libyans (Lubim) joined Pharaoh Shishak's invasion force against Judah under Rehoboam (2 Chronicles 12:3). They served as auxiliaries in Egyptian military campaigns." },
+        { "era_id": "babylonian_exile", "text": "The prophet Ezekiel listed Put among the allies of Egypt who would fall by the sword, prophesying judgment against them alongside Cush and Lud (Ezekiel 30:5)." },
+        { "era_id": "persian_period", "text": "Put is listed among the forces of Gog in Ezekiel's prophecy, bearing shield and helmet alongside Persia and Cush (Ezekiel 38:5)." }
+      ]
+    },
+    {
+      "id": 4,
+      "modern_name": "Canaanites",
+      "biblical_ancestor": "Canaan",
+      "ancestor_ref": "Genesis 10:6",
+      "lineage": "Ham > Canaan",
+      "kingdom_ids": ["canaan"],
+      "migration_summary": "Canaan, son of Ham, settled in the land between the Jordan River and the Mediterranean Sea. His descendants were cursed through Noah's prophecy and their land was promised to Abraham's seed.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Canaan, youngest son of Ham, was cursed by Noah to be a servant of servants after Ham's transgression (Genesis 9:25-27). His descendants settled the land later promised to Israel." },
+        { "era_id": "abrahams_journey", "text": "The Canaanites were dwelling in the land when the Most High promised it to Abraham's seed as an everlasting possession (Genesis 12:6-7; Genesis 15:18-21)." },
+        { "era_id": "conquest_of_canaan", "text": "Joshua led the Israelites to conquer the Canaanite nations, fulfilling the promise to Abraham. The Most High commanded their removal due to their abominations (Deuteronomy 7:1-5; Joshua 11:23)." },
+        { "era_id": "period_of_judges", "text": "Remaining Canaanites became thorns in Israel's side, leading the Israelites into idol worship and provoking the Most High to anger (Judges 2:1-3; Judges 3:5-6)." }
+      ]
+    },
+    {
+      "id": 5,
+      "modern_name": "Hittites",
+      "biblical_ancestor": "Heth",
+      "ancestor_ref": "Genesis 10:15",
+      "lineage": "Ham > Canaan > Heth",
+      "kingdom_ids": ["hittites"],
+      "migration_summary": "Heth, son of Canaan, fathered the Hittite people who settled in central Anatolia and parts of Canaan. They built a powerful empire centered at Hattusa and were among the nations inhabiting the Promised Land.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Heth, son of Canaan, was the father of the Hittites (Genesis 10:15). His descendants spread into Anatolia and maintained communities within the land of Canaan." },
+        { "era_id": "abrahams_journey", "text": "Abraham purchased the cave of Machpelah from Ephron the Hittite in Hebron as a burial place for Sarah, the first recorded land purchase in scripture (Genesis 23:3-20)." },
+        { "era_id": "conquest_of_canaan", "text": "The Hittites were among the seven nations of Canaan that the Israelites were commanded to dispossess upon entering the Promised Land (Deuteronomy 7:1; Joshua 3:10)." },
+        { "era_id": "united_kingdom", "text": "Uriah the Hittite was one of David's mighty men. David sinned grievously by taking Uriah's wife Bathsheba and ordering Uriah's death in battle (2 Samuel 11:1-27)." }
+      ]
+    },
+    {
+      "id": 6,
+      "modern_name": "Philistines",
+      "biblical_ancestor": "Caphtorim",
+      "ancestor_ref": "Genesis 10:14",
+      "lineage": "Ham > Mizraim > Caphtorim",
+      "kingdom_ids": ["philistia"],
+      "migration_summary": "The Philistines descended from the Caphtorim of Mizraim's line and migrated from Caphtor (Crete) to the coastal plain of Canaan, establishing the five cities of the Pentapolis.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "The Philistines came from the Caphtorim, descendants of Mizraim son of Ham (Genesis 10:13-14). They migrated from Caphtor to the southern coast of Canaan (Amos 9:7)." },
+        { "era_id": "abrahams_journey", "text": "Abraham and Isaac both dealt with Abimelech king of the Philistines in Gerar, making covenants over wells and grazing rights (Genesis 21:32-34; Genesis 26:1-11)." },
+        { "era_id": "period_of_judges", "text": "The Philistines were a primary oppressor of Israel during the period of the judges. Samson fought against them with supernatural strength given by the Most High (Judges 13-16)." },
+        { "era_id": "united_kingdom", "text": "David slew Goliath of Gath, the Philistine champion, with a sling and a stone in the name of the Most High (1 Samuel 17). David later subdued the Philistines as king (2 Samuel 8:1)." },
+        { "era_id": "divided_kingdom", "text": "The Philistines continued to clash with the kingdom of Judah. The prophet Amos and others pronounced judgment upon the Philistine cities for their transgressions (Amos 1:6-8)." }
+      ]
+    },
+    {
+      "id": 7,
+      "modern_name": "Phoenicians / Lebanese",
+      "biblical_ancestor": "Sidon",
+      "ancestor_ref": "Genesis 10:15",
+      "lineage": "Ham > Canaan > Sidon",
+      "kingdom_ids": ["phoenicia"],
+      "migration_summary": "Sidon, firstborn of Canaan, settled along the northern coast of the Promised Land. His descendants became master seafarers and traders, founding the great merchant cities of Tyre, Sidon, and Byblos.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Sidon was the firstborn of Canaan (Genesis 10:15). His descendants settled the coastal strip of modern-day Lebanon and became renowned seafarers and merchants." },
+        { "era_id": "period_of_judges", "text": "The Sidonians were among the nations left to test Israel. The Israelites served the gods of Sidon and provoked the Most High to anger (Judges 10:6-7)." },
+        { "era_id": "united_kingdom", "text": "Hiram king of Tyre supplied cedar and craftsmen for Solomon's Temple and palace, establishing a trade alliance between Phoenicia and Israel (1 Kings 5:1-12; 1 Kings 9:26-28)." },
+        { "era_id": "divided_kingdom", "text": "Jezebel, daughter of Ethbaal king of the Sidonians, married King Ahab and introduced Baal worship into Israel, leading to Elijah's confrontation on Mount Carmel (1 Kings 16:31; 1 Kings 18:19-40)." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel prophesied extensively against Tyre and Sidon, declaring their judgment for pride, wealth, and treachery against Israel (Ezekiel 26-28)." },
+        { "era_id": "jesus_ministry", "text": "Jesus withdrew to the region of Tyre and Sidon, where He healed the Syro-Phoenician woman's daughter, declaring her faith was great (Matthew 15:21-28; Mark 7:24-30)." }
+      ]
+    },
+    {
+      "id": 8,
+      "modern_name": "Israelites / Twelve Tribes",
+      "biblical_ancestor": "Jacob (Israel)",
+      "ancestor_ref": "Genesis 32:28",
+      "lineage": "Shem > Arpachshad > Shelah > Eber > Peleg > Reu > Serug > Nahor > Terah > Abraham > Isaac > Jacob",
+      "kingdom_ids": ["israel_united", "israel_northern", "judah"],
+      "migration_summary": "Jacob, grandson of Abraham, was renamed Israel after wrestling with an angel. His twelve sons became the twelve tribes of Israel, the chosen people of the Most High, given the land of Canaan as an inheritance.",
+      "era_narratives": [
+        { "era_id": "abrahams_journey", "text": "The Most High called Abraham out of Ur of the Chaldees and established an everlasting covenant with him, promising that his seed through Isaac and Jacob would inherit the land of Canaan (Genesis 12:1-3; Genesis 17:7-8)." },
+        { "era_id": "sojourn_in_egypt", "text": "Jacob and his twelve sons entered Egypt during the famine. Joseph, sold into slavery by his brothers, rose to rule over Egypt under Pharaoh (Genesis 46:1-7; Genesis 41:41-44)." },
+        { "era_id": "exodus_wilderness", "text": "The Most High delivered the Israelites from Egyptian bondage with mighty signs and gave them the Law at Sinai, establishing them as a holy nation and a kingdom of priests (Exodus 19:5-6; Deuteronomy 7:6)." },
+        { "era_id": "conquest_of_canaan", "text": "Under Joshua, the twelve tribes conquered and divided the Promised Land, each tribe receiving its inheritance by lot as the Most High commanded (Joshua 13-21)." },
+        { "era_id": "united_kingdom", "text": "Israel reached its zenith under David and Solomon. David established Jerusalem as the capital, and Solomon built the Temple. The kingdom extended from the River of Egypt to the Euphrates (2 Samuel 5:1-5; 1 Kings 4:21)." },
+        { "era_id": "fall_of_samaria", "text": "The ten northern tribes were carried away by Assyria for breaking the covenant. The curses of Deuteronomy 28 began to be fulfilled: they would be scattered among all nations, serve their enemies, and become an astonishment and a byword (Deuteronomy 28:25, 37, 64-68; 2 Kings 17:6-23)." },
+        { "era_id": "babylonian_exile", "text": "Judah was carried into Babylon for seventy years. The Temple was destroyed and Jerusalem laid waste, fulfilling Jeremiah's prophecy. The Deuteronomy 28 curses continued: bondage, sorrow, and loss of identity among the nations (Jeremiah 25:11; 2 Kings 25:1-21; Deuteronomy 28:41, 48-52)." },
+        { "era_id": "roman_period", "text": "Under Roman occupation, the Israelites were oppressed, taxed, and ruled by foreign governors. In AD 70, Jerusalem and the Second Temple were destroyed, scattering the people into all nations as prophesied (Luke 21:20-24; Deuteronomy 28:64-68)." }
+      ]
+    },
+    {
+      "id": 9,
+      "modern_name": "Arabs / Ishmaelites",
+      "biblical_ancestor": "Ishmael",
+      "ancestor_ref": "Genesis 16:11",
+      "lineage": "Shem > Arpachshad > ... > Abraham > Ishmael",
+      "kingdom_ids": ["ishmaelites"],
+      "migration_summary": "Ishmael, son of Abraham by Hagar, was promised to become a great nation. His twelve sons settled throughout the Arabian Peninsula and became the ancestors of many Arab peoples.",
+      "era_narratives": [
+        { "era_id": "abrahams_journey", "text": "Ishmael was born to Abraham through Hagar the Egyptian handmaid. The Most High promised he would become a great nation and father twelve princes, but the covenant would pass through Isaac (Genesis 16:10-12; Genesis 17:20-21)." },
+        { "era_id": "sojourn_in_egypt", "text": "Ishmaelite traders were the ones who carried Joseph down to Egypt after his brothers sold him, connecting Ishmael's descendants to the pivotal events of Israel's sojourn (Genesis 37:25-28)." },
+        { "era_id": "period_of_judges", "text": "The Ishmaelites are associated with the Midianite oppression of Israel during Gideon's time. Gideon defeated them and took their golden earrings (Judges 8:24)." },
+        { "era_id": "united_kingdom", "text": "Ishmaelite territory bordered Solomon's kingdom. The wealth of Arabia, including gold, spices, and incense, flowed through trade routes controlled by Ishmael's descendants (1 Kings 10:15; 2 Chronicles 9:14)." },
+        { "era_id": "babylonian_exile", "text": "Ishmael son of Nethaniah (a descendant in name) assassinated Gedaliah, the governor appointed by Babylon over the remnant of Judah, causing further scattering (Jeremiah 41:1-3)." }
+      ]
+    },
+    {
+      "id": 10,
+      "modern_name": "Edomites",
+      "biblical_ancestor": "Esau (Edom)",
+      "ancestor_ref": "Genesis 36:1",
+      "lineage": "Shem > ... > Abraham > Isaac > Esau",
+      "kingdom_ids": ["edom"],
+      "migration_summary": "Esau, twin brother of Jacob, settled in the hill country of Seir south of the Dead Sea. His descendants became the Edomites, perpetual adversaries of Israel, later known as Idumeans.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Esau, also called Edom, sold his birthright for a bowl of red pottage and lost the blessing to Jacob. He settled in Mount Seir and his descendants became the nation of Edom (Genesis 25:30-34; Genesis 36:1-8)." },
+        { "era_id": "exodus_wilderness", "text": "Edom refused to allow the Israelites passage through their land during the wilderness journey, forcing Israel to go around their territory (Numbers 20:14-21)." },
+        { "era_id": "united_kingdom", "text": "David conquered Edom and put garrisons throughout the land, and all the Edomites became David's servants (2 Samuel 8:14). Joab struck down every male in Edom over six months (1 Kings 11:15-16)." },
+        { "era_id": "divided_kingdom", "text": "Edom revolted from under Judah's rule during Jehoram's reign and set up their own king (2 Kings 8:20-22). The prophets declared judgment against Edom for perpetual hatred of Israel." },
+        { "era_id": "babylonian_exile", "text": "Edom rejoiced over Jerusalem's destruction and aided Babylon against Judah. Obadiah prophesied Edom's total destruction for violence against his brother Jacob (Obadiah 1:10-14)." },
+        { "era_id": "maccabean_period", "text": "The Edomites, now called Idumeans, were forcibly converted under the Hasmonean ruler John Hyrcanus. Herod the Great, an Idumean, later became king over Judea under Rome (Josephus, Antiquities 13.9.1)." }
+      ]
+    },
+    {
+      "id": 11,
+      "modern_name": "Moabites",
+      "biblical_ancestor": "Moab",
+      "ancestor_ref": "Genesis 19:37",
+      "lineage": "Shem > ... > Terah > Haran > Lot > Moab",
+      "kingdom_ids": ["moab"],
+      "migration_summary": "Moab, born of Lot's elder daughter after the destruction of Sodom, settled east of the Dead Sea in the highlands of modern-day Jordan. The Moabites were persistent rivals of Israel.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Moab was born to Lot through his elder daughter after the destruction of Sodom and Gomorrah (Genesis 19:30-37). His descendants settled the fertile plateau east of the Dead Sea." },
+        { "era_id": "exodus_wilderness", "text": "Balak king of Moab hired Balaam to curse Israel as they camped in the plains of Moab, but the Most High turned the curse into a blessing (Numbers 22-24). Moabite women later seduced Israel into idolatry at Baal-peor (Numbers 25:1-3)." },
+        { "era_id": "period_of_judges", "text": "Eglon king of Moab oppressed Israel for eighteen years until Ehud the Benjamite delivered them by assassinating Eglon (Judges 3:12-30). Ruth the Moabitess later became an ancestor of King David (Ruth 4:13-17)." },
+        { "era_id": "united_kingdom", "text": "David subdued Moab and measured them with a line, putting two-thirds to death and making the rest servants who brought tribute (2 Samuel 8:2)." },
+        { "era_id": "divided_kingdom", "text": "Moab rebelled against Israel after Ahab's death. King Mesha of Moab recorded his revolt on the famous Mesha Stele, referencing the house of David and Israel's God (2 Kings 3:4-5)." }
+      ]
+    },
+    {
+      "id": 12,
+      "modern_name": "Ammonites",
+      "biblical_ancestor": "Ben-Ammi",
+      "ancestor_ref": "Genesis 19:38",
+      "lineage": "Shem > ... > Terah > Haran > Lot > Ben-Ammi",
+      "kingdom_ids": ["ammon"],
+      "migration_summary": "Ben-Ammi, born of Lot's younger daughter, settled east of the Jordan in the region around modern-day Amman, Jordan. The Ammonites worshipped Molech and were frequent enemies of Israel.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Ben-Ammi was born to Lot through his younger daughter after the destruction of Sodom (Genesis 19:38). His descendants settled east of the Jordan near the Jabbok River." },
+        { "era_id": "exodus_wilderness", "text": "The Most High commanded Israel not to distress or meddle with the children of Ammon, for He had given that land to the descendants of Lot as a possession (Deuteronomy 2:19)." },
+        { "era_id": "period_of_judges", "text": "The Ammonites oppressed Israel for eighteen years. Jephthah was raised up by the Most High to deliver Israel and defeated the Ammonites, though at great personal cost (Judges 10:6-11:33)." },
+        { "era_id": "united_kingdom", "text": "Nahash the Ammonite besieged Jabesh-gilead, leading to Saul's first military victory as king (1 Samuel 11:1-11). David later defeated the Ammonites after they humiliated his ambassadors (2 Samuel 10:1-14)." },
+        { "era_id": "divided_kingdom", "text": "Solomon built a high place for Molech, the abomination of the Ammonites, on the hill before Jerusalem, which contributed to the kingdom's division (1 Kings 11:5-7). The prophets pronounced judgment on Ammon (Jeremiah 49:1-6; Amos 1:13-15)." }
+      ]
+    },
+    {
+      "id": 13,
+      "modern_name": "Syrians / Arameans",
+      "biblical_ancestor": "Aram",
+      "ancestor_ref": "Genesis 10:22",
+      "lineage": "Shem > Aram",
+      "kingdom_ids": ["aram"],
+      "migration_summary": "Aram, son of Shem, settled in the region of modern-day Syria, centered around Damascus and the Euphrates River. The Arameans became a major power during the divided kingdom period.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Aram, son of Shem, settled in the region between the Euphrates and the Mediterranean (Genesis 10:22-23). His descendants became the Aramean peoples, centered at Damascus." },
+        { "era_id": "abrahams_journey", "text": "Abraham sent his servant to Aram-naharaim (Aram of the two rivers) to find a wife for Isaac from among his kindred. Rebekah was brought back from Paddan-aram (Genesis 24:10; Genesis 25:20)." },
+        { "era_id": "united_kingdom", "text": "David defeated Hadadezer king of Aram-Zobah and placed garrisons in Aram of Damascus. The Arameans became David's servants and brought tribute (2 Samuel 8:3-6)." },
+        { "era_id": "divided_kingdom", "text": "Aram-Damascus under Ben-Hadad and Hazael warred constantly with Israel. Hazael oppressed Israel greatly during Jehu's dynasty, but Elisha prophesied Aram's eventual defeat (2 Kings 8:7-15; 2 Kings 13:3-5, 22-25)." },
+        { "era_id": "fall_of_samaria", "text": "Damascus fell to the Assyrians under Tiglath-Pileser III in 732 BC, ending Aramean independence. The Arameans were deported, fulfilling Amos's prophecy against Damascus (2 Kings 16:9; Amos 1:3-5)." }
+      ]
+    },
+    {
+      "id": 14,
+      "modern_name": "Persians / Iranians",
+      "biblical_ancestor": "Elam",
+      "ancestor_ref": "Genesis 10:22",
+      "lineage": "Shem > Elam",
+      "kingdom_ids": ["persia", "elam"],
+      "migration_summary": "Elam, son of Shem, settled east of Mesopotamia in the region of modern-day southwestern Iran. The Elamites later merged with the Persians and Medes to form the Persian Empire.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Elam, son of Shem, settled east of the Tigris in the highlands of modern Iran (Genesis 10:22). His descendants became the Elamites, with their capital at Susa." },
+        { "era_id": "abrahams_journey", "text": "Chedorlaomer king of Elam led a coalition of kings against the cities of the plain, taking Lot captive until Abraham pursued and defeated them (Genesis 14:1-16)." },
+        { "era_id": "babylonian_exile", "text": "Jeremiah prophesied against Elam, declaring the Most High would scatter them to the four winds, but also promised to restore their fortunes in the latter days (Jeremiah 49:34-39)." },
+        { "era_id": "persian_period", "text": "Cyrus the Persian conquered Babylon and issued the decree allowing the Israelites to return and rebuild the Temple, fulfilling Isaiah's prophecy that named Cyrus by name (Ezra 1:1-4; Isaiah 44:28-45:1). Esther and Mordecai delivered the Israelites from destruction in the Persian court at Susa (Esther 4-9)." },
+        { "era_id": "greek_period", "text": "Daniel's vision of the ram with two horns represented the Medo-Persian empire, which was conquered by the he-goat of Greece under Alexander (Daniel 8:3-8, 20-21)." }
+      ]
+    },
+    {
+      "id": 15,
+      "modern_name": "Assyrians",
+      "biblical_ancestor": "Asshur",
+      "ancestor_ref": "Genesis 10:22",
+      "lineage": "Shem > Asshur",
+      "kingdom_ids": ["assyria"],
+      "migration_summary": "Asshur, son of Shem, settled along the upper Tigris River and built Nineveh and other great cities. The Assyrians became the rod of the Most High's anger against Israel.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Asshur, son of Shem, went forth and built Nineveh, Rehoboth-Ir, Calah, and Resen in the land of Assyria (Genesis 10:11-12, 22)." },
+        { "era_id": "divided_kingdom", "text": "Assyria rose as the dominant power in the ancient Near East. The prophet Jonah was sent to Nineveh to preach repentance, and the city turned from its wickedness (Jonah 3:1-10)." },
+        { "era_id": "fall_of_samaria", "text": "Shalmaneser V and Sargon II of Assyria conquered the Northern Kingdom of Israel in 722 BC, deporting the ten tribes and resettling foreigners in their place. The Most High used Assyria as the rod of His anger against His disobedient people (2 Kings 17:3-23; Isaiah 10:5-6)." },
+        { "era_id": "babylonian_exile", "text": "Nineveh fell to the Babylonians and Medes in 612 BC, fulfilling Nahum's prophecy of total destruction against the bloody city (Nahum 1:1; 3:1-7). Assyria was never restored as a major power." }
+      ]
+    },
+    {
+      "id": 16,
+      "modern_name": "Chaldeans / Babylonians",
+      "biblical_ancestor": "From Shem's line (Arpachshad region)",
+      "ancestor_ref": "Genesis 10:22; Genesis 11:10-13",
+      "lineage": "Shem > Arpachshad (region of Chaldea)",
+      "kingdom_ids": ["babylon"],
+      "migration_summary": "The Chaldeans settled in southern Mesopotamia in the land of Shinar. From the time of Nimrod's Babel to Nebuchadnezzar's empire, Babylon stood as a center of worldly power opposed to the Most High.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Nimrod, a mighty hunter before the Most High, founded Babel, Erech, Accad, and Calneh in the land of Shinar (Genesis 10:8-10). Babel became the seat of rebellion against the Most High at the tower of Babel (Genesis 11:1-9)." },
+        { "era_id": "abrahams_journey", "text": "Abraham was called out of Ur of the Chaldees, leaving behind the idolatry of his father's house to follow the Most High to the land He would show him (Genesis 11:31; Genesis 12:1; Joshua 24:2)." },
+        { "era_id": "babylonian_exile", "text": "Nebuchadnezzar king of Babylon destroyed Jerusalem and the Temple in 586 BC, carrying Judah into seventy years of captivity. Daniel and his companions served in the Babylonian court while maintaining their faithfulness (2 Kings 25:1-21; Daniel 1-6)." },
+        { "era_id": "persian_period", "text": "Babylon fell to Cyrus the Persian in a single night, as foretold by Daniel's interpretation of the writing on the wall during Belshazzar's feast (Daniel 5:25-31). Babylon's fall fulfilled Isaiah's and Jeremiah's prophecies (Isaiah 13:19-22; Jeremiah 51:37-43)." }
+      ]
+    },
+    {
+      "id": 17,
+      "modern_name": "Lydians",
+      "biblical_ancestor": "Lud",
+      "ancestor_ref": "Genesis 10:22",
+      "lineage": "Shem > Lud",
+      "kingdom_ids": ["lydia"],
+      "migration_summary": "Lud, son of Shem, settled in western Anatolia (modern-day Turkey). His descendants became the Lydians, known for inventing coinage and for the wealthy King Croesus.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Lud, son of Shem, settled in the western regions of Asia Minor (Genesis 10:22). His descendants became the Lydian people of Anatolia." },
+        { "era_id": "babylonian_exile", "text": "Lud is mentioned among the warriors allied with Egypt and Cush who would fall by the sword according to Ezekiel's prophecy against Egypt (Ezekiel 30:5)." },
+        { "era_id": "persian_period", "text": "Lydia was conquered by Cyrus the Persian after the defeat of King Croesus in 546 BC, bringing the Lydians under Persian dominion. Lydia became a satrapy of the Persian Empire." },
+        { "era_id": "early_church", "text": "Lydia of Thyatira, a seller of purple from the region of Lydia, was Paul's first convert in Europe at Philippi, opening her home to the apostles (Acts 16:14-15)." }
+      ]
+    },
+    {
+      "id": 18,
+      "modern_name": "Greeks",
+      "biblical_ancestor": "Javan",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Javan",
+      "kingdom_ids": ["greece", "javan"],
+      "migration_summary": "Javan, son of Japheth, settled in the Greek isles and the Aegean coast. His descendants became the Hellenic peoples who built one of the most influential civilizations in history.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Javan, son of Japheth, settled in the isles of the Gentiles and the coastlands of the Mediterranean (Genesis 10:2, 5). His sons — Elishah, Tarshish, Kittim, and Dodanim — spread across southern Europe and the islands." },
+        { "era_id": "divided_kingdom", "text": "The prophet Joel spoke of Judah's children being sold to the Grecians (sons of Javan) by the Phoenicians and Philistines, and the Most High declared He would raise Judah's sons against Greece (Joel 3:6-8)." },
+        { "era_id": "greek_period", "text": "Alexander the Great, the he-goat of Daniel's vision, conquered the Persian Empire with great speed and established Greek rule from Egypt to India. After his death, the empire divided into four parts (Daniel 8:5-8, 21-22; Daniel 11:3-4)." },
+        { "era_id": "maccabean_period", "text": "The Seleucid Greek ruler Antiochus IV Epiphanes desecrated the Temple with the abomination of desolation, provoking the Maccabean revolt. This foreshadowed a greater abomination prophesied by Daniel and confirmed by Jesus (Daniel 11:31; Matthew 24:15)." },
+        { "era_id": "early_church", "text": "Paul brought the gospel to Greece, establishing congregations in Philippi, Thessalonica, Corinth, and Athens. In Athens, he preached at the Areopagus about the unknown God (Acts 17:22-31; Acts 18:1-11)." }
+      ]
+    },
+    {
+      "id": 19,
+      "modern_name": "Armenians",
+      "biblical_ancestor": "Togarmah",
+      "ancestor_ref": "Genesis 10:3",
+      "lineage": "Japheth > Gomer > Togarmah",
+      "kingdom_ids": ["togarmah"],
+      "migration_summary": "Togarmah, son of Gomer and grandson of Japheth, settled in the mountainous region of eastern Anatolia and the Armenian highlands. The house of Togarmah traded horses and mules with Tyre.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Togarmah, son of Gomer, grandson of Japheth, settled in the highlands of eastern Asia Minor near the region of Armenia (Genesis 10:3)." },
+        { "era_id": "united_kingdom", "text": "The house of Togarmah was known for trading horses, war horses, and mules in the markets of Tyre, indicating their prominence as horse breeders (Ezekiel 27:14)." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel listed the house of Togarmah of the far north among the forces allied with Gog in the latter-day invasion against Israel (Ezekiel 38:6)." }
+      ]
+    },
+    {
+      "id": 20,
+      "modern_name": "Scythians / Germanic peoples",
+      "biblical_ancestor": "Ashkenaz",
+      "ancestor_ref": "Genesis 10:3",
+      "lineage": "Japheth > Gomer > Ashkenaz",
+      "kingdom_ids": ["ashkenaz"],
+      "migration_summary": "Ashkenaz, son of Gomer and grandson of Japheth, settled in the regions around the Black Sea and migrated into central and northern Europe. Scripture places Ashkenaz firmly in Japheth's line, not Shem's.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Ashkenaz was a son of Gomer, son of Japheth — placing Ashkenaz in the line of Japheth, not Shem (Genesis 10:3). His descendants migrated northward into the regions around the Black Sea and into Europe." },
+        { "era_id": "babylonian_exile", "text": "Jeremiah called upon the kingdoms of Ararat, Minni, and Ashkenaz to rise against Babylon, associating Ashkenaz with northern peoples allied in Babylon's destruction (Jeremiah 51:27)." },
+        { "era_id": "persian_period", "text": "The Scythian peoples, identified with Ashkenaz, were known to the Persians as fierce nomadic warriors of the northern steppes. Their migrations would eventually shape the populations of central and eastern Europe." }
+      ]
+    },
+    {
+      "id": 21,
+      "modern_name": "Cimmerians",
+      "biblical_ancestor": "Gomer",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Gomer",
+      "kingdom_ids": ["gomer"],
+      "migration_summary": "Gomer, son of Japheth, settled in the regions north of the Black Sea. His descendants, the Cimmerians, migrated through Anatolia and into Europe, becoming ancestors of many European peoples.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Gomer, son of Japheth, settled north of the Black Sea (Genesis 10:2-3). His sons were Ashkenaz, Riphath, and Togarmah. The Cimmerians are identified with Gomer by ancient historians." },
+        { "era_id": "divided_kingdom", "text": "The Cimmerians invaded Anatolia and clashed with the Assyrian Empire during the 8th and 7th centuries BC. Hosea named his first child Jezreel and his daughter Lo-Ruhamah, but his son by Gomer was named Lo-Ammi — though this Gomer was a person, the name recalls the nation (Hosea 1:3-9)." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel listed Gomer and all his bands among the northern forces allied with Gog in the end-times invasion of Israel (Ezekiel 38:6)." }
+      ]
+    },
+    {
+      "id": 22,
+      "modern_name": "Medes",
+      "biblical_ancestor": "Madai",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Madai",
+      "kingdom_ids": ["media"],
+      "migration_summary": "Madai, son of Japheth, settled in the mountainous region of northwestern Iran. The Medes became a powerful empire that allied with Babylon to destroy Assyria and later merged with Persia under Cyrus.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Madai, son of Japheth, settled in the highland regions of northwestern Iran (Genesis 10:2). His descendants became the Medes." },
+        { "era_id": "fall_of_samaria", "text": "The Assyrians resettled some of the exiled Israelites in the cities of the Medes, scattering the ten tribes into Median territory (2 Kings 17:6; 2 Kings 18:11)." },
+        { "era_id": "babylonian_exile", "text": "The Medes, allied with Babylon, destroyed Nineveh in 612 BC. Isaiah and Jeremiah prophesied that the Medes would be stirred up against Babylon itself (Isaiah 13:17; Jeremiah 51:11, 28)." },
+        { "era_id": "persian_period", "text": "Darius the Mede received the kingdom when Babylon fell (Daniel 5:31). The Medo-Persian empire is represented as the two-armed silver chest in Daniel's statue and the two-horned ram in Daniel's vision (Daniel 2:32, 39; Daniel 8:20)." }
+      ]
+    },
+    {
+      "id": 23,
+      "modern_name": "Cypriots",
+      "biblical_ancestor": "Kittim",
+      "ancestor_ref": "Genesis 10:4",
+      "lineage": "Japheth > Javan > Kittim",
+      "kingdom_ids": ["kittim"],
+      "migration_summary": "Kittim, son of Javan, settled on the island of Cyprus and surrounding Mediterranean coastlands. The name Kittim became a general term for western Mediterranean peoples in later prophecy.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Kittim, son of Javan, grandson of Japheth, settled on the island of Cyprus (Genesis 10:4). The city of Kition on Cyprus preserves the name." },
+        { "era_id": "divided_kingdom", "text": "Balaam's oracle prophesied that ships from the coast of Kittim would afflict Asshur and Eber (Numbers 24:24), foreshadowing western Mediterranean powers that would dominate the ancient Near East." },
+        { "era_id": "greek_period", "text": "In Daniel and the books of Maccabees, Kittim refers to the Greeks and Romans who came from the western Mediterranean to conquer the eastern world (Daniel 11:30)." },
+        { "era_id": "early_church", "text": "Barnabas, Paul's early companion in ministry, was a Levite from Cyprus (Acts 4:36). Paul and Barnabas preached across the island on their first missionary journey (Acts 13:4-12)." }
+      ]
+    },
+    {
+      "id": 24,
+      "modern_name": "Spaniards",
+      "biblical_ancestor": "Tarshish",
+      "ancestor_ref": "Genesis 10:4",
+      "lineage": "Japheth > Javan > Tarshish",
+      "kingdom_ids": ["tarshish"],
+      "migration_summary": "Tarshish, son of Javan, settled in the far western Mediterranean, traditionally identified with southern Spain (Tartessus). Tarshish represented the farthest reaches of the known world in scripture.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Tarshish, son of Javan, grandson of Japheth, settled in the far western Mediterranean (Genesis 10:4). Tarshish is traditionally identified with Tartessus in southern Spain." },
+        { "era_id": "united_kingdom", "text": "Solomon's ships of Tarshish sailed the seas, returning every three years with gold, silver, ivory, apes, and peacocks, representing the farthest extent of trade (1 Kings 10:22; 2 Chronicles 9:21)." },
+        { "era_id": "divided_kingdom", "text": "Jonah fled to Tarshish to escape the Most High's command to preach to Nineveh, boarding a ship at Joppa bound for the far west (Jonah 1:3). This shows Tarshish represented the opposite direction from God's will." },
+        { "era_id": "persian_period", "text": "Isaiah prophesied that the ships of Tarshish would bring the scattered children of Israel from afar, their silver and gold with them, to the name of the Most High (Isaiah 60:9)." }
+      ]
+    },
+    {
+      "id": 25,
+      "modern_name": "Romans / Italians",
+      "biblical_ancestor": "Connected to Kittim / Javan line",
+      "ancestor_ref": "Genesis 10:2-4; Daniel 2:40",
+      "lineage": "Japheth > Javan (broad line)",
+      "kingdom_ids": ["rome"],
+      "migration_summary": "The Romans descended from Japheth's line through Javan and Kittim. Rome became the iron kingdom of Daniel's prophecy, ruling the world when the Messiah came and destroying Jerusalem in AD 70.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "The peoples who became the Romans are traced to Japheth's line through Javan and Kittim (Genesis 10:2-4). Ships of Kittim (Numbers 24:24) foreshadow Roman power from the western Mediterranean." },
+        { "era_id": "maccabean_period", "text": "Rome intervened in Judea under Pompey in 63 BC, ending Hasmonean independence. The iron legs of Daniel's statue represent Rome, the fourth kingdom that would crush all others (Daniel 2:40)." },
+        { "era_id": "roman_period", "text": "Rome ruled the known world when the Messiah was born. Caesar Augustus issued the census that brought Joseph and Mary to Bethlehem (Luke 2:1-7). Pontius Pilate, Rome's governor, delivered Jesus to be crucified (Luke 23:1-25)." },
+        { "era_id": "jesus_ministry", "text": "Jesus acknowledged Roman authority while declaring His kingdom was not of this world. He prophesied that Jerusalem would be surrounded by Roman armies and the Temple destroyed, with not one stone left upon another (Luke 21:20-24; Matthew 24:1-2)." },
+        { "era_id": "early_church", "text": "The apostles spread the gospel throughout the Roman Empire. Paul, a Roman citizen, appealed to Caesar and brought the message to Rome itself (Acts 25:10-12; Acts 28:14-31). Rome later persecuted believers severely." }
+      ]
+    },
+    {
+      "id": 26,
+      "modern_name": "Peoples of Meshech",
+      "biblical_ancestor": "Meshech",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Meshech",
+      "kingdom_ids": ["meshech"],
+      "migration_summary": "Meshech, son of Japheth, settled in the regions of Anatolia and the area between the Black Sea and Caspian Sea. His descendants are associated with peoples of the Caucasus and parts of Asia Minor.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Meshech, son of Japheth, settled in the regions of central and eastern Anatolia (Genesis 10:2). His descendants are associated with the Mushki people known to the Assyrians." },
+        { "era_id": "united_kingdom", "text": "Meshech traded in persons and vessels of bronze in the markets of Tyre, indicating they were known as traders and metalworkers (Ezekiel 27:13)." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel named Meshech alongside Tubal as forces of Gog, prince of Rosh, Meshech, and Tubal, who would come against Israel in the latter days (Ezekiel 38:2-3; 39:1)." }
+      ]
+    },
+    {
+      "id": 27,
+      "modern_name": "Peoples of Tubal",
+      "biblical_ancestor": "Tubal",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Tubal",
+      "kingdom_ids": ["tubal"],
+      "migration_summary": "Tubal, son of Japheth, settled in eastern Anatolia and the southern Caucasus region. His descendants, along with Meshech, are consistently paired in prophetic texts about end-times events.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Tubal, son of Japheth, settled in the eastern regions of Asia Minor and the Caucasus (Genesis 10:2). His descendants are connected to the Tabal people of Assyrian records." },
+        { "era_id": "united_kingdom", "text": "Tubal traded alongside Meshech in the markets of Tyre, supplying persons and bronze vessels (Ezekiel 27:13). They were known as a warrior people of the north." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel prophesied against Gog of the land of Magog, the chief prince of Meshech and Tubal, declaring that this great northern alliance would invade Israel in the latter days and be destroyed by the Most High (Ezekiel 38:2-4; 39:1-6)." }
+      ]
+    },
+    {
+      "id": 28,
+      "modern_name": "Peoples of Magog",
+      "biblical_ancestor": "Magog",
+      "ancestor_ref": "Genesis 10:2",
+      "lineage": "Japheth > Magog",
+      "kingdom_ids": ["magog"],
+      "migration_summary": "Magog, son of Japheth, is associated with the regions north of the Black and Caspian Seas. His land became the prophetic symbol of the great northern enemy in Ezekiel's and John's visions.",
+      "era_narratives": [
+        { "era_id": "table_of_nations", "text": "Magog, son of Japheth, settled in the northern regions beyond the Caucasus (Genesis 10:2). The first-century historian Josephus identified Magog with the Scythians." },
+        { "era_id": "babylonian_exile", "text": "Ezekiel prophesied that Gog, from the land of Magog, would lead a vast coalition from the far north against Israel in the latter days. The Most High would destroy them with fire, brimstone, and pestilence (Ezekiel 38:1-23; 39:1-16)." },
+        { "era_id": "early_church", "text": "In the Revelation given to John, Gog and Magog represent the nations from the four corners of the earth that Satan will deceive and gather for the final battle against the saints (Revelation 20:7-9)." }
+      ]
+    },
+    {
+      "id": 29,
+      "modern_name": "Midianites",
+      "biblical_ancestor": "Midian",
+      "ancestor_ref": "Genesis 25:2",
+      "lineage": "Shem > ... > Abraham > Midian (by Keturah)",
+      "kingdom_ids": ["midian"],
+      "migration_summary": "Midian, son of Abraham by Keturah, settled in the northwestern Arabian Peninsula east of the Gulf of Aqaba. The Midianites were both allies and enemies of Israel at different times.",
+      "era_narratives": [
+        { "era_id": "abrahams_journey", "text": "Midian was one of six sons born to Abraham through his wife Keturah. Abraham sent these sons eastward with gifts, away from Isaac (Genesis 25:1-6)." },
+        { "era_id": "exodus_wilderness", "text": "Moses fled to Midian and married Zipporah, daughter of Jethro the priest of Midian (Exodus 2:15-21). Jethro later counseled Moses on governance (Exodus 18:13-27). Yet Midian also seduced Israel at Baal-peor, and the Most High commanded Moses to strike the Midianites (Numbers 25:16-18; Numbers 31:1-12)." },
+        { "era_id": "period_of_judges", "text": "The Midianites severely oppressed Israel for seven years, raiding their crops and livestock like locusts. The Most High raised up Gideon, who with only 300 men routed the vast Midianite army (Judges 6:1-6; Judges 7:1-25)." },
+        { "era_id": "united_kingdom", "text": "The defeat of Midian under Gideon became a proverbial example of the Most High's deliverance. Isaiah prophesied a future victory likened to the day of Midian (Isaiah 9:4; 10:26)." }
+      ]
+    },
+    {
+      "id": 30,
+      "modern_name": "Amalekites",
+      "biblical_ancestor": "Amalek",
+      "ancestor_ref": "Genesis 36:12",
+      "lineage": "Shem > ... > Abraham > Isaac > Esau > Eliphaz > Amalek",
+      "kingdom_ids": ["amalek"],
+      "migration_summary": "Amalek, grandson of Esau through Eliphaz and his concubine Timna, settled in the Negev desert of southern Canaan. The Amalekites were the first nation to attack Israel after the Exodus and became the archetypal enemy.",
+      "era_narratives": [
+        { "era_id": "exodus_wilderness", "text": "Amalek attacked the Israelites at Rephidim, targeting the faint and weary stragglers. The Most High swore to utterly blot out the remembrance of Amalek from under heaven and declared war against Amalek from generation to generation (Exodus 17:8-16; Deuteronomy 25:17-19)." },
+        { "era_id": "period_of_judges", "text": "The Amalekites joined with Moab and Ammon to oppress Israel during the time of the judges. They also allied with the Midianites against Israel in Gideon's day (Judges 3:13; Judges 6:3, 33)." },
+        { "era_id": "united_kingdom", "text": "Saul was commanded to utterly destroy the Amalekites but spared King Agag and the best livestock. Samuel declared the Most High had rejected Saul as king and personally executed Agag (1 Samuel 15:1-33)." },
+        { "era_id": "persian_period", "text": "Haman the Agagite, a descendant of the Amalekite royal line, plotted to exterminate all of Israel throughout the Persian Empire. Through Esther and Mordecai, the Most High overturned this plot and Haman was hanged on his own gallows (Esther 3:1-6; Esther 7:10)." }
+      ]
+    },
+    {
+      "id": 31,
+      "modern_name": "Nabateans",
+      "biblical_ancestor": "Nebaioth (son of Ishmael)",
+      "ancestor_ref": "Genesis 25:13",
+      "lineage": "Shem > ... > Abraham > Ishmael > Nebaioth",
+      "kingdom_ids": ["nabateans", "nebaioth"],
+      "migration_summary": "Nebaioth, firstborn son of Ishmael, is associated with the Nabateans who settled in the region of Edom and built the famous city of Petra. They controlled the incense trade routes of Arabia.",
+      "era_narratives": [
+        { "era_id": "abrahams_journey", "text": "Nebaioth was the firstborn of Ishmael, listed first among the twelve princes that the Most High promised would come from Ishmael (Genesis 25:13; Genesis 17:20)." },
+        { "era_id": "divided_kingdom", "text": "Isaiah prophesied that the flocks of Kedar and the rams of Nebaioth would serve Israel, coming up with acceptance on the altar of the Most High (Isaiah 60:7)." },
+        { "era_id": "persian_period", "text": "The Nabateans rose to prominence after the Babylonian exile, establishing their capital at Petra in former Edomite territory. They controlled the lucrative incense trade routes across Arabia." },
+        { "era_id": "maccabean_period", "text": "The Nabatean kingdom interacted with the Hasmoneans and later with Rome. King Aretas III briefly controlled Damascus, and the Nabateans were key players in the regional politics of the intertestamental period." }
+      ]
+    },
+    {
+      "id": 32,
+      "modern_name": "Samaritans",
+      "biblical_ancestor": "Mixed peoples (Assyrian resettlement)",
+      "ancestor_ref": "2 Kings 17:24-41",
+      "lineage": "Mixed: remnant of Northern Israel + Babylonians, Cuthahites, and others resettled by Assyria",
+      "kingdom_ids": ["samaria_region"],
+      "migration_summary": "After the Assyrian conquest of the Northern Kingdom in 722 BC, foreign peoples were resettled in Samaria and mixed with the remaining Israelites. They adopted a syncretic worship combining the Most High with their own gods.",
+      "era_narratives": [
+        { "era_id": "fall_of_samaria", "text": "After deporting the ten tribes, the king of Assyria brought people from Babylon, Cuthah, Ava, Hamath, and Sepharvaim to dwell in the cities of Samaria. They mixed their idol worship with the worship of the Most High (2 Kings 17:24-41)." },
+        { "era_id": "persian_period", "text": "The Samaritans opposed the rebuilding of the Temple under Zerubbabel, offering to help but being refused because of their mixed worship. They then actively hindered the work (Ezra 4:1-24)." },
+        { "era_id": "maccabean_period", "text": "The Samaritans built a rival temple on Mount Gerizim, which was later destroyed by John Hyrcanus in 128 BC. The enmity between Samaritans and Judeans intensified during this period (Josephus, Antiquities 13.9.1)." },
+        { "era_id": "jesus_ministry", "text": "Jesus spoke with the Samaritan woman at Jacob's well, declaring that true worshippers would worship in spirit and in truth, neither on Gerizim nor in Jerusalem alone. He revealed Himself to her as the Messiah (John 4:1-42)." },
+        { "era_id": "early_church", "text": "Philip preached in Samaria with great success, and many Samaritans believed and were baptized. Peter and John came from Jerusalem and laid hands on them to receive the Holy Spirit (Acts 8:5-17)." }
+      ]
+    },
+    {
+      "id": 33,
+      "modern_name": "Kedarites",
+      "biblical_ancestor": "Kedar (son of Ishmael)",
+      "ancestor_ref": "Genesis 25:13; Isaiah 21:16-17",
+      "lineage": "Shem > ... > Abraham > Ishmael > Kedar",
+      "kingdom_ids": ["kedar"],
+      "migration_summary": "Kedar, second son of Ishmael, settled in the Arabian desert. The Kedarites became powerful nomadic tribes known for their black tents, archery, and flocks, dominating the north Arabian trade routes.",
+      "era_narratives": [
+        { "era_id": "abrahams_journey", "text": "Kedar was the second son of Ishmael, listed among the twelve princes born to Ishmael as the Most High had promised (Genesis 25:13)." },
+        { "era_id": "divided_kingdom", "text": "Isaiah prophesied that within a year the glory of Kedar would fail and the mighty archers of Kedar would be diminished, for the Most High had spoken (Isaiah 21:16-17)." },
+        { "era_id": "babylonian_exile", "text": "Jeremiah declared judgment against Kedar and the kingdoms of Hazor, saying Nebuchadnezzar would smite them. He called their tents, flocks, and curtains to be taken (Jeremiah 49:28-33)." },
+        { "era_id": "persian_period", "text": "Geshem the Arab, likely a Kedarite chief, opposed Nehemiah's rebuilding of Jerusalem's walls, joining with Sanballat and Tobiah in opposition to the work (Nehemiah 2:19; 6:1-2)." }
+      ]
+    }
+  ]
+}

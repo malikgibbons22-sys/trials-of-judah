@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Calah / Nimrud", "era": "City of Nimrod" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [43.2, 36.2], [43.4, 36.2], [43.4, 36.0], [43.2, 36.0], [43.2, 36.2] ]]
+  }
+}

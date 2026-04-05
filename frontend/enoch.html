@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Book of Enoch — Trials of Judah</title>
+  <style>
+    /* ── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #120a06;
+      color: #d4c5b0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ────────────────────────────────────────── */
+    .app {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Disclaimer Banner ─────────────────────────────── */
+    .disclaimer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(18,10,6,0.97);
+      border-bottom: 2px solid #c9a84c;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      backdrop-filter: blur(8px);
+    }
+    .disclaimer.hidden { display: none; }
+    .disclaimer-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.82rem;
+      color: #b8a88a;
+      max-width: 800px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .disclaimer-text em {
+      color: #c9a84c;
+      font-style: italic;
+    }
+    .disclaimer-close {
+      background: none;
+      border: 1px solid rgba(201,168,76,0.3);
+      color: #c9a84c;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .disclaimer-close:hover { background: rgba(201,168,76,0.15); }
+
+    /* ── Back Button ───────────────────────────────────── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      color: #8a7a60;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-btn:hover { background: rgba(201,168,76,0.15); color: #c9a84c; }
+
+    /* ── Header ────────────────────────────────────────── */
+    .header {
+      text-align: center;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .header-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      letter-spacing: 1px;
+    }
+    .header-title span { color: #c9a84c; }
+    .header-sub {
+      font-size: 1rem;
+      color: #8a7a60;
+      margin-top: 4px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .header-tagline {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.9rem;
+      color: #8a7a60;
+      margin-top: 10px;
+      font-style: italic;
+    }
+
+    /* ── Section Headers ───────────────────────────────── */
+    .section-header {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.6rem;
+      color: #f5f0e8;
+      margin: 48px 0 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(201,168,76,0.2);
+      letter-spacing: 0.5px;
+    }
+    .section-header span { color: #c9a84c; }
+
+    /* ── Timeline (Canon) ──────────────────────────────── */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, #c9a84c, rgba(201,168,76,0.2));
+    }
+    .timeline-card {
+      position: relative;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -28px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #120a06;
+      border: 2px solid #c9a84c;
+      z-index: 2;
+      transition: background 0.2s;
+    }
+    .timeline-card.expanded .timeline-dot {
+      background: #c9a84c;
+    }
+    .timeline-card-inner {
+      background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, rgba(30,20,12,0.9) 100%);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 8px;
+      padding: 16px 20px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .timeline-card:hover .timeline-card-inner {
+      border-color: rgba(201,168,76,0.25);
+    }
+    .timeline-card.expanded .timeline-card-inner {
+      border-color: rgba(201,168,76,0.3);
+    }
+    .timeline-card-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.1rem;
+      color: #f5f0e8;
+      font-weight: 600;
+    }
+    .timeline-card-summary {
+      font-size: 0.88rem;
+      color: #9a8b75;
+      margin-top: 4px;
+      line-height: 1.5;
+    }
+    .timeline-expand-icon {
+      float: right;
+      color: #c9a84c;
+      font-size: 0.75rem;
+      margin-top: 2px;
+      transition: transform 0.2s;
+    }
+    .timeline-card.expanded .timeline-expand-icon {
+      transform: rotate(180deg);
+    }
+
+    /* ── Canon Expanded Content ────────────────────────── */
+    .canon-details {
+      display: none;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+    }
+    .timeline-card.expanded .canon-details {
+      display: block;
+    }
+    .canon-quote {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #c9b88a;
+      padding: 12px 16px;
+      border-left: 3px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.04);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+    .canon-citation {
+      font-size: 0.78rem;
+      color: #7a6b55;
+      margin-bottom: 16px;
+      padding-left: 16px;
+    }
+    .canon-refs-header {
+      font-size: 0.78rem;
+      color: #c9a84c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .canon-ref {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.88rem;
+      color: #b8a88a;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+      line-height: 1.5;
+    }
+    .canon-ref strong {
+      color: #c9a84c;
+      font-weight: 600;
+    }
+    .canon-context {
+      margin-top: 14px;
+      font-size: 0.85rem;
+      color: #8a7a60;
+      line-height: 1.6;
+      padding: 12px;
+      background: rgba(201,168,76,0.03);
+      border-radius: 6px;
+    }
+    .canon-context-label {
+      font-size: 0.72rem;
+      color: #c9a84c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* ── Category Nav ──────────────────────────────────── */
+    .category-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 8px 0 16px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(201,168,76,0.2) transparent;
+      -webkit-overflow-scrolling: touch;
+    }
+    .category-nav::-webkit-scrollbar { height: 4px; }
+    .category-nav::-webkit-scrollbar-track { background: transparent; }
+    .category-nav::-webkit-scrollbar-thumb { background: rgba(201,168,76,0.2); border-radius: 2px; }
+    .category-pill {
+      flex-shrink: 0;
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(201,168,76,0.05);
+      color: #8a7a60;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .category-pill:hover {
+      border-color: rgba(201,168,76,0.4);
+      color: #c9a84c;
+    }
+    .category-pill.active {
+      background: #c9a84c;
+      color: #120a06;
+      border-color: #c9a84c;
+    }
+
+    /* ── Parallel Entry Cards ──────────────────────────── */
+    .parallel-card {
+      background: linear-gradient(135deg, rgba(201,168,76,0.03) 0%, rgba(20,12,8,0.95) 100%);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 10px;
+      padding: 28px 24px;
+      margin-bottom: 28px;
+    }
+    .parallel-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 1.4rem;
+      color: #f5f0e8;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .parallel-claim {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #9a8b75;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    /* ── Quote Sections ────────────────────────────────── */
+    .quote-section-header {
+      font-size: 0.78rem;
+      color: #c9a84c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin: 20px 0 10px;
+    }
+    .quote-block {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-style: italic;
+      font-size: 0.92rem;
+      color: #c9b88a;
+      padding: 12px 16px;
+      border-left: 3px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.04);
+      border-radius: 0 6px 6px 0;
+      margin-bottom: 6px;
+      line-height: 1.6;
+    }
+    .quote-ref {
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 0.75rem;
+      color: #7a6b55;
+      margin-bottom: 12px;
+      padding-left: 16px;
+      font-style: normal;
+    }
+
+    /* ── Side-by-Side Comparison ────────────────────────── */
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 20px 0;
+    }
+    .comparison-header {
+      padding: 10px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .comparison-header.enoch-side {
+      background: rgba(80,100,160,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      color: #a0b0d0;
+    }
+    .comparison-header.myth-side {
+      background: rgba(160,100,60,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      border-left: 1px solid rgba(201,168,76,0.08);
+      color: #d0a878;
+    }
+    .comparison-cell {
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+    .comparison-cell.enoch-side {
+      background: rgba(80,100,160,0.04);
+      color: #b0bdd0;
+    }
+    .comparison-cell.myth-side {
+      background: rgba(160,100,60,0.04);
+      border-left: 1px solid rgba(201,168,76,0.06);
+      color: #d0b898;
+    }
+
+    /* ── Images ────────────────────────────────────────── */
+    .parallel-images {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding: 12px 0;
+      margin: 16px 0;
+    }
+    .parallel-image-wrap {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .parallel-image-wrap img {
+      max-width: 280px;
+      max-height: 200px;
+      border-radius: 6px;
+      border: 1px solid rgba(201,168,76,0.15);
+      object-fit: cover;
+    }
+    .parallel-image-caption {
+      font-size: 0.72rem;
+      color: #7a6b55;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* ── Canonical Cross-References ─────────────────────── */
+    .canonical-refs-section {
+      margin: 20px 0;
+    }
+    .canonical-ref-item {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.06);
+    }
+    .canonical-ref-verse {
+      font-weight: 700;
+      color: #c9a84c;
+      font-size: 0.88rem;
+    }
+    .canonical-ref-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.88rem;
+      color: #b8a88a;
+      line-height: 1.5;
+      margin-top: 2px;
+    }
+    .canonical-ref-note {
+      font-size: 0.78rem;
+      color: #7a6b55;
+      margin-top: 4px;
+      font-style: italic;
+    }
+    .canonical-gaps {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(201,168,76,0.04);
+      border: 1px solid rgba(201,168,76,0.1);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: #9a8b75;
+      line-height: 1.5;
+    }
+    .canonical-gaps-label {
+      font-size: 0.72rem;
+      color: #c9a84c;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    /* ── Distortion Callout ─────────────────────────────── */
+    .distortion {
+      margin: 20px 0;
+      padding: 16px 20px;
+      border-left: 4px solid rgba(180,60,60,0.6);
+      background: rgba(180,60,60,0.08);
+      border-radius: 0 8px 8px 0;
+    }
+    .distortion-header {
+      font-size: 0.78rem;
+      color: #d08080;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .distortion-text {
+      font-size: 0.88rem;
+      color: #c0a0a0;
+      line-height: 1.6;
+    }
+
+    /* ── Key Takeaway ──────────────────────────────────── */
+    .takeaway {
+      margin-top: 20px;
+      padding: 14px 20px;
+      border: 1px solid rgba(201,168,76,0.25);
+      background: rgba(201,168,76,0.08);
+      border-radius: 8px;
+    }
+    .takeaway-header {
+      font-size: 0.72rem;
+      color: #c9a84c;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .takeaway-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 0.92rem;
+      color: #d4c5b0;
+      line-height: 1.5;
+    }
+
+    /* ── Loading / Error ───────────────────────────────── */
+    .loading {
+      text-align: center;
+      padding: 40px 0;
+      color: #7a6b55;
+      font-size: 0.88rem;
+    }
+    .loading-spinner {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      border: 2px solid rgba(201,168,76,0.15);
+      border-top-color: #c9a84c;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 8px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-msg {
+      text-align: center;
+      padding: 24px;
+      color: #b07070;
+      font-size: 0.88rem;
+      background: rgba(180,60,60,0.06);
+      border: 1px solid rgba(180,60,60,0.15);
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .app { padding: 0 12px 60px; }
+      .header-title { font-size: 1.8rem; }
+      .section-header { font-size: 1.3rem; margin-top: 32px; }
+      .parallel-card { padding: 20px 16px; }
+      .parallel-title { font-size: 1.2rem; }
+
+      .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+      .comparison-header.myth-side,
+      .comparison-cell.myth-side {
+        border-left: none;
+        border-top: 1px solid rgba(201,168,76,0.08);
+      }
+
+      .disclaimer { padding: 10px 12px; gap: 10px; }
+      .disclaimer-text { font-size: 0.75rem; }
+
+      .timeline { padding-left: 24px; }
+      .timeline-dot { left: -20px; width: 10px; height: 10px; }
+      .timeline::before { left: 6px; }
+    }
+
+    /* spacing when disclaimer is visible */
+    body.has-disclaimer .app { padding-top: 70px; }
+    @media (max-width: 768px) {
+      body.has-disclaimer .app { padding-top: 90px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Disclaimer Banner -->
+  <div class="disclaimer" id="disclaimer">
+    <div class="disclaimer-text">
+      This section explores the Book of Enoch as a historical and theological document. All claims are
+      cross-referenced with canonical scripture where applicable. Study with discernment &mdash; test all things
+      (<em>1 Thessalonians 5:21</em>).
+    </div>
+    <button class="disclaimer-close" onclick="dismissDisclaimer()" title="Dismiss">&times;</button>
+  </div>
+
+  <div class="app">
+    <!-- Back link -->
+    <a href="/" class="back-btn">&larr; Return to Trials of Judah</a>
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header-title">The Book of <span>Enoch</span></h1>
+      <div class="header-sub">The Ancient Record</div>
+      <div class="header-tagline">A study of the pre-flood world and its echoes across every civilization</div>
+    </header>
+
+    <!-- Part 1: The Case for Canon -->
+    <h2 class="section-header">The Case for <span>Canon</span></h2>
+    <div id="canon-container">
+      <div class="loading"><div class="loading-spinner"></div><br>Loading canon arguments...</div>
+    </div>
+
+    <!-- Part 2: The Parallels -->
+    <h2 class="section-header">Echoes Across Every <span>Civilization</span></h2>
+    <div id="categories-container">
+      <div class="loading"><div class="loading-spinner"></div><br>Loading categories...</div>
+    </div>
+    <div id="parallels-container">
+      <div class="loading"><div class="loading-spinner"></div><br>Loading parallels...</div>
+    </div>
+  </div>
+
+  <script>
+    /* ── State ──────────────────────────────────────────── */
+    var state = {
+      canon: [],
+      parallels: [],
+      categories: [],
+      imageManifest: [],
+      activeCategory: 'mesopotamian',
+      expandedCanon: {},
+      disclaimerDismissed: localStorage.getItem('enoch-disclaimer-dismissed') === 'true'
+    };
+
+    /* ── Init ───────────────────────────────────────────── */
+    function init() {
+      // Disclaimer
+      if (state.disclaimerDismissed) {
+        document.getElementById('disclaimer').classList.add('hidden');
+      } else {
+        document.body.classList.add('has-disclaimer');
+      }
+
+      // Fetch all initial data in parallel
+      Promise.all([
+        loadCanon(),
+        loadCategories(),
+        loadParallels(state.activeCategory)
+      ]).catch(function(err) {
+        console.error('Init error:', err);
+      });
+    }
+
+    /* ── Data Fetching ─────────────────────────────────── */
+    function loadCanon() {
+      return fetch('/api/enoch/canon')
+        .then(function(res) {
+          if (!res.ok) throw new Error('Failed to load canon data');
+          return res.json();
+        })
+        .then(function(data) {
+          state.canon = data.canon || [];
+          renderCanon();
+        })
+        .catch(function(err) {
+          document.getElementById('canon-container').innerHTML =
+            '<div class="error-msg">Could not load canon data. Please try refreshing.</div>';
+          console.error(err);
+        });
+    }
+
+    function loadCategories() {
+      return fetch('/api/enoch/categories')
+        .then(function(res) {
+          if (!res.ok) throw new Error('Failed to load categories');
+          return res.json();
+        })
+        .then(function(data) {
+          state.categories = data.categories || [];
+          renderCategories();
+        })
+        .catch(function(err) {
+          document.getElementById('categories-container').innerHTML =
+            '<div class="error-msg">Could not load categories.</div>';
+          console.error(err);
+        });
+    }
+
+    function loadParallels(category) {
+      state.activeCategory = category;
+      document.getElementById('parallels-container').innerHTML =
+        '<div class="loading"><div class="loading-spinner"></div><br>Loading parallels...</div>';
+
+      return fetch('/api/enoch/parallels?category=' + encodeURIComponent(category))
+        .then(function(res) {
+          if (!res.ok) throw new Error('Failed to load parallels');
+          return res.json();
+        })
+        .then(function(data) {
+          state.parallels = data.parallels || [];
+          renderParallels();
+        })
+        .catch(function(err) {
+          document.getElementById('parallels-container').innerHTML =
+            '<div class="error-msg">Could not load parallels. Please try refreshing.</div>';
+          console.error(err);
+        });
+    }
+
+    /* ── Render: Canon Timeline ─────────────────────────── */
+    function renderCanon() {
+      var container = document.getElementById('canon-container');
+      if (!state.canon || state.canon.length === 0) {
+        container.innerHTML = '<div class="error-msg">No canon entries found.</div>';
+        return;
+      }
+
+      var html = '<div class="timeline">';
+      state.canon.forEach(function(item) {
+        var isExpanded = state.expandedCanon[item.id];
+        var expandedClass = isExpanded ? ' expanded' : '';
+
+        html += '<div class="timeline-card' + expandedClass + '" onclick="toggleCanonCard(\'' + escHtml(item.id) + '\')">';
+        html += '<div class="timeline-dot"></div>';
+        html += '<div class="timeline-card-inner">';
+        html += '<div class="timeline-expand-icon">' + (isExpanded ? '&#9650;' : '&#9660;') + '</div>';
+        html += '<div class="timeline-card-title">' + escHtml(item.title) + '</div>';
+        html += '<div class="timeline-card-summary">' + escHtml(item.summary) + '</div>';
+
+        // Expanded details
+        html += '<div class="canon-details">';
+
+        // Primary source quote
+        if (item.primary_source_quote) {
+          html += '<div class="canon-quote">"' + escHtml(item.primary_source_quote) + '"</div>';
+          if (item.source_citation) {
+            html += '<div class="canon-citation">&mdash; ' + escHtml(item.source_citation) + '</div>';
+          }
+        }
+
+        // Canonical references
+        if (item.canonical_refs && item.canonical_refs.length > 0) {
+          html += '<div class="canon-refs-header">Canonical References</div>';
+          item.canonical_refs.forEach(function(ref) {
+            html += '<div class="canon-ref"><strong>' + escHtml(ref.verse) + '</strong> &mdash; ' + escHtml(ref.text) + '</div>';
+          });
+        }
+
+        // Historical context
+        if (item.historical_context) {
+          html += '<div class="canon-context">';
+          html += '<div class="canon-context-label">Historical Context</div>';
+          html += escHtml(item.historical_context);
+          html += '</div>';
+        }
+
+        html += '</div>'; // .canon-details
+        html += '</div>'; // .timeline-card-inner
+        html += '</div>'; // .timeline-card
+      });
+      html += '</div>'; // .timeline
+
+      container.innerHTML = html;
+    }
+
+    /* ── Render: Category Pills ─────────────────────────── */
+    function renderCategories() {
+      var container = document.getElementById('categories-container');
+      if (!state.categories || state.categories.length === 0) {
+        container.innerHTML = '';
+        return;
+      }
+
+      var html = '<div class="category-nav">';
+      state.categories.forEach(function(cat) {
+        var activeClass = (cat.id === state.activeCategory) ? ' active' : '';
+        html += '<button class="category-pill' + activeClass + '" onclick="selectCategory(\'' + escHtml(cat.id) + '\')">';
+        html += escHtml(cat.label || cat.name || cat.id);
+        html += '</button>';
+      });
+      html += '</div>';
+
+      container.innerHTML = html;
+    }
+
+    /* ── Render: Parallel Entry Cards ───────────────────── */
+    function renderParallels() {
+      var container = document.getElementById('parallels-container');
+      if (!state.parallels || state.parallels.length === 0) {
+        container.innerHTML = '<div class="error-msg">No parallels found for this category.</div>';
+        return;
+      }
+
+      var html = '';
+      state.parallels.forEach(function(entry) {
+        html += '<div class="parallel-card">';
+
+        // Title and claim
+        html += '<div class="parallel-title">' + escHtml(entry.title) + '</div>';
+        if (entry.claim) {
+          html += '<div class="parallel-claim">' + escHtml(entry.claim) + '</div>';
+        }
+
+        // From Enoch quotes
+        if (entry.enoch_quotes && entry.enoch_quotes.length > 0) {
+          html += '<div class="quote-section-header">From Enoch</div>';
+          entry.enoch_quotes.forEach(function(q) {
+            html += '<div class="quote-block">"' + escHtml(q.text) + '"</div>';
+            html += '<div class="quote-ref">' + escHtml(q.reference) + '</div>';
+          });
+        }
+
+        // From the Mythology quotes
+        if (entry.mythology_quotes && entry.mythology_quotes.length > 0) {
+          html += '<div class="quote-section-header">From the Mythology</div>';
+          entry.mythology_quotes.forEach(function(q) {
+            html += '<div class="quote-block">"' + escHtml(q.text) + '"</div>';
+            html += '<div class="quote-ref">' + escHtml(q.source || '') + (q.citation ? ' &mdash; ' + escHtml(q.citation) : '') + '</div>';
+          });
+        }
+
+        // Side-by-side comparison
+        if (entry.comparisons && entry.comparisons.length > 0) {
+          html += '<div class="comparison-grid">';
+          html += '<div class="comparison-header enoch-side">From Enoch</div>';
+          html += '<div class="comparison-header myth-side">From the Mythology</div>';
+          entry.comparisons.forEach(function(c) {
+            html += '<div class="comparison-cell enoch-side">' + escHtml(c.enoch) + '</div>';
+            html += '<div class="comparison-cell myth-side">' + escHtml(c.mythology) + '</div>';
+          });
+          html += '</div>';
+        }
+
+        // Images
+        if (entry.images && entry.images.length > 0) {
+          html += '<div class="parallel-images">';
+          entry.images.forEach(function(img) {
+            html += '<div class="parallel-image-wrap">';
+            html += '<img src="/api/enoch/images/' + encodeURIComponent(img.filename) + '" alt="' + escHtml(img.caption || '') + '" loading="lazy">';
+            if (img.caption) {
+              html += '<div class="parallel-image-caption">' + escHtml(img.caption) + '</div>';
+            }
+            html += '</div>';
+          });
+          html += '</div>';
+        }
+
+        // Canonical cross-references
+        if (entry.canonical_refs && entry.canonical_refs.length > 0) {
+          html += '<div class="canonical-refs-section">';
+          html += '<div class="quote-section-header">Canonical Scripture</div>';
+          entry.canonical_refs.forEach(function(ref) {
+            html += '<div class="canonical-ref-item">';
+            html += '<div class="canonical-ref-verse">' + escHtml(ref.verse) + '</div>';
+            html += '<div class="canonical-ref-text">' + escHtml(ref.text) + '</div>';
+            if (ref.relevance_note) {
+              html += '<div class="canonical-ref-note">' + escHtml(ref.relevance_note) + '</div>';
+            }
+            html += '</div>';
+          });
+
+          // Canonical gaps
+          if (entry.canonical_gaps) {
+            html += '<div class="canonical-gaps">';
+            html += '<div class="canonical-gaps-label">Note on Canonical Gaps</div>';
+            html += escHtml(entry.canonical_gaps);
+            html += '</div>';
+          }
+
+          html += '</div>';
+        }
+
+        // The Distortion
+        if (entry.distortion) {
+          html += '<div class="distortion">';
+          html += '<div class="distortion-header">The Distortion</div>';
+          html += '<div class="distortion-text">' + escHtml(entry.distortion) + '</div>';
+          html += '</div>';
+        }
+
+        // Key Takeaway
+        if (entry.takeaway) {
+          html += '<div class="takeaway">';
+          html += '<div class="takeaway-header">Key Takeaway</div>';
+          html += '<div class="takeaway-text">' + escHtml(entry.takeaway) + '</div>';
+          html += '</div>';
+        }
+
+        html += '</div>'; // .parallel-card
+      });
+
+      container.innerHTML = html;
+    }
+
+    /* ── Actions ────────────────────────────────────────── */
+    function toggleCanonCard(id) {
+      if (state.expandedCanon[id]) {
+        delete state.expandedCanon[id];
+      } else {
+        state.expandedCanon[id] = true;
+      }
+      renderCanon();
+    }
+
+    function selectCategory(id) {
+      state.activeCategory = id;
+      renderCategories();
+      loadParallels(id);
+    }
+
+    function dismissDisclaimer() {
+      document.getElementById('disclaimer').classList.add('hidden');
+      document.body.classList.remove('has-disclaimer');
+      localStorage.setItem('enoch-disclaimer-dismissed', 'true');
+      state.disclaimerDismissed = true;
+    }
+
+    /* ── Utility ────────────────────────────────────────── */
+    function escHtml(str) {
+      if (!str) return '';
+      var div = document.createElement('div');
+      div.appendChild(document.createTextNode(String(str)));
+      return div.innerHTML;
+    }
+
+    /* ── Boot ───────────────────────────────────────────── */
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>

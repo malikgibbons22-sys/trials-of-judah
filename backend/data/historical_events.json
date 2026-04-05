@@ -1,0 +1,1084 @@
+{
+  "events": [
+    {
+      "id": "exodus_from_egypt",
+      "name": "Exodus from Egypt",
+      "date_range": "~1446 BC",
+      "region": "Egypt / Sinai",
+      "summary": "The Israelites, enslaved for centuries in Egypt, were delivered by God through Moses after ten devastating plagues struck the land. They crossed the Red Sea and journeyed to Mount Sinai, where they received the Torah and entered into covenant with God. This foundational event shaped Israelite identity and worship for all subsequent generations.",
+      "scripture_refs": [
+        "Exodus 12-15",
+        "Deuteronomy 6:21-23"
+      ]
+    },
+    {
+      "id": "conquest_of_canaan",
+      "name": "Conquest of Canaan",
+      "date_range": "~1406 BC",
+      "region": "Canaan",
+      "summary": "Under Joshua's leadership, the Israelites crossed the Jordan River and began a military campaign to take possession of the Promised Land. Key victories at Jericho, Ai, and Hazor established Israelite control over much of Canaan. The land was then divided among the twelve tribes as their inheritance.",
+      "scripture_refs": [
+        "Joshua 1-12",
+        "Joshua 21:43-45"
+      ]
+    },
+    {
+      "id": "assyrian_conquest",
+      "name": "Assyrian Conquest of Israel",
+      "date_range": "722 BC",
+      "region": "Northern Israel / Assyria",
+      "summary": "The Neo-Assyrian Empire under Shalmaneser V and Sargon II conquered the northern Kingdom of Israel, destroying its capital Samaria after a three-year siege. The ten northern tribes were deported and scattered across Assyria, becoming the 'Lost Tribes of Israel.' Foreign peoples were resettled in the land, eventually becoming the Samaritans.",
+      "scripture_refs": [
+        "2 Kings 17:5-23",
+        "Isaiah 10:5-6"
+      ]
+    },
+    {
+      "id": "babylonian_exile",
+      "name": "Babylonian Exile",
+      "date_range": "586 BC",
+      "region": "Judah / Babylon",
+      "summary": "King Nebuchadnezzar II of Babylon besieged and destroyed Jerusalem, including Solomon's Temple, and deported the population of Judah to Babylon. This catastrophic event ended the Davidic monarchy and transformed Israelite religion, shifting focus from Temple sacrifice to synagogue worship and scripture study. The exile lasted approximately seventy years as prophesied by Jeremiah.",
+      "scripture_refs": [
+        "2 Kings 25:1-21",
+        "Jeremiah 25:11-12",
+        "Psalm 137"
+      ]
+    },
+    {
+      "id": "babylonian_captivity",
+      "name": "Babylonian Captivity",
+      "date_range": "605-539 BC",
+      "region": "Babylon",
+      "summary": "Beginning with the first deportation under Nebuchadnezzar in 605 BC and encompassing subsequent deportations in 597 and 586 BC, the Jewish people lived as exiles in Babylon for decades. Prophets such as Ezekiel and Daniel ministered during this period, preserving faith and hope among the captives. The captivity ended when Cyrus the Great of Persia conquered Babylon and issued his decree allowing the Jews to return.",
+      "scripture_refs": [
+        "Daniel 1:1-6",
+        "Ezekiel 1:1-3",
+        "Jeremiah 29:10"
+      ]
+    },
+    {
+      "id": "persian_conquest_of_babylon",
+      "name": "Persian Conquest of Babylon",
+      "date_range": "539 BC",
+      "region": "Babylon / Persia",
+      "summary": "Cyrus the Great of Persia captured Babylon without significant battle, fulfilling Isaiah's prophecy by name. He subsequently issued the Edict of Cyrus, permitting the Jewish exiles to return to Jerusalem and rebuild the Temple. This event marked the end of Babylonian captivity and the beginning of the Second Temple period.",
+      "scripture_refs": [
+        "Isaiah 44:28-45:1",
+        "Ezra 1:1-4",
+        "2 Chronicles 36:22-23"
+      ]
+    },
+    {
+      "id": "maccabean_revolt",
+      "name": "Maccabean Revolt",
+      "date_range": "167-160 BC",
+      "region": "Judea",
+      "summary": "After the Seleucid king Antiochus IV Epiphanes desecrated the Temple by erecting an altar to Zeus and banning Jewish religious practices, the priest Mattathias and his sons led an armed revolt. Judas Maccabeus achieved stunning military victories against far larger Seleucid forces and recaptured Jerusalem. The Temple was cleansed and rededicated, an event commemorated as Hanukkah, and the Hasmonean dynasty was established.",
+      "scripture_refs": [
+        "Daniel 8:9-14",
+        "Daniel 11:31-35"
+      ]
+    },
+    {
+      "id": "alexander_conquests",
+      "name": "Conquests of Alexander the Great",
+      "date_range": "334-323 BC",
+      "region": "Greece / Persia / Egypt / Central Asia",
+      "summary": "Alexander III of Macedon conquered the Persian Empire, Egypt, and lands as far as India, spreading Greek language and culture (Hellenism) across the known world. His conquests created the conditions for Greek to become the common language of the eastern Mediterranean, later enabling the spread of the New Testament. After his death, his empire was divided among his generals, with the Ptolemaic and Seleucid kingdoms most affecting Jewish history.",
+      "scripture_refs": [
+        "Daniel 8:5-8",
+        "Daniel 11:3-4"
+      ]
+    },
+    {
+      "id": "roman_conquest_of_judea",
+      "name": "Roman Conquest of Judea",
+      "date_range": "63 BC",
+      "region": "Judea",
+      "summary": "The Roman general Pompey the Great intervened in a Hasmonean civil war and captured Jerusalem after a three-month siege of the Temple Mount. He entered the Holy of Holies, shocking the Jewish population, though he did not plunder the Temple treasury. Judea became a Roman client state, setting the political stage for the world into which Jesus of Nazareth would be born.",
+      "scripture_refs": [
+        "Daniel 2:40-43"
+      ]
+    },
+    {
+      "id": "fall_of_jerusalem_70ad",
+      "name": "Fall of Jerusalem",
+      "date_range": "AD 70",
+      "region": "Judea",
+      "summary": "Roman legions under Titus besieged and destroyed Jerusalem in response to the Jewish revolt that began in AD 66. The Second Temple was burned and dismantled, fulfilling Jesus' prophecy that not one stone would be left upon another. An estimated one million Jews perished, and tens of thousands were enslaved, marking the end of Temple-based worship and the beginning of rabbinic Judaism.",
+      "scripture_refs": [
+        "Matthew 24:1-2",
+        "Luke 21:20-24",
+        "Daniel 9:26"
+      ]
+    },
+    {
+      "id": "destruction_of_second_temple",
+      "name": "Destruction of the Second Temple",
+      "date_range": "AD 70",
+      "region": "Jerusalem",
+      "summary": "The Temple of Herod, the center of Jewish religious life for nearly six centuries, was destroyed by fire during the Roman siege of Jerusalem on the 9th of Av. Roman soldiers carried the Temple treasures, including the golden menorah, back to Rome, as depicted on the Arch of Titus. This destruction fundamentally altered Judaism and Christianity alike, ending the sacrificial system and scattering believers throughout the Roman world.",
+      "scripture_refs": [
+        "Matthew 24:1-2",
+        "Hebrews 8:13"
+      ]
+    },
+    {
+      "id": "siege_of_masada",
+      "name": "Siege of Masada",
+      "date_range": "AD 73-74",
+      "region": "Judea",
+      "summary": "After the fall of Jerusalem, approximately 960 Jewish Zealots held the mountaintop fortress of Masada against the Roman Tenth Legion. The Romans built a massive siege ramp over several months to breach the walls. According to Josephus, when the Romans finally entered, they found that the defenders had chosen to die rather than be enslaved, making Masada an enduring symbol of resistance.",
+      "scripture_refs": []
+    },
+    {
+      "id": "bar_kokhba_revolt",
+      "name": "Bar Kokhba Revolt",
+      "date_range": "AD 132-136",
+      "region": "Judea",
+      "summary": "Simon bar Kokhba led the last major Jewish revolt against Rome, initially achieving significant success and establishing an independent Jewish state for over two years. Rabbi Akiva proclaimed bar Kokhba as the Messiah, causing a decisive split between Jews and Jewish Christians who could not accept this claim. The revolt's brutal suppression resulted in the deaths of an estimated 580,000 Jews, and Emperor Hadrian renamed Jerusalem 'Aelia Capitolina' and banned Jews from the city.",
+      "scripture_refs": []
+    },
+    {
+      "id": "edict_of_milan",
+      "name": "Edict of Milan",
+      "date_range": "AD 313",
+      "region": "Roman Empire",
+      "summary": "Emperors Constantine I and Licinius issued a joint proclamation granting religious tolerance throughout the Roman Empire, effectively ending the era of state-sponsored persecution of Christians. The edict restored confiscated property to Christians and established the principle of religious freedom. It marked the beginning of Christianity's transformation from a persecuted minority faith to the dominant religion of the Roman world.",
+      "scripture_refs": []
+    },
+    {
+      "id": "council_of_nicaea",
+      "name": "Council of Nicaea",
+      "date_range": "AD 325",
+      "region": "Nicaea (modern Turkey)",
+      "summary": "The first ecumenical council of the Christian church was convened by Emperor Constantine I to address the Arian controversy over the nature of Christ. The council produced the Nicene Creed, affirming that the Son is 'of one substance' (homoousios) with the Father, and established uniform practices for celebrating Easter. It set the precedent for resolving doctrinal disputes through ecumenical councils and shaped orthodox Christian theology for centuries.",
+      "scripture_refs": []
+    },
+    {
+      "id": "council_of_chalcedon",
+      "name": "Council of Chalcedon",
+      "date_range": "AD 451",
+      "region": "Chalcedon (modern Turkey)",
+      "summary": "The fourth ecumenical council defined the orthodox Christological doctrine that Jesus Christ has two natures — divine and human — united in one person without confusion, change, division, or separation. Churches that rejected this definition, including the Coptic, Ethiopian, Syriac, and Armenian churches, became known as Oriental Orthodox. This schism created lasting divisions in Eastern Christianity that persist to the present day.",
+      "scripture_refs": []
+    },
+    {
+      "id": "nero_persecution",
+      "name": "Neronian Persecution",
+      "date_range": "AD 64-68",
+      "region": "Rome",
+      "summary": "After the Great Fire of Rome in AD 64, Emperor Nero scapegoated Christians, launching the first imperial persecution of the church. According to the Roman historian Tacitus, Christians were covered in animal skins and torn apart by dogs, crucified, or set ablaze as human torches to light Nero's gardens. Church tradition holds that both the apostles Peter and Paul were martyred during this persecution.",
+      "scripture_refs": [
+        "Revelation 2:10"
+      ]
+    },
+    {
+      "id": "domitian_persecution",
+      "name": "Domitian Persecution",
+      "date_range": "AD 81-96",
+      "region": "Roman Empire",
+      "summary": "Emperor Domitian demanded to be addressed as 'Lord and God' (Dominus et Deus), bringing him into direct conflict with Christians who reserved those titles for Christ alone. He executed his own cousin Flavius Clemens on charges of 'atheism' (refusal to worship Roman gods) and banished others. The apostle John was traditionally exiled to Patmos during this period, where he wrote the Book of Revelation.",
+      "scripture_refs": [
+        "Revelation 1:9"
+      ]
+    },
+    {
+      "id": "trajan_persecution",
+      "name": "Trajan Persecution",
+      "date_range": "AD 98-117",
+      "region": "Roman Empire",
+      "summary": "Emperor Trajan established the legal framework for persecuting Christians through his correspondence with Pliny the Younger, governor of Bithynia. Christians who refused to recant and offer incense to the emperor's image were to be executed, though they were not to be actively sought out. Notable martyrs of this period include Ignatius of Antioch, who was taken to Rome and thrown to wild beasts in the Colosseum.",
+      "scripture_refs": []
+    },
+    {
+      "id": "decian_persecution",
+      "name": "Decian Persecution",
+      "date_range": "AD 249-251",
+      "region": "Roman Empire",
+      "summary": "Emperor Decius issued an edict requiring all citizens of the Roman Empire to perform a public sacrifice to the Roman gods and obtain a certificate (libellus) as proof. This was the first empire-wide, systematic persecution, targeting church leaders in particular. Pope Fabian was martyred, and many Christians lapsed under pressure, creating a major controversy about whether the lapsed could be readmitted to the church.",
+      "scripture_refs": []
+    },
+    {
+      "id": "valerian_persecution",
+      "name": "Valerian Persecution",
+      "date_range": "AD 257-260",
+      "region": "Roman Empire",
+      "summary": "Emperor Valerian issued two edicts targeting Christian clergy, ordering them to sacrifice to Roman gods and banning Christian assemblies and access to cemeteries. A second edict mandated execution for bishops and presbyters who refused, and confiscation of property for Christian senators and nobles. Notable martyrs include Pope Sixtus II, the deacon Lawrence of Rome, and Bishop Cyprian of Carthage.",
+      "scripture_refs": []
+    },
+    {
+      "id": "diocletian_persecution",
+      "name": "Diocletian Persecution (The Great Persecution)",
+      "date_range": "AD 303-313",
+      "region": "Roman Empire",
+      "summary": "Emperor Diocletian and his co-rulers issued a series of edicts that stripped Christians of legal rights, demanded the destruction of scriptures and churches, and required universal sacrifice to Roman gods. This was the most severe and systematic of all Roman persecutions, producing countless martyrs especially in the eastern provinces. The persecution continued under Galerius until his Edict of Toleration in 311, and ended fully with the Edict of Milan in 313.",
+      "scripture_refs": []
+    },
+    {
+      "id": "julian_apostasy",
+      "name": "Julian's Apostasy",
+      "date_range": "AD 361-363",
+      "region": "Roman Empire",
+      "summary": "Emperor Julian, raised as a Christian, renounced the faith upon becoming emperor and attempted to restore traditional Roman paganism. He removed Christian privileges, reopened pagan temples, and barred Christians from teaching classical literature. Though he did not launch outright persecution, his policies created a hostile environment, and local violence against Christians occurred in several cities before his death during a campaign against Persia.",
+      "scripture_refs": []
+    },
+    {
+      "id": "fall_of_rome",
+      "name": "Fall of the Western Roman Empire",
+      "date_range": "AD 476",
+      "region": "Western Europe",
+      "summary": "The Germanic chieftain Odoacer deposed the last Western Roman Emperor, Romulus Augustulus, ending over a millennium of Roman rule in the West. The collapse fragmented political authority across Europe, but the Christian church emerged as the primary institution preserving literacy, learning, and social organization. Monasteries became centers of civilization, and bishops often assumed civic leadership roles in the absence of imperial administration.",
+      "scripture_refs": []
+    },
+    {
+      "id": "arab_conquest_of_jerusalem",
+      "name": "Arab Conquest of Jerusalem",
+      "date_range": "AD 637",
+      "region": "Jerusalem / Palestine",
+      "summary": "Caliph Umar ibn al-Khattab accepted the surrender of Jerusalem from Patriarch Sophronius, bringing the holy city under Islamic rule. The Covenant of Umar established Christians as dhimmis (protected subjects) who could practice their faith but faced restrictions including a special tax (jizya) and prohibitions on building new churches. This began nearly 1,400 years of predominantly Muslim control over Jerusalem, interrupted only by the Crusader period.",
+      "scripture_refs": []
+    },
+    {
+      "id": "iconoclasm_controversy",
+      "name": "Iconoclasm Controversy",
+      "date_range": "AD 726-843",
+      "region": "Byzantine Empire",
+      "summary": "Byzantine emperors beginning with Leo III ordered the destruction of religious icons and images, sparking a bitter theological and political conflict that convulsed the Eastern church for over a century. Monks and nuns who defended icon veneration were persecuted, imprisoned, and sometimes killed. The controversy was finally resolved at the Seventh Ecumenical Council and the 'Triumph of Orthodoxy' in 843, restoring the veneration of icons.",
+      "scripture_refs": []
+    },
+    {
+      "id": "great_schism",
+      "name": "Great Schism (East-West Schism)",
+      "date_range": "AD 1054",
+      "region": "Rome / Constantinople",
+      "summary": "Cardinal Humbert and Patriarch Michael Cerularius exchanged mutual excommunications, formally splitting Christianity into the Roman Catholic Church in the West and the Eastern Orthodox Church. The schism resulted from centuries of growing theological, liturgical, and political differences, including disputes over papal authority, the filioque clause in the Creed, and the use of unleavened bread. Despite modern reconciliation efforts, the division remains the most significant in Christian history.",
+      "scripture_refs": []
+    },
+    {
+      "id": "east_west_schism",
+      "name": "East-West Schism",
+      "date_range": "AD 1054",
+      "region": "Rome / Constantinople",
+      "summary": "The formal division between Western (Latin) and Eastern (Greek) Christianity culminated in mutual excommunications between the Pope's legate and the Patriarch of Constantinople. Longstanding differences over papal supremacy, theological formulations, and liturgical practices had made reunion increasingly difficult. The schism permanently divided Christendom into two major communions and shaped the religious geography of Europe and the Middle East.",
+      "scripture_refs": []
+    },
+    {
+      "id": "first_crusade",
+      "name": "First Crusade",
+      "date_range": "1095-1099",
+      "region": "Holy Land / Levant",
+      "summary": "Pope Urban II called upon Christendom to liberate the Holy Land from Muslim control, launching the first of several major military expeditions. Crusader armies captured Antioch and then Jerusalem in 1099, massacring many of the city's Muslim and Jewish inhabitants. The Crusaders established four Latin states in the Levant, beginning nearly two centuries of Western Christian presence in the region.",
+      "scripture_refs": []
+    },
+    {
+      "id": "second_crusade",
+      "name": "Second Crusade",
+      "date_range": "1147-1149",
+      "region": "Holy Land / Levant",
+      "summary": "Preached by Bernard of Clairvaux after the fall of the Crusader County of Edessa to Muslim forces, the Second Crusade was led by King Louis VII of France and Emperor Conrad III of Germany. The campaign ended in a disastrous failed siege of Damascus, accomplishing none of its objectives. Its failure weakened European enthusiasm for crusading and emboldened Muslim leaders, eventually leading to Saladin's reconquest of Jerusalem in 1187.",
+      "scripture_refs": []
+    },
+    {
+      "id": "third_crusade",
+      "name": "Third Crusade",
+      "date_range": "1189-1192",
+      "region": "Holy Land / Levant",
+      "summary": "Launched in response to Saladin's capture of Jerusalem in 1187, the Third Crusade was led by Richard I of England, Philip II of France, and Emperor Frederick Barbarossa. Richard achieved notable victories at Acre and Arsuf but was unable to recapture Jerusalem. The crusade ended with the Treaty of Jaffa, granting Christian pilgrims access to Jerusalem while leaving the city under Muslim control.",
+      "scripture_refs": []
+    },
+    {
+      "id": "sack_of_constantinople",
+      "name": "Sack of Constantinople (Fourth Crusade)",
+      "date_range": "1204",
+      "region": "Constantinople (modern Istanbul)",
+      "summary": "The Fourth Crusade was diverted from its intended target of Egypt to Constantinople, the capital of the Christian Byzantine Empire. Crusader forces sacked the city with extraordinary violence, looting churches, desecrating holy sites, and massacring fellow Christians. This catastrophic event deepened the schism between Eastern and Western Christianity beyond repair and fatally weakened the Byzantine Empire.",
+      "scripture_refs": []
+    },
+    {
+      "id": "fall_of_acre",
+      "name": "Fall of Acre",
+      "date_range": "1291",
+      "region": "Acre (modern Israel)",
+      "summary": "The Mamluk Sultan al-Ashraf Khalil besieged and captured Acre, the last major Crusader stronghold in the Holy Land. The city's fall after a desperate defense marked the definitive end of the Crusader states in the Levant. Remaining Crusader outposts along the coast were abandoned, and the era of Western Christian military presence in the Holy Land came to a close.",
+      "scripture_refs": []
+    },
+    {
+      "id": "avignon_papacy",
+      "name": "Avignon Papacy",
+      "date_range": "1309-1377",
+      "region": "Avignon, France",
+      "summary": "Seven successive popes resided in Avignon, France, rather than Rome, largely under the influence of the French crown. The period was marked by accusations of corruption, nepotism, and the papacy's subservience to French political interests. The return to Rome under Gregory XI was followed by the Western Schism (1378-1417), during which rival claimants to the papacy further damaged the institution's credibility.",
+      "scripture_refs": []
+    },
+    {
+      "id": "fall_of_constantinople",
+      "name": "Fall of Constantinople",
+      "date_range": "1453",
+      "region": "Constantinople (modern Istanbul)",
+      "summary": "Ottoman Sultan Mehmed II conquered Constantinople after a 53-day siege, ending the Byzantine Empire and over a thousand years of Christian rule in the eastern Mediterranean. The Hagia Sophia was converted into a mosque, and the city became the capital of the Ottoman Empire. The fall sent shockwaves through Christendom and drove Greek scholars westward, contributing to the Italian Renaissance.",
+      "scripture_refs": []
+    },
+    {
+      "id": "ottoman_conquest",
+      "name": "Ottoman Conquests",
+      "date_range": "1453-1683",
+      "region": "Southeast Europe / Middle East / North Africa",
+      "summary": "Following the fall of Constantinople, the Ottoman Empire expanded into the Balkans, Hungary, the Middle East, and North Africa, bringing millions of Christians under Islamic rule. Christians were organized into millets (self-governing communities) but faced discriminatory laws, the devshirme (forced conscription of Christian boys), and periodic violence. Ottoman rule shaped the religious landscape of southeastern Europe and the Middle East for centuries.",
+      "scripture_refs": []
+    },
+    {
+      "id": "spanish_inquisition",
+      "name": "Spanish Inquisition",
+      "date_range": "1478-1834",
+      "region": "Spain / Spanish colonies",
+      "summary": "Established by Ferdinand and Isabella and authorized by Pope Sixtus IV, the Spanish Inquisition targeted heresy, crypto-Judaism, and crypto-Islam among baptized Christians. It employed torture, auto-da-fé ceremonies, and execution by burning to enforce religious orthodoxy. Over its 356-year existence, an estimated 3,000-5,000 people were executed, and the Inquisition became a powerful instrument of social and political control.",
+      "scripture_refs": []
+    },
+    {
+      "id": "protestant_reformation",
+      "name": "Protestant Reformation",
+      "date_range": "1517-1648",
+      "region": "Europe",
+      "summary": "Martin Luther's posting of the 95 Theses in 1517 ignited a movement that challenged papal authority, the sale of indulgences, and Catholic doctrines on salvation. The Reformation spread rapidly through Germany, Switzerland, Scandinavia, and beyond, producing new Protestant denominations and triggering decades of religious warfare. It permanently fractured Western Christianity and transformed European politics, culture, and intellectual life.",
+      "scripture_refs": []
+    },
+    {
+      "id": "english_reformation",
+      "name": "English Reformation",
+      "date_range": "1534",
+      "region": "England",
+      "summary": "King Henry VIII broke with Rome when Pope Clement VII refused to annul his marriage to Catherine of Aragon, establishing the Church of England with the monarch as Supreme Head through the Act of Supremacy. This political rupture evolved into genuine theological reform under Edward VI and Elizabeth I. The Reformation produced martyrs on both sides — Protestants burned under Mary I and Catholics executed under Elizabeth I.",
+      "scripture_refs": []
+    },
+    {
+      "id": "dissolution_of_monasteries",
+      "name": "Dissolution of the Monasteries",
+      "date_range": "1536-1541",
+      "region": "England / Wales",
+      "summary": "Henry VIII dissolved over 800 monasteries, priories, convents, and friaries in England and Wales, confiscating their vast wealth and lands for the Crown. Monks and nuns were dispossessed, priceless libraries and artworks were destroyed, and the landscape was forever altered by the ruined abbeys. The dissolution provoked the Pilgrimage of Grace, the largest rebellion of Henry's reign, which was brutally suppressed.",
+      "scripture_refs": []
+    },
+    {
+      "id": "council_of_trent",
+      "name": "Council of Trent",
+      "date_range": "1545-1563",
+      "region": "Trent (modern Italy)",
+      "summary": "The Catholic Church convened the Council of Trent as its definitive response to the Protestant Reformation, reaffirming traditional doctrines on scripture and tradition, the seven sacraments, and justification by faith and works. The council enacted sweeping reforms of clerical education, eliminated many abuses, and standardized the Roman Missal and Catechism. Its decrees shaped Catholic identity and practice for the next four centuries until Vatican II.",
+      "scripture_refs": []
+    },
+    {
+      "id": "recusancy_laws_england",
+      "name": "Recusancy Laws in England",
+      "date_range": "1559-1791",
+      "region": "England",
+      "summary": "English law imposed fines, imprisonment, and civil disabilities on Catholics (and other dissenters) who refused to attend Church of England services. Penalties escalated to include loss of property, prohibition from public office, and even execution for harboring priests. Jesuit missionaries operated underground through a network of priest holes and safe houses, and many were captured and executed as traitors.",
+      "scripture_refs": []
+    },
+    {
+      "id": "thirty_years_war",
+      "name": "Thirty Years' War",
+      "date_range": "1618-1648",
+      "region": "Central Europe",
+      "summary": "Beginning as a conflict between Protestant and Catholic states within the Holy Roman Empire, the war expanded into a devastating continental struggle involving most European powers. An estimated 8 million people died, with some regions of Germany losing a third or more of their population. The Peace of Westphalia (1648) established the principle of cuius regio, eius religio and laid the foundations for the modern state system.",
+      "scripture_refs": []
+    },
+    {
+      "id": "penal_laws_ireland",
+      "name": "Penal Laws in Ireland",
+      "date_range": "1691-1829",
+      "region": "Ireland",
+      "summary": "A series of laws imposed by the Protestant British government stripped Irish Catholics of the right to vote, hold public office, own land above a certain value, practice law, and receive education. Catholic clergy were banished, and Masses were celebrated in secret at outdoor 'Mass rocks.' The laws were gradually repealed through the 18th and early 19th centuries, culminating in Catholic Emancipation in 1829.",
+      "scripture_refs": []
+    },
+    {
+      "id": "tokugawa_persecution_japan",
+      "name": "Tokugawa Persecution in Japan",
+      "date_range": "1597-1873",
+      "region": "Japan",
+      "summary": "Beginning with the crucifixion of 26 Christians in Nagasaki in 1597, Japanese authorities conducted increasingly brutal suppression of Christianity under the Tokugawa shogunate. Methods included crucifixion, burning, and the infamous tsurushi (pit-hanging) torture designed to force apostasy. An estimated 300,000 Christians were killed or forced underground, with 'hidden Christians' (Kakure Kirishitan) secretly preserving their faith for over two centuries.",
+      "scripture_refs": []
+    },
+    {
+      "id": "sakoku_japan",
+      "name": "Sakoku (Closed Country) Policy",
+      "date_range": "1633-1853",
+      "region": "Japan",
+      "summary": "The Tokugawa shogunate sealed Japan's borders, expelling all foreigners and banning foreign travel by Japanese citizens under penalty of death. Christianity was singled out as a subversive foreign influence, and citizens were required to register at Buddhist temples and undergo annual fumi-e ceremonies (treading on images of Christ or Mary) to prove they were not Christians. The policy kept Japan isolated for over two centuries until Commodore Perry's arrival in 1853.",
+      "scripture_refs": []
+    },
+    {
+      "id": "joseon_persecution_korea",
+      "name": "Joseon Persecution of Christians in Korea",
+      "date_range": "1791-1888",
+      "region": "Korea",
+      "summary": "The Joseon dynasty conducted multiple waves of violent persecution against Korean Catholics, beginning with the Sinhai Persecution of 1791. Major persecutions in 1801, 1839, 1846, and 1866 resulted in the deaths of thousands of Korean Christians and dozens of French missionaries. The 1866 persecution alone killed approximately 8,000 Catholics and precipitated the French military expedition against Korea.",
+      "scripture_refs": []
+    },
+    {
+      "id": "taiping_rebellion",
+      "name": "Taiping Rebellion",
+      "date_range": "1850-1864",
+      "region": "China",
+      "summary": "Hong Xiuquan, claiming to be the younger brother of Jesus Christ, led a massive revolutionary movement that established the Taiping Heavenly Kingdom in southern China. The rebellion, blending heterodox Christian ideas with social revolution, resulted in an estimated 20-30 million deaths, making it one of the deadliest conflicts in human history. Its distortion of Christian teachings complicated later missionary efforts in China.",
+      "scripture_refs": []
+    },
+    {
+      "id": "qing_dynasty_suppressions",
+      "name": "Qing Dynasty Suppressions of Christianity",
+      "date_range": "1644-1912",
+      "region": "China",
+      "summary": "The Qing dynasty alternated between tolerance and persecution of Christianity over nearly three centuries. The Chinese Rites Controversy led to a papal ban on ancestor veneration practices, prompting Emperor Kangxi and his successors to expel missionaries and ban Christian practice. Periodic anti-Christian violence erupted throughout the dynasty, often tied to broader anti-foreign sentiment, culminating in the Boxer Rebellion.",
+      "scripture_refs": []
+    },
+    {
+      "id": "boxer_rebellion",
+      "name": "Boxer Rebellion",
+      "date_range": "1899-1901",
+      "region": "China",
+      "summary": "A violent anti-foreign and anti-Christian uprising in China led by the 'Righteous and Harmonious Fists' (Boxers). They targeted Chinese Christians and foreign missionaries, killing an estimated 32,000 Chinese Christians and 200 foreign missionaries. The Qing Dynasty initially supported the Boxers before an eight-nation alliance intervened militarily to suppress the movement.",
+      "scripture_refs": []
+    },
+    {
+      "id": "french_revolution",
+      "name": "French Revolution",
+      "date_range": "1789-1799",
+      "region": "France",
+      "summary": "The revolution that overthrew the French monarchy also targeted the Catholic Church as a pillar of the ancien régime. Churches were closed or converted into 'Temples of Reason,' religious orders were suppressed, and thousands of clergy were killed or forced to flee. The revolutionary government attempted to replace Christianity entirely with the secular Cult of Reason and later the deistic Cult of the Supreme Being.",
+      "scripture_refs": []
+    },
+    {
+      "id": "civil_constitution_of_clergy",
+      "name": "Civil Constitution of the Clergy",
+      "date_range": "1790",
+      "region": "France",
+      "summary": "The French National Assembly enacted legislation subordinating the Catholic Church to the state, requiring clergy to swear an oath of loyalty to the constitution and making bishops and priests elected civil officials. Pope Pius VI condemned the measure, and roughly half of French clergy refused the oath, becoming 'refractory' or 'non-juring' priests subject to persecution. This split the French church and drove many faithful Catholics into opposition to the Revolution.",
+      "scripture_refs": []
+    },
+    {
+      "id": "reign_of_terror",
+      "name": "Reign of Terror",
+      "date_range": "1793-1794",
+      "region": "France",
+      "summary": "The most radical phase of the French Revolution, led by the Committee of Public Safety under Robespierre, intensified the campaign against Christianity. The revolutionary calendar replaced the Christian week with a ten-day cycle, churches were systematically desecrated, and refractory priests faced mass executions including the notorious noyades (mass drownings) at Nantes. An estimated 2,000-5,000 clergy were killed during this period.",
+      "scripture_refs": []
+    },
+    {
+      "id": "transatlantic_slave_trade",
+      "name": "Transatlantic Slave Trade",
+      "date_range": "1500-1865",
+      "region": "West Africa / Americas",
+      "summary": "European and American merchants forcibly transported an estimated 12.5 million Africans across the Atlantic to the Americas over more than three centuries. Many enslaved people were stripped of their native religions and either forcibly converted to Christianity or found genuine solace in the faith despite its distortion by slaveholders. The slave trade was eventually abolished through efforts that included prominent Christian abolitionists such as William Wilberforce and Frederick Douglass.",
+      "scripture_refs": [
+        "Exodus 21:16",
+        "Galatians 3:28",
+        "Philemon 1:15-16"
+      ]
+    },
+    {
+      "id": "arab_slave_trade",
+      "name": "Arab Slave Trade",
+      "date_range": "650-1900",
+      "region": "East Africa / Middle East / North Africa",
+      "summary": "The Arab slave trade transported an estimated 10-18 million people from sub-Saharan Africa, the Caucasus, and Central Asia to the Islamic world over more than a millennium. Christians from Nubia, Ethiopia, and the Caucasus were among those enslaved, and captives were often pressured to convert to Islam. The trade devastated Christian communities in Nubia and contributed to the decline of Christianity across much of North and East Africa.",
+      "scripture_refs": []
+    },
+    {
+      "id": "middle_passage",
+      "name": "Middle Passage",
+      "date_range": "1500-1865",
+      "region": "Atlantic Ocean",
+      "summary": "The harrowing middle leg of the triangular trade route carried enslaved Africans across the Atlantic in horrific conditions. An estimated 1.5-2 million people died during the crossing from disease, starvation, suffocation, and violence. Survivors carried their spiritual traditions with them, and many later embraced Christianity, developing distinctive African American worship traditions that became a wellspring of hope and resistance.",
+      "scripture_refs": []
+    },
+    {
+      "id": "scramble_for_africa",
+      "name": "Scramble for Africa",
+      "date_range": "1881-1914",
+      "region": "Africa",
+      "summary": "European colonial powers partitioned nearly the entire African continent at the Berlin Conference (1884-85) and through subsequent military conquests. Christian missionaries accompanied colonial expansion, creating a complex legacy of genuine evangelization intertwined with cultural imperialism. African Christians often found themselves caught between colonial authorities and indigenous resistance movements, yet the faith took deep root, making Africa home to the fastest-growing Christian communities in the world.",
+      "scripture_refs": []
+    },
+    {
+      "id": "armenian_genocide",
+      "name": "Armenian Genocide",
+      "date_range": "1915-1923",
+      "region": "Ottoman Empire (modern Turkey)",
+      "summary": "The Ottoman government systematically exterminated approximately 1.5 million Armenian Christians through mass executions, death marches into the Syrian desert, and forced starvation. The Armenian Apostolic Church, one of the oldest Christian communities in the world, was nearly destroyed in its ancestral homeland. The genocide also targeted Assyrian and Greek Christians, representing the most devastating persecution of Christians in modern history.",
+      "scripture_refs": []
+    },
+    {
+      "id": "assyrian_genocide",
+      "name": "Assyrian Genocide (Seyfo)",
+      "date_range": "1914-1920",
+      "region": "Ottoman Empire (modern Turkey / Iraq)",
+      "summary": "Ottoman and Kurdish forces killed an estimated 250,000-750,000 Assyrian Christians during World War I and its aftermath, in a campaign known as 'Seyfo' (the Sword). Ancient Assyrian Christian communities in southeastern Turkey, northwestern Iran, and northern Iraq were destroyed through massacres, forced marches, and starvation. The genocide devastated one of the oldest continuously Christian populations in the world, whose churches traced their origins to the apostolic age.",
+      "scripture_refs": []
+    },
+    {
+      "id": "greek_genocide",
+      "name": "Greek Genocide",
+      "date_range": "1914-1923",
+      "region": "Ottoman Empire (modern Turkey)",
+      "summary": "Ottoman authorities systematically persecuted and killed an estimated 300,000-900,000 ethnic Greek Christians in Anatolia and Pontus through massacres, death marches, and forced labor. Greek Orthodox communities that had existed in Asia Minor since antiquity were uprooted in what culminated in the 1923 population exchange between Greece and Turkey. The genocide effectively ended over three millennia of Greek Christian presence in Anatolia.",
+      "scripture_refs": []
+    },
+    {
+      "id": "russian_revolution",
+      "name": "Russian Revolution",
+      "date_range": "1917",
+      "region": "Russia",
+      "summary": "The Bolshevik Revolution overthrew the Russian provisional government and established the world's first communist state, officially committed to atheism. The Russian Orthodox Church, deeply intertwined with the tsarist regime, became an immediate target of the new government. Church property was confiscated, religious education was banned, and a campaign of destruction began that would claim tens of thousands of clergy and faithful over the coming decades.",
+      "scripture_refs": []
+    },
+    {
+      "id": "bolshevik_persecution",
+      "name": "Bolshevik Persecution of Christians",
+      "date_range": "1917-1940",
+      "region": "Soviet Union",
+      "summary": "The Soviet regime under Lenin and Stalin conducted a sustained assault on organized religion, particularly the Russian Orthodox Church. Tens of thousands of churches were destroyed or converted to secular use, and an estimated 50,000 clergy were executed between 1917 and 1940. The League of Militant Atheists waged propaganda campaigns, and believers faced imprisonment in the Gulag, loss of employment, and social ostracism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "cristero_war",
+      "name": "Cristero War",
+      "date_range": "1926-1929",
+      "region": "Mexico",
+      "summary": "Mexican Catholics rose in armed rebellion against the anti-clerical provisions of the 1917 Constitution enforced by President Plutarco Elias Calles, who closed churches, expelled foreign priests, and banned religious orders. The Cristeros, rallying under the cry 'Viva Cristo Rey!' (Long live Christ the King!), fought a brutal guerrilla war in which an estimated 90,000 people died. The conflict ended with a diplomatic arrangement but left deep scars in Mexican society.",
+      "scripture_refs": []
+    },
+    {
+      "id": "spanish_civil_war",
+      "name": "Spanish Civil War",
+      "date_range": "1936-1939",
+      "region": "Spain",
+      "summary": "Republican forces in Spain launched a violent anticlerical campaign during the civil war, destroying thousands of churches and killing an estimated 6,832 members of the Catholic clergy, including 13 bishops, 4,184 priests, 2,365 monks, and 283 nuns. The 'Red Terror' targeted religious figures as symbols of the old order. The Catholic Church largely supported Franco's Nationalist forces, a political alignment that shaped Spanish society for decades.",
+      "scripture_refs": []
+    },
+    {
+      "id": "world_war_ii",
+      "name": "World War II",
+      "date_range": "1939-1945",
+      "region": "Global",
+      "summary": "The deadliest conflict in human history killed an estimated 70-85 million people and devastated Christian communities across Europe and Asia. The Nazi regime persecuted Catholic and Protestant churches that resisted its ideology, imprisoning clergy in concentration camps — nearly 3,000 at Dachau alone. Christian leaders who resisted, such as Dietrich Bonhoeffer and Maximilian Kolbe, became enduring symbols of faith under totalitarianism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "holocaust",
+      "name": "The Holocaust",
+      "date_range": "1941-1945",
+      "region": "Nazi-occupied Europe",
+      "summary": "The Nazi regime systematically murdered approximately six million Jews in an industrial genocide unprecedented in human history. While primarily targeting Jews, the Holocaust also killed thousands of Christians of Jewish descent, Jehovah's Witnesses, and clergy who opposed the regime. The Holocaust forced a profound reckoning within Christianity about centuries of anti-Jewish teaching and its role in creating the conditions for genocide.",
+      "scripture_refs": []
+    },
+    {
+      "id": "communist_persecution_eastern_europe",
+      "name": "Communist Persecution in Eastern Europe",
+      "date_range": "1945-1989",
+      "region": "Eastern Europe",
+      "summary": "Soviet-imposed communist governments across Eastern Europe systematically suppressed religious practice through imprisonment of clergy, confiscation of church property, infiltration by secret police, and aggressive atheist propaganda. Cardinal Mindszenty of Hungary, Cardinal Wyszynski of Poland, and countless lesser-known believers endured imprisonment and torture for their faith. The church survived underground and in resistance, playing a crucial role in the eventual collapse of communism, particularly in Poland through the Solidarity movement.",
+      "scripture_refs": []
+    },
+    {
+      "id": "cultural_revolution_china",
+      "name": "Cultural Revolution in China",
+      "date_range": "1966-1976",
+      "region": "China",
+      "summary": "Mao Zedong's Cultural Revolution sought to destroy all traditional culture and religion, including Christianity. Red Guards demolished churches, burned Bibles, and subjected believers to public humiliation, imprisonment, and execution. All visible church life was eradicated, yet Christianity survived and grew dramatically in underground house churches, emerging after Mao's death as one of the fastest-growing Christian movements in history.",
+      "scripture_refs": []
+    },
+    {
+      "id": "khmer_rouge",
+      "name": "Khmer Rouge Regime",
+      "date_range": "1975-1979",
+      "region": "Cambodia",
+      "summary": "The Khmer Rouge under Pol Pot sought to create an agrarian communist utopia, resulting in the deaths of an estimated 1.5-2 million Cambodians through execution, starvation, and forced labor. All religions were banned, churches and cathedrals were destroyed, and the small Cambodian Christian community was nearly annihilated. The Catholic cathedral in Phnom Penh was razed, and virtually all Christian clergy in the country were killed.",
+      "scripture_refs": []
+    },
+    {
+      "id": "albanian_atheist_state",
+      "name": "Albanian Atheist State",
+      "date_range": "1967-1991",
+      "region": "Albania",
+      "summary": "Communist Albania under Enver Hoxha declared itself the world's first atheist state in 1967, banning all religious practice and closing or destroying every mosque, church, and monastery in the country. Clergy were imprisoned, tortured, and executed; mere possession of a Bible or Quran was punishable by years in prison. Albania's Christian communities, both Catholic and Orthodox, were driven entirely underground until the fall of communism in 1991.",
+      "scripture_refs": []
+    },
+    {
+      "id": "nigerian_civil_war",
+      "name": "Nigerian Civil War (Biafran War)",
+      "date_range": "1967-1970",
+      "region": "Nigeria",
+      "summary": "The predominantly Christian Igbo people of southeastern Nigeria declared independence as the Republic of Biafra, sparking a devastating civil war. The Nigerian federal government's blockade caused mass starvation, killing an estimated 1-3 million civilians, predominantly Igbo Christians. Church organizations, particularly Caritas Internationalis, mounted one of the largest humanitarian airlifts in history to deliver food to besieged Biafra.",
+      "scripture_refs": []
+    },
+    {
+      "id": "guatemalan_civil_war",
+      "name": "Guatemalan Civil War",
+      "date_range": "1960-1996",
+      "region": "Guatemala",
+      "summary": "A 36-year civil war between the Guatemalan government and leftist insurgents resulted in an estimated 200,000 deaths, predominantly among indigenous Maya communities. Catholic catechists and clergy who advocated for indigenous rights were targeted by government forces; Bishop Juan Gerardi was assassinated in 1998 just days after publishing a human rights report. The conflict made Guatemala one of the most dangerous countries in the world for clergy and religious workers.",
+      "scripture_refs": []
+    },
+    {
+      "id": "salvadoran_civil_war",
+      "name": "Salvadoran Civil War",
+      "date_range": "1979-1992",
+      "region": "El Salvador",
+      "summary": "A brutal civil war between the US-backed Salvadoran government and leftist guerrillas killed approximately 75,000 people. Archbishop Oscar Romero, who had become an outspoken advocate for the poor and oppressed, was assassinated while celebrating Mass in 1980. In December 1980, four American churchwomen were raped and murdered by government soldiers, and six Jesuit priests were massacred in 1989, making the Salvadoran church a symbol of liberation theology's costly witness.",
+      "scripture_refs": []
+    },
+    {
+      "id": "dirty_war_argentina",
+      "name": "Dirty War in Argentina",
+      "date_range": "1976-1983",
+      "region": "Argentina",
+      "summary": "Argentina's military junta conducted a campaign of state terrorism against suspected leftists, during which an estimated 30,000 people 'disappeared.' Catholic clergy who worked with the poor were targeted, including Bishop Enrique Angelelli, who was murdered in 1976, and two French nuns who were abducted and killed. The institutional church's relationship with the junta remains deeply controversial, with some bishops accused of complicity and others honored as martyrs.",
+      "scripture_refs": []
+    },
+    {
+      "id": "colombian_conflict",
+      "name": "Colombian Armed Conflict",
+      "date_range": "1964-2016",
+      "region": "Colombia",
+      "summary": "Over five decades of conflict between the Colombian government, leftist guerrillas (FARC, ELN), and right-wing paramilitaries killed more than 260,000 people and displaced millions. Catholic priests and bishops working in conflict zones were frequently targeted; over 80 clergy were killed during the conflict. The church played a crucial mediating role in the eventual peace process that led to the 2016 accord with FARC.",
+      "scripture_refs": []
+    },
+    {
+      "id": "simba_rebellion_congo",
+      "name": "Simba Rebellion in Congo",
+      "date_range": "1964",
+      "region": "Democratic Republic of Congo",
+      "summary": "Marxist-inspired Simba rebels in the eastern Congo targeted missionaries and Congolese Christians during their short-lived rebellion. Over 200 Catholic missionaries and an unknown number of Protestant missionaries were killed, along with thousands of Congolese Christians. The rebels specifically targeted educated Congolese, many of whom had been educated at mission schools, viewing Christianity as a tool of Western imperialism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "mau_mau_uprising",
+      "name": "Mau Mau Uprising",
+      "date_range": "1952-1960",
+      "region": "Kenya",
+      "summary": "The Mau Mau movement among the Kikuyu people of Kenya fought against British colonial rule and the expropriation of their lands. Christian Kikuyu who refused to take the Mau Mau oath were targeted alongside British settlers, with several thousand African Christians killed. The conflict exposed the tensions between Christianity as introduced by colonial missionaries and the legitimate aspirations of colonized peoples for freedom and justice.",
+      "scripture_refs": []
+    },
+    {
+      "id": "algerian_civil_war",
+      "name": "Algerian Civil War",
+      "date_range": "1991-2002",
+      "region": "Algeria",
+      "summary": "A civil war between the Algerian government and Islamist insurgent groups killed an estimated 100,000-200,000 people. The small Christian community, including Catholic religious orders that had remained after Algerian independence, was deliberately targeted by armed groups. In 1996, seven Trappist monks of Tibhirine were kidnapped and beheaded, and Bishop Pierre Claverie of Oran was assassinated, events that became symbols of Christian witness in the Islamic world.",
+      "scripture_refs": []
+    },
+    {
+      "id": "rwandan_genocide",
+      "name": "Rwandan Genocide",
+      "date_range": "1994",
+      "region": "Rwanda",
+      "summary": "In 100 days, Hutu extremists killed an estimated 800,000 Tutsi and moderate Hutu in one of the most rapid genocides in history. Churches, where thousands sought refuge, became sites of mass slaughter; several Catholic and Protestant clergy were later convicted of participating in the killings. The genocide forced a painful reckoning about the failure of the institutional church to prevent — and in some cases its complicity in — the violence.",
+      "scripture_refs": []
+    },
+    {
+      "id": "sudanese_civil_war",
+      "name": "Sudanese Civil War",
+      "date_range": "1983-2005",
+      "region": "Sudan / South Sudan",
+      "summary": "The second Sudanese civil war between the predominantly Muslim north and the Christian and animist south killed approximately 2 million people and displaced 4 million. The Khartoum government employed aerial bombardment, forced starvation, and enslavement against southern populations, and specifically targeted Christian churches, schools, and hospitals. The conflict eventually led to the independence of South Sudan in 2011.",
+      "scripture_refs": []
+    },
+    {
+      "id": "isis_persecution",
+      "name": "ISIS Persecution of Christians",
+      "date_range": "2014-2019",
+      "region": "Iraq / Syria",
+      "summary": "The Islamic State (ISIS/ISIL) systematically expelled, enslaved, and murdered Christians across territory it controlled in Iraq and Syria. In Mosul, ISIS marked Christian homes with the Arabic letter 'nun' (for Nazarene) and gave residents the choice of conversion, jizya tax, or death. Ancient Christian communities in the Nineveh Plains, tracing their heritage to the earliest centuries of Christianity, were nearly eradicated, with over 100,000 Christians displaced.",
+      "scripture_refs": []
+    },
+    {
+      "id": "vatican_i",
+      "name": "First Vatican Council",
+      "date_range": "1869-1870",
+      "region": "Vatican City, Rome",
+      "summary": "Convened by Pope Pius IX, Vatican I defined the dogma of papal infallibility — that the pope, when speaking ex cathedra on matters of faith and morals, is preserved from error. The council was cut short by the Franco-Prussian War and the seizure of Rome by Italian forces, leaving much of its agenda incomplete. The infallibility definition deepened the divide between Catholics and Protestants and prompted the Old Catholic schism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "vatican_ii",
+      "name": "Second Vatican Council",
+      "date_range": "1962-1965",
+      "region": "Vatican City, Rome",
+      "summary": "Convened by Pope John XXIII to 'open the windows' of the church to the modern world, Vatican II was the most significant Catholic council in four centuries. It reformed the liturgy (permitting vernacular languages), affirmed religious liberty, opened dialogue with other Christian churches and non-Christian religions, and redefined the relationship between the church and the modern world. Its implementation remains debated within Catholicism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "boko_haram_insurgency",
+      "name": "Boko Haram Insurgency",
+      "date_range": "2009-present",
+      "region": "Nigeria / West Africa",
+      "summary": "The Islamist militant group Boko Haram ('Western education is forbidden') has waged an insurgency in northeastern Nigeria and the Lake Chad region, targeting Christians and moderate Muslims. Churches have been bombed during worship services, Christian villages razed, and thousands kidnapped, including the 276 Chibok schoolgirls in 2014. Over 35,000 people have been killed and millions displaced, making it one of the deadliest ongoing persecutions of Christians.",
+      "scripture_refs": []
+    },
+    {
+      "id": "north_korean_persecution",
+      "name": "Persecution of Christians in North Korea",
+      "date_range": "1948-present",
+      "region": "North Korea",
+      "summary": "The Democratic People's Republic of Korea, under the Kim dynasty's state ideology of Juche, has suppressed all independent religious practice since its founding. An estimated 50,000-70,000 Christians are imprisoned in political labor camps, and possession of a Bible is punishable by death or lifelong imprisonment. Pyongyang, once known as the 'Jerusalem of the East' for its vibrant Christian community, has been purged of all visible Christian presence.",
+      "scripture_refs": []
+    },
+    {
+      "id": "hindu_nationalism_persecution",
+      "name": "Hindu Nationalist Persecution in India",
+      "date_range": "1998-present",
+      "region": "India",
+      "summary": "Rising Hindu nationalist movements have increasingly targeted Christians in India through anti-conversion laws, mob violence, and social boycotts. The 2008 Kandhamal violence in Odisha killed over 100 Christians, destroyed 6,000 homes, and displaced 50,000 people. Pastors and evangelists face regular attacks, church buildings are destroyed, and Christians from lower castes experience particular vulnerability.",
+      "scripture_refs": []
+    },
+    {
+      "id": "eritrean_persecution",
+      "name": "Persecution of Christians in Eritrea",
+      "date_range": "2002-present",
+      "region": "Eritrea",
+      "summary": "The Eritrean government under President Isaias Afwerki has since 2002 banned all religious groups except four officially recognized denominations, imprisoning thousands of evangelical and Pentecostal Christians without trial. Detainees are held in shipping containers and underground cells, subjected to torture to force recantation. Even the recognized Orthodox Church has not been spared, with Patriarch Abune Antonios placed under house arrest in 2007.",
+      "scripture_refs": []
+    },
+    {
+      "id": "egyptian_church_bombings",
+      "name": "Attacks on Coptic Christians in Egypt",
+      "date_range": "2011-present",
+      "region": "Egypt",
+      "summary": "Coptic Christians, comprising roughly 10% of Egypt's population, have faced escalating violence since the 2011 revolution. ISIS-affiliated groups bombed churches in Cairo, Tanta, and Alexandria, killing over 100 worshipers between 2016 and 2017. Copts in Upper Egypt face regular mob attacks, forced displacement, and the burning of homes and businesses, continuing a pattern of persecution against one of Christianity's oldest communities.",
+      "scripture_refs": []
+    },
+    {
+      "id": "pakistani_blasphemy_laws",
+      "name": "Pakistan Blasphemy Law Persecution",
+      "date_range": "1986-present",
+      "region": "Pakistan",
+      "summary": "Pakistan's blasphemy laws, carrying penalties up to death, have been disproportionately used against the country's small Christian minority. Asia Bibi, a Christian woman, spent eight years on death row before acquittal in 2018, becoming an international symbol of the laws' abuse. Christian communities face mob violence, forced conversions, and the destruction of churches, particularly after blasphemy accusations circulate.",
+      "scripture_refs": []
+    },
+    {
+      "id": "syrian_civil_war",
+      "name": "Syrian Civil War",
+      "date_range": "2011-present",
+      "region": "Syria",
+      "summary": "The Syrian civil war devastated one of the oldest Christian communities in the world, reducing the Christian population from approximately 1.5 million to fewer than 500,000. Ancient cities such as Aleppo, Homs, and Maaloula — where Aramaic, the language of Jesus, was still spoken — were heavily damaged or occupied by jihadist groups. Christians were caught between the Assad regime and various opposition groups, with many forced to flee the country entirely.",
+      "scripture_refs": []
+    },
+    {
+      "id": "fulani_herdsmen_attacks",
+      "name": "Fulani Militant Attacks in Nigeria",
+      "date_range": "2010-present",
+      "region": "Nigeria (Middle Belt)",
+      "summary": "Armed Fulani herders have conducted increasingly deadly attacks on predominantly Christian farming communities in Nigeria's Middle Belt region. Entire villages have been destroyed, with thousands killed and hundreds of thousands displaced. The attacks target churches, pastors' homes, and Christian settlements, representing what many observers describe as a systematic campaign of ethnic and religious cleansing.",
+      "scripture_refs": []
+    },
+    {
+      "id": "tiananmen_crackdown",
+      "name": "Tiananmen Square and Religious Crackdown",
+      "date_range": "1989",
+      "region": "China",
+      "summary": "The Chinese government's violent suppression of pro-democracy protests in Tiananmen Square was followed by a broader crackdown on civil society, including unregistered religious groups. House church leaders were arrested, and the government tightened control over the state-sanctioned Three-Self Patriotic Movement. The post-Tiananmen era saw increased surveillance and restrictions on Chinese Christians that intensified over subsequent decades.",
+      "scripture_refs": []
+    },
+    {
+      "id": "partition_of_india",
+      "name": "Partition of India",
+      "date_range": "1947",
+      "region": "India / Pakistan",
+      "summary": "The partition of British India into India and Pakistan along religious lines triggered one of the largest mass migrations in history, with an estimated 10-20 million displaced and 1-2 million killed. Christian communities in areas that became Pakistan found themselves a minority within an officially Islamic state. The partition set the stage for ongoing tensions that have affected religious minorities, including Christians, in both nations.",
+      "scripture_refs": []
+    },
+    {
+      "id": "congo_free_state",
+      "name": "Congo Free State Atrocities",
+      "date_range": "1885-1908",
+      "region": "Congo (modern DRC)",
+      "summary": "King Leopold II of Belgium's personal colony in the Congo subjected the population to forced labor, mutilation, and mass killing in pursuit of rubber and ivory profits, with an estimated 10 million deaths. Christian missionaries, particularly E.D. Morel and the Baptist John Harris, played a crucial role in exposing the atrocities to the world. Their advocacy led to international pressure that forced Belgium to take over the colony from Leopold.",
+      "scripture_refs": []
+    },
+    {
+      "id": "mexican_anticlerical_laws",
+      "name": "Mexican Anticlerical Laws",
+      "date_range": "1857-1926",
+      "region": "Mexico",
+      "summary": "Beginning with the Reform War of 1857 and escalating through the 1917 Constitution, Mexico enacted some of the most restrictive anticlerical laws in the Western Hemisphere. Religious orders were banned, church property was nationalized, clergy were stripped of civil rights, and public worship outside churches was prohibited. These laws were enforced with varying severity, culminating in the Cristero War, and were not fully relaxed until constitutional reforms in 1992.",
+      "scripture_refs": []
+    },
+    {
+      "id": "vietnam_war_persecution",
+      "name": "Persecution of Christians in Vietnam",
+      "date_range": "1954-present",
+      "region": "Vietnam",
+      "summary": "Following the communist victory, the Vietnamese government confiscated church property, imprisoned clergy, and suppressed religious education. Catholics in the north had largely fled south during the 1954 partition, and those who remained faced decades of discrimination. Ethnic minority Christians in the Central Highlands have faced particular persecution, including forced renunciations of faith, destruction of churches, and imprisonment of pastors.",
+      "scripture_refs": []
+    },
+    {
+      "id": "cuban_revolution_persecution",
+      "name": "Persecution of Christians in Cuba",
+      "date_range": "1959-present",
+      "region": "Cuba",
+      "summary": "Following the Cuban Revolution, Fidel Castro's government nationalized Catholic schools, expelled hundreds of priests and nuns, and declared Cuba an atheist state. Christians were barred from Communist Party membership, effectively excluding them from positions of influence. Religious practice was driven underground for decades, with conditions gradually easing in the 1990s after Pope John Paul II's visit, though restrictions on church construction and religious education persist.",
+      "scripture_refs": []
+    },
+    {
+      "id": "chinese_church_crackdown",
+      "name": "Chinese Church Crackdown under Xi Jinping",
+      "date_range": "2018-present",
+      "region": "China",
+      "summary": "Under President Xi Jinping, China has intensified restrictions on Christianity through a 'sinicization of religion' policy. Crosses have been removed from thousands of churches, underground house churches have been raided and shut down, children under 18 have been banned from attending services, and online Bible sales have been restricted. The policy aims to subordinate all religious expression to Chinese Communist Party ideology and control.",
+      "scripture_refs": []
+    },
+    {
+      "id": "east_timor_occupation",
+      "name": "Indonesian Occupation of East Timor",
+      "date_range": "1975-1999",
+      "region": "East Timor (Timor-Leste)",
+      "summary": "Indonesia's military occupation of predominantly Catholic East Timor killed an estimated 100,000-180,000 people through military action, famine, and disease. The Catholic Church, led by Bishop Carlos Belo and others, became the primary institution of resistance and protection for the Timorese people. The church's role was internationally recognized when Bishop Belo and Jose Ramos-Horta received the Nobel Peace Prize in 1996.",
+      "scripture_refs": []
+    },
+    {
+      "id": "lebanese_civil_war",
+      "name": "Lebanese Civil War",
+      "date_range": "1975-1990",
+      "region": "Lebanon",
+      "summary": "A complex civil war among Lebanon's religious and political factions devastated the country's Christian communities, which had historically held political power under the National Pact. Maronite Christians faced attacks from Palestinian, Syrian, and various Muslim militias, while also engaging in factional fighting among themselves. The war reduced Christian political influence and drove hundreds of thousands of Lebanese Christians into exile.",
+      "scripture_refs": []
+    },
+    {
+      "id": "armenian_pogroms_baku",
+      "name": "Baku Pogroms",
+      "date_range": "1990",
+      "region": "Azerbaijan",
+      "summary": "Anti-Armenian pogroms erupted in Baku, the capital of Soviet Azerbaijan, as ethnic tensions over the Nagorno-Karabakh conflict escalated. Armenian Christians were attacked, killed, and driven from their homes in organized mob violence. An estimated 90 Armenians were killed and nearly the entire Armenian population of Baku — some 200,000 people — was expelled, ending centuries of Armenian Christian presence in the city.",
+      "scripture_refs": []
+    },
+    {
+      "id": "darfur_conflict",
+      "name": "Darfur Conflict",
+      "date_range": "2003-present",
+      "region": "Sudan (Darfur)",
+      "summary": "The Sudanese government and allied Janjaweed militias conducted a campaign of ethnic cleansing in Darfur that killed an estimated 300,000 people and displaced 2.5 million. While primarily an ethnic conflict, Christian minorities in the region were disproportionately affected, and the conflict occurred in the broader context of the Khartoum government's Islamist policies. Church organizations played a major role in humanitarian relief efforts.",
+      "scripture_refs": []
+    },
+    {
+      "id": "armenian_earthquake_aid",
+      "name": "Armenian Church Revival after Soviet Collapse",
+      "date_range": "1991",
+      "region": "Armenia",
+      "summary": "The collapse of the Soviet Union allowed the Armenian Apostolic Church to emerge from seven decades of suppression, reclaiming its central role in Armenian national identity. Churches were reopened, theological education was restored, and the church resumed its ancient mission after years of state-enforced atheism. Armenia became the first post-Soviet state to declare independence, with the church serving as a symbol of national continuity and resilience.",
+      "scripture_refs": []
+    },
+    {
+      "id": "laotian_persecution",
+      "name": "Persecution of Christians in Laos",
+      "date_range": "1975-present",
+      "region": "Laos",
+      "summary": "After the communist Pathet Lao took power in 1975, Christianity was heavily restricted, with churches closed and foreign missionaries expelled. Christians among the Hmong and other ethnic minorities face particular targeting, including forced renunciations of faith, expulsion from villages, and imprisonment. Despite these pressures, the Christian community in Laos has grown significantly, particularly among highland ethnic groups.",
+      "scripture_refs": []
+    },
+    {
+      "id": "burmese_military_persecution",
+      "name": "Military Persecution of Christians in Myanmar",
+      "date_range": "1962-present",
+      "region": "Myanmar (Burma)",
+      "summary": "Myanmar's military regimes have persecuted predominantly Christian ethnic minorities, including the Kachin, Chin, and Karen peoples, through campaigns of forced labor, destruction of churches, and sexual violence. The Kachin conflict, reignited in 2011, has displaced over 100,000 people, with churches and Christian institutions specifically targeted. The Chin people face restrictions on church construction and pressure to convert to Buddhism.",
+      "scripture_refs": []
+    },
+    {
+      "id": "somali_christian_persecution",
+      "name": "Persecution of Christians in Somalia",
+      "date_range": "1991-present",
+      "region": "Somalia",
+      "summary": "Somalia is consistently ranked among the most dangerous countries in the world for Christians. Since the collapse of the central government in 1991, Somali Christians have faced execution by al-Shabaab militants and clan-based violence for leaving Islam. There are no public churches in the country, and the tiny Christian community of a few hundred believers practices in absolute secrecy, with discovery often meaning death.",
+      "scripture_refs": []
+    },
+    {
+      "id": "central_african_republic_conflict",
+      "name": "Central African Republic Religious Conflict",
+      "date_range": "2012-present",
+      "region": "Central African Republic",
+      "summary": "A civil war between the predominantly Muslim Seleka coalition and the predominantly Christian anti-balaka militia devastated the Central African Republic. Both sides committed atrocities along religious lines, with mosques and churches destroyed and civilians massacred. The conflict displaced nearly a million people and threatened to tear apart the country's fragile social fabric along religious lines.",
+      "scripture_refs": []
+    },
+    {
+      "id": "mozambique_insurgency",
+      "name": "Islamist Insurgency in Mozambique",
+      "date_range": "2017-present",
+      "region": "Mozambique (Cabo Delgado)",
+      "summary": "An ISIS-affiliated insurgency in Mozambique's northern Cabo Delgado province has killed thousands and displaced over 800,000 people. Insurgents have attacked churches, beheaded Christians, and forced conversions to Islam. The conflict has devastated predominantly Christian communities in one of Africa's poorest regions, with the church providing much of the humanitarian response to the crisis.",
+      "scripture_refs": []
+    },
+    {
+      "id": "uighur_persecution_china",
+      "name": "Religious Persecution in Xinjiang",
+      "date_range": "2017-present",
+      "region": "China (Xinjiang)",
+      "summary": "While primarily targeting Uighur Muslims, the Chinese government's campaign of mass detention and cultural erasure in Xinjiang has affected all religious communities in the region, including small Christian congregations. The use of mass surveillance, re-education camps, and forced assimilation represents the most extensive state-sponsored religious persecution since the Cultural Revolution and reflects broader trends in the Chinese government's approach to religious control.",
+      "scripture_refs": []
+    },
+    {
+      "id": "sri_lanka_easter_bombings",
+      "name": "Sri Lanka Easter Bombings",
+      "date_range": "2019",
+      "region": "Sri Lanka",
+      "summary": "On Easter Sunday 2019, ISIS-inspired suicide bombers attacked three churches and three luxury hotels in Sri Lanka, killing 269 people and injuring over 500. The attacks targeted the country's small Christian minority during their holiest celebration. It was one of the deadliest terrorist attacks against Christians in the 21st century and shattered the relative religious peace that had prevailed in Sri Lanka since the end of the civil war.",
+      "scripture_refs": []
+    },
+    {
+      "id": "ethiopian_tigray_war",
+      "name": "Tigray War",
+      "date_range": "2020-2022",
+      "region": "Ethiopia (Tigray)",
+      "summary": "The war in Ethiopia's Tigray region caused widespread destruction of ancient Ethiopian Orthodox churches and monasteries, some dating to the 4th century. The Church of Our Lady Mary of Zion in Axum, believed by Ethiopians to house the Ark of the Covenant, was attacked. Hundreds of civilians were massacred at the Church of Maryam Dengelat, and numerous priests were killed while trying to protect their ancient heritage.",
+      "scripture_refs": []
+    },
+    {
+      "id": "nagorno_karabakh_conflict",
+      "name": "Nagorno-Karabakh Conflict",
+      "date_range": "1988-2023",
+      "region": "South Caucasus",
+      "summary": "The conflict between Armenia and Azerbaijan over the predominantly Armenian Christian enclave of Nagorno-Karabakh culminated in Azerbaijan's 2023 military operation that displaced the entire Armenian population of approximately 120,000 people. Ancient Armenian churches, monasteries, and cultural sites dating to the early Christian period face uncertain futures under Azerbaijani control. The displacement ended over two millennia of continuous Armenian Christian presence in the region.",
+      "scripture_refs": []
+    },
+    {
+      "id": "philippine_church_bombing",
+      "name": "Jolo Cathedral Bombing",
+      "date_range": "2019",
+      "region": "Philippines (Sulu)",
+      "summary": "Two bombs detonated during Sunday Mass at the Cathedral of Our Lady of Mount Carmel in Jolo, Sulu, killing 23 people and injuring over 100. The attack was attributed to ISIS-affiliated Abu Sayyaf militants and targeted one of the few Christian communities in the predominantly Muslim Sulu archipelago. It highlighted the ongoing vulnerability of Christian minorities in regions with active Islamist insurgencies in Southeast Asia.",
+      "scripture_refs": []
+    },
+    {
+      "id": "burkina_faso_attacks",
+      "name": "Jihadist Attacks in Burkina Faso",
+      "date_range": "2019-present",
+      "region": "Burkina Faso",
+      "summary": "Jihadist groups linked to al-Qaeda and ISIS have intensified attacks on Christian communities in Burkina Faso, a country once known for its religious tolerance. Churches have been attacked during services, pastors executed, and entire Christian villages displaced from the northern and eastern regions. The violence has killed thousands and displaced over 2 million people, threatening to destabilize the broader Sahel region.",
+      "scripture_refs": []
+    },
+    {
+      "id": "owo_church_massacre",
+      "name": "Owo Church Massacre",
+      "date_range": "2022",
+      "region": "Nigeria (Ondo State)",
+      "summary": "Gunmen attacked St. Francis Catholic Church in Owo, Ondo State, Nigeria during Pentecost Sunday Mass, killing at least 40 worshipers including children. The attackers used explosives and firearms in a coordinated assault on the congregation. The massacre shocked Nigeria and the international community, highlighting the escalating violence against Christians in a country where religious persecution has become increasingly deadly.",
+      "scripture_refs": []
+    },
+    {
+      "id": "nicene_persecution_aftermath",
+      "name": "Post-Nicene Persecutions of Non-Conforming Christians",
+      "date_range": "AD 325-400",
+      "region": "Roman Empire",
+      "summary": "Following the Council of Nicaea, emperors increasingly used state power to enforce orthodoxy, with Arian, Donatist, and other non-conforming Christians facing exile, confiscation of property, and violence. Emperor Constantius II exiled Athanasius multiple times, and Theodosius I made Nicene Christianity the sole legal religion of the empire in 380. This period established the precedent of using imperial power to enforce doctrinal uniformity, a pattern that would recur throughout Christian history.",
+      "scripture_refs": []
+    },
+    {
+      "id": "waldensian_persecution",
+      "name": "Persecution of the Waldensians",
+      "date_range": "1184-1800",
+      "region": "France / Italy (Piedmont)",
+      "summary": "The Waldensians, followers of Peter Waldo who emphasized apostolic poverty and vernacular scripture, were declared heretical in 1184 and endured centuries of persecution. The 1655 Piedmont Easter massacre, in which Catholic troops killed thousands of Waldensians, inspired John Milton's sonnet 'On the Late Massacre in Piedmont.' The Waldensians survived in alpine valleys and later aligned with the Protestant Reformation, making them one of the oldest surviving Protestant communities.",
+      "scripture_refs": []
+    },
+    {
+      "id": "albigensian_crusade",
+      "name": "Albigensian Crusade",
+      "date_range": "1209-1229",
+      "region": "Southern France",
+      "summary": "Pope Innocent III launched a military campaign against the Cathar heresy in southern France, resulting in the devastation of the Languedoc region. The crusade included the infamous massacre at Beziers in 1209, where the papal legate allegedly ordered 'Kill them all; God will know his own.' The campaign established the Inquisition as a permanent institution and destroyed the distinctive culture of Occitan-speaking southern France.",
+      "scripture_refs": []
+    },
+    {
+      "id": "hussite_wars",
+      "name": "Hussite Wars",
+      "date_range": "1419-1434",
+      "region": "Bohemia (modern Czech Republic)",
+      "summary": "Following the execution of the reformer Jan Hus at the Council of Constance in 1415 despite a promise of safe conduct, his followers in Bohemia rose in revolt. The Hussites, demanding communion in both kinds and church reform, defeated five consecutive papal crusades sent against them. The wars presaged the Protestant Reformation by a century and established a tradition of Czech religious independence that endured for generations.",
+      "scripture_refs": []
+    },
+    {
+      "id": "bartholomew_day_massacre",
+      "name": "St. Bartholomew's Day Massacre",
+      "date_range": "1572",
+      "region": "France",
+      "summary": "On August 24, 1572, Catholic mobs in Paris began a targeted slaughter of French Protestants (Huguenots), which spread to other cities across France over several weeks. An estimated 5,000-30,000 Huguenots were killed, including the leader Gaspard de Coligny. The massacre was the bloodiest single event of the French Wars of Religion and permanently traumatized the Huguenot community, many of whom subsequently fled France.",
+      "scripture_refs": []
+    },
+    {
+      "id": "edict_of_nantes_revocation",
+      "name": "Revocation of the Edict of Nantes",
+      "date_range": "1685",
+      "region": "France",
+      "summary": "King Louis XIV revoked the Edict of Nantes that had granted French Protestants religious freedom since 1598, making Protestantism illegal in France. Huguenot churches were demolished, pastors were exiled, and those who attempted to flee faced galley slavery or death. An estimated 200,000-400,000 Huguenots emigrated to England, the Dutch Republic, Prussia, and the Americas, devastating the French economy and enriching the countries that received them.",
+      "scripture_refs": []
+    },
+    {
+      "id": "taiping_heavenly_kingdom",
+      "name": "Taiping Heavenly Kingdom",
+      "date_range": "1851-1864",
+      "region": "China",
+      "summary": "Hong Xiuquan established a theocratic state in southern China based on his idiosyncratic interpretation of Christianity, banning opium, alcohol, tobacco, and gambling while instituting land reform and gender equality. The Taiping Heavenly Kingdom controlled significant territory centered on Nanjing before its brutal suppression by Qing forces and Western-led armies. The movement's distortion of Christian theology and its catastrophic death toll complicated the reception of Christianity in China for generations.",
+      "scripture_refs": []
+    },
+    {
+      "id": "donglin_academy_suppression",
+      "name": "Suppression of Nestorian Christianity in China",
+      "date_range": "845",
+      "region": "China",
+      "summary": "Emperor Wuzong of the Tang dynasty issued an edict suppressing Buddhism and all foreign religions, including Nestorian Christianity, which had been present in China since the 7th century. Monasteries were destroyed, clergy were forced to return to secular life, and the Christian community that had flourished for two centuries was effectively eliminated. The famous Nestorian Stele, discovered in 1625, remains the primary evidence of this early Chinese Christian presence.",
+      "scripture_refs": []
+    },
+    {
+      "id": "indian_ocean_tsunami",
+      "name": "Indian Ocean Tsunami Church Response",
+      "date_range": "2004",
+      "region": "Southeast Asia / South Asia",
+      "summary": "The devastating Indian Ocean tsunami killed approximately 230,000 people across 14 countries, destroying numerous coastal churches and Christian communities in Indonesia, Sri Lanka, India, and Thailand. Christian organizations mounted one of the largest humanitarian responses in history, providing immediate relief and long-term reconstruction. The disaster prompted significant interfaith cooperation and highlighted the church's role in disaster response worldwide.",
+      "scripture_refs": []
+    },
+    {
+      "id": "coptic_monasticism_origins",
+      "name": "Origins of Christian Monasticism",
+      "date_range": "AD 270-380",
+      "region": "Egypt",
+      "summary": "The Christian monastic movement originated in the Egyptian desert with St. Anthony the Great and was organized into communal form by St. Pachomius. Desert fathers and mothers retreated from urban life to pursue spiritual perfection through prayer, fasting, and manual labor. This movement profoundly shaped Christian spirituality, preserved learning through the copying of manuscripts, and spread throughout Christendom, from Ireland to Ethiopia to the Byzantine Empire.",
+      "scripture_refs": [
+        "Matthew 19:21"
+      ]
+    },
+    {
+      "id": "conversion_of_ethiopia",
+      "name": "Conversion of the Kingdom of Aksum",
+      "date_range": "AD 330",
+      "region": "Ethiopia",
+      "summary": "King Ezana of Aksum adopted Christianity, making Ethiopia one of the earliest Christian kingdoms in the world. The faith was brought by Frumentius, a Syrian Christian who became the first bishop of Aksum. Ethiopian Christianity developed in distinctive ways, retaining practices such as Sabbath observance, dietary laws, and the Ark of the Covenant tradition, maintaining continuity with both its African and Semitic heritage.",
+      "scripture_refs": [
+        "Acts 8:26-39"
+      ]
+    },
+    {
+      "id": "conversion_of_armenia",
+      "name": "Conversion of Armenia",
+      "date_range": "AD 301",
+      "region": "Armenia",
+      "summary": "Armenia became the first nation to adopt Christianity as its state religion when King Tiridates III was converted by St. Gregory the Illuminator. The Armenian Apostolic Church developed its own distinct liturgical tradition and alphabet, created by Mesrop Mashtots in AD 405 specifically to translate the Bible. This early adoption of Christianity became inseparable from Armenian national identity and enabled the survival of Armenian culture through centuries of foreign domination.",
+      "scripture_refs": []
+    },
+    {
+      "id": "donatist_controversy",
+      "name": "Donatist Controversy",
+      "date_range": "AD 311-411",
+      "region": "North Africa",
+      "summary": "A schism erupted in the North African church over whether clergy who had surrendered scriptures during the Diocletian persecution could validly administer sacraments. The Donatists, who insisted on strict purity, formed a parallel church that became the majority in many North African regions. The controversy, which Augustine of Hippo engaged extensively, raised fundamental questions about the nature of the church, sacramental validity, and the use of state coercion in religious disputes.",
+      "scripture_refs": []
+    },
+    {
+      "id": "mongol_invasions",
+      "name": "Mongol Invasions and Christianity",
+      "date_range": "1206-1368",
+      "region": "Central Asia / Middle East / Eastern Europe",
+      "summary": "The Mongol conquests devastated Christian populations across Central Asia and the Middle East while paradoxically including significant numbers of Nestorian Christians within Mongol ruling families. The destruction of Baghdad in 1258 killed the Abbasid Caliph and thousands of Christians, while Mongol rulers in Persia initially favored Christians before converting to Islam. The invasions permanently destroyed the Church of the East's extensive network across Central Asia.",
+      "scripture_refs": []
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Sidon (City-State)", "era": "Early Period (~1500-1200 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.3, 33.7], [35.5, 33.7], [35.6, 33.5], [35.5, 33.3], [35.3, 33.3], [35.2, 33.5], [35.3, 33.7] ]]
+  }
+}

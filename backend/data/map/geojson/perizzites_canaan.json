@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Perizzites", "era": "Canaanite Territory" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.0, 32.5], [35.5, 32.5], [35.6, 32.2], [35.5, 31.9], [35.0, 31.8], [34.8, 32.0], [34.8, 32.3], [35.0, 32.5] ]]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Jebusites", "era": "Jerusalem City-State (~1800-1000 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.15, 31.82], [35.28, 31.82], [35.30, 31.74], [35.20, 31.70], [35.12, 31.74], [35.15, 31.82] ]]
+  }
+}

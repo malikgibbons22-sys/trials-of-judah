@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <title>Trials of Judah</title>
+  <style>
+    /* ── Reset & Base ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #1a0f0a;
+      color: #d4c5b0;
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.05) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout ────────────────────────────────────────── */
+    .app {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── Back Button ───────────────────────────────────── */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      color: #8a7a60;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .back-btn:hover { background: rgba(201,168,76,0.15); color: #c9a84c; }
+
+    /* ── Header ────────────────────────────────────────── */
+    .header {
+      text-align: center;
+      padding: 32px 0 24px;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+    }
+    .header-title {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      letter-spacing: 1px;
+    }
+    .header-title span { color: #c9a84c; }
+    .header-sub {
+      font-size: 0.85rem;
+      color: #8a7a60;
+      margin-top: 6px;
+      font-style: italic;
+    }
+
+    /* ── Translation Toggle ────────────────────────────── */
+    .translation-toggle {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 16px;
+    }
+    .trans-btn {
+      padding: 6px 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: transparent;
+      border: 1px solid rgba(201,168,76,0.2);
+      color: #8a7a60;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .trans-btn:first-child { border-radius: 6px 0 0 6px; }
+    .trans-btn:last-child { border-radius: 0 6px 6px 0; border-left: none; }
+    .trans-btn.active {
+      background: rgba(201,168,76,0.15);
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+
+    /* ── Tabs ──────────────────────────────────────────── */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      margin-top: 24px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .tab-btn {
+      padding: 12px 32px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      background: transparent;
+      border: none;
+      color: #8a7a60;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover { color: #c9a84c; }
+    .tab-btn.active { color: #c9a84c; border-bottom-color: #c9a84c; }
+
+    .tab-content { display: none; margin-top: 24px; }
+    .tab-content.active { display: block; }
+
+    /* ── Category Grid ─────────────────────────────────── */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .cat-card {
+      background: rgba(245,240,232,0.04);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 10px;
+      padding: 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .cat-card:hover {
+      background: rgba(201,168,76,0.08);
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-2px);
+    }
+    .cat-icon { font-size: 2rem; margin-bottom: 10px; }
+    .cat-name {
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      margin-bottom: 4px;
+    }
+    .cat-desc { font-size: 0.78rem; color: #8a7a60; font-style: italic; }
+
+    /* ── Verse List ─────────────────────────────────────── */
+    .verse-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .verse-back {
+      padding: 6px 14px;
+      border-radius: 6px;
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.15);
+      color: #8a7a60;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .verse-back:hover { color: #c9a84c; background: rgba(201,168,76,0.15); }
+    .verse-cat-title {
+      font-family: Georgia, serif;
+      font-size: 1.3rem;
+      color: #f5f0e8;
+    }
+
+    .verse-card {
+      background: #f5f0e8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      border-left: 4px solid #c9a84c;
+    }
+    .verse-ref {
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #722f37;
+      margin-bottom: 8px;
+    }
+    .verse-text {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: #1a1a1a;
+      line-height: 1.7;
+    }
+    .verse-context {
+      font-size: 0.78rem;
+      color: #6b5d4f;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ── Ask Tab ────────────────────────────────────────── */
+    .ask-section { max-width: 700px; margin: 0 auto; }
+    .ask-label {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      color: #f5f0e8;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .ask-input {
+      width: 100%;
+      min-height: 100px;
+      padding: 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(245,240,232,0.05);
+      color: #f5f0e8;
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      resize: vertical;
+    }
+    .ask-input::placeholder { color: #6b5d4f; }
+    .ask-input:focus { outline: none; border-color: #c9a84c; }
+    .ask-submit {
+      display: block;
+      margin: 16px auto 0;
+      padding: 12px 40px;
+      border-radius: 8px;
+      background: #722f37;
+      border: 1px solid #8a3a44;
+      color: #f5f0e8;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .ask-submit:hover { background: #8a3a44; }
+    .ask-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .ask-loading {
+      text-align: center;
+      padding: 40px 0;
+      color: #c9a84c;
+      font-family: Georgia, serif;
+      font-style: italic;
+      display: none;
+    }
+
+    .ask-response { margin-top: 24px; display: none; }
+
+    /* ── Commentary ─────────────────────────────────────── */
+    .commentary-section {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-top: 20px;
+    }
+    .commentary-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8a7a60;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .commentary-label::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #b8860b;
+    }
+    .commentary-text {
+      font-family: Georgia, serif;
+      font-size: 0.92rem;
+      color: #b8860b;
+      line-height: 1.8;
+      white-space: pre-wrap;
+    }
+
+    /* ── Verification Badge ─────────────────────────────── */
+    .verify-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-top: 16px;
+    }
+    .verify-badge.verified {
+      background: rgba(76,175,125,0.1);
+      border: 1px solid rgba(76,175,125,0.3);
+      color: #4caf7d;
+    }
+    .verify-badge.flagged {
+      background: rgba(231,76,60,0.1);
+      border: 1px solid rgba(231,76,60,0.3);
+      color: #e74c3c;
+    }
+    .flag-details {
+      margin-top: 10px;
+      padding: 12px 16px;
+      background: rgba(231,76,60,0.06);
+      border: 1px solid rgba(231,76,60,0.15);
+      border-radius: 8px;
+      font-size: 0.8rem;
+      color: #e74c3c;
+    }
+
+    /* ── LLM Unavailable ───────────────────────────────── */
+    .llm-unavailable {
+      text-align: center;
+      padding: 40px 20px;
+      color: #8a7a60;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    /* ── Empty State ───────────────────────────────────── */
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #6b5d4f;
+    }
+
+    /* ── Footer ────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 24px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(201,168,76,0.1);
+      font-size: 0.7rem;
+      color: #5a4d40;
+      line-height: 1.6;
+    }
+
+    /* ── Lineage Tab ───────────────────────────────────── */
+    .lineage-layout {
+      display: flex;
+      gap: 0;
+      position: relative;
+    }
+    .lineage-timeline {
+      width: 60px;
+      flex-shrink: 0;
+      border-right: 2px solid rgba(201,168,76,0.2);
+      position: sticky;
+      top: 80px;
+      height: fit-content;
+      align-self: flex-start;
+    }
+    .timeline-era {
+      padding: 12px 8px;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #6b5d4f;
+      text-align: center;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      transition: color 0.2s, background 0.2s;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+    .timeline-era.active {
+      color: #c9a84c;
+      background: rgba(201,168,76,0.08);
+    }
+    .lineage-tree {
+      flex: 1;
+      padding: 20px 16px;
+      overflow-x: auto;
+    }
+    .lineage-gen-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 10px 0;
+      min-height: 50px;
+      position: relative;
+    }
+    .lineage-gen-label {
+      font-size: 0.8rem;
+      color: #6b5d4f;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .lineage-node {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: rgba(245,240,232,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      cursor: pointer;
+      transition: all 0.2s;
+      min-width: 100px;
+      text-align: center;
+      position: relative;
+    }
+    .lineage-node:hover {
+      background: rgba(201,168,76,0.1);
+      border-color: rgba(201,168,76,0.3);
+      transform: translateY(-2px);
+    }
+    .lineage-node .node-name {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f5f0e8;
+    }
+    .lineage-node .node-meaning {
+      font-size: 0.8rem;
+      color: #8a7a60;
+      font-style: italic;
+    }
+    .lineage-node .node-expand {
+      position: absolute;
+      top: -6px;
+      right: -6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #722f37;
+      color: #f5f0e8;
+      font-size: 0.65rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: 1px solid #8a3a44;
+    }
+    .lineage-node .node-expand:hover { background: #8a3a44; }
+    .lineage-node.branch-trunk { border-left: 3px solid #f5f0e8; }
+    .lineage-node.branch-shem { border-left: 3px solid #c9a84c; }
+    .lineage-node.branch-ham { border-left: 3px solid #b87333; }
+    .lineage-node.branch-japheth { border-left: 3px solid #a8a9ad; }
+
+    /* Detail Panel */
+    .lineage-panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 500px;
+      height: 100vh;
+      background: #1a0f0a;
+      border-left: 2px solid rgba(201,168,76,0.2);
+      z-index: 200;
+      overflow-y: auto;
+      box-shadow: -4px 0 20px rgba(0,0,0,0.5);
+    }
+    .lineage-panel-inner { padding: 20px; }
+    .panel-close {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      background: none;
+      border: none;
+      color: #8a7a60;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+    .panel-close:hover { color: #c9a84c; }
+    .panel-name {
+      font-family: Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #f5f0e8;
+      margin-bottom: 4px;
+    }
+    .panel-hebrew {
+      font-size: 1.3rem;
+      color: #c9a84c;
+      margin-bottom: 4px;
+    }
+    .panel-meaning {
+      font-size: 0.9rem;
+      color: #8a7a60;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+    .panel-lifespan {
+      font-size: 0.78rem;
+      color: #6b5d4f;
+      margin-bottom: 16px;
+    }
+    .panel-scripture {
+      background: #f5f0e8;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      border-left: 4px solid #c9a84c;
+    }
+    .panel-scripture h4 {
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      color: #722f37;
+      margin-bottom: 10px;
+    }
+    .panel-scripture p {
+      font-family: Georgia, serif;
+      font-size: 1.05rem;
+      color: #1a1a1a;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .panel-scripture .refs {
+      font-size: 0.75rem;
+      color: #6b5d4f;
+      font-style: italic;
+    }
+    .panel-scholarly {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .panel-scholarly-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8a7a60;
+      margin-bottom: 10px;
+    }
+    .panel-scholarly p {
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      color: #b8860b;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+    .panel-scholarly .source-attr {
+      font-size: 0.7rem;
+      color: #6b5d4f;
+      font-style: italic;
+    }
+    .panel-links {
+      margin-top: 20px;
+    }
+    .panel-links h4 {
+      font-size: 0.85rem;
+      color: #c9a84c;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding-bottom: 6px;
+    }
+    .panel-link-item {
+      display: inline-block;
+      padding: 8px 18px;
+      margin: 4px 6px 4px 0;
+      border-radius: 8px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: #f5f0e8;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+    }
+    .panel-link-item:hover {
+      background: rgba(201,168,76,0.25);
+      border-color: #c9a84c;
+      color: #c9a84c;
+      transform: translateY(-1px);
+    }
+    .lineage-children-group {
+      margin-left: 24px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(201,168,76,0.1);
+    }
+
+    /* ── Prophecy Tab ──────────────────────────────────── */
+    .prophecy-timeline-wrap {
+      overflow-x: auto;
+      margin-bottom: 20px;
+      padding: 10px 0;
+    }
+    .prophecy-timeline-bar {
+      display: flex;
+      min-width: 1200px;
+      height: 60px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .prophecy-era {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: rgba(255,255,255,0.7);
+      cursor: pointer;
+      position: relative;
+      transition: opacity 0.2s;
+      border-right: 1px solid rgba(0,0,0,0.2);
+    }
+    .prophecy-era:last-child { border-right: none; }
+    .prophecy-era.unfulfilled-era {
+      border: 2px dashed rgba(201,168,76,0.3);
+      background: transparent !important;
+      color: #c9a84c;
+    }
+    .prophecy-era .era-count {
+      position: absolute;
+      bottom: 4px;
+      right: 6px;
+      font-size: 0.55rem;
+      opacity: 0.6;
+    }
+    .prophecy-filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .prophecy-filter-pill {
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: transparent;
+      color: #8a7a60;
+      transition: all 0.2s;
+    }
+    .prophecy-filter-pill.active {
+      background: rgba(201,168,76,0.15);
+      color: #c9a84c;
+      border-color: #c9a84c;
+    }
+    .prophecy-filter-pill:hover { color: #c9a84c; border-color: rgba(201,168,76,0.4); }
+    .prophecy-card {
+      background: rgba(245,240,232,0.04);
+      border: 1px solid rgba(201,168,76,0.12);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .prophecy-card:hover {
+      background: rgba(201,168,76,0.06);
+      border-color: rgba(201,168,76,0.25);
+    }
+    .prophecy-card.unfulfilled {
+      border-style: dashed;
+      background: rgba(201,168,76,0.02);
+    }
+    .prophecy-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .prophecy-title {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f5f0e8;
+    }
+    .prophecy-date-badge {
+      font-size: 0.72rem;
+      color: #c9a84c;
+      background: rgba(201,168,76,0.1);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+    .prophecy-cat-pill {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 2px 8px;
+      border-radius: 3px;
+      background: rgba(114,47,55,0.3);
+      color: #c9a84c;
+    }
+    .prophecy-status-badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 3px;
+    }
+    .prophecy-status-badge.fulfilled { background: rgba(76,175,125,0.15); color: #4caf7d; }
+    .prophecy-status-badge.awaiting { background: rgba(201,168,76,0.15); color: #c9a84c; border: 1px dashed #c9a84c; }
+    .prophecy-summary {
+      font-size: 0.85rem;
+      color: #8a7a60;
+      line-height: 1.5;
+    }
+    .prophecy-detail { display: none; margin-top: 16px; }
+    .prophecy-detail.open { display: block; }
+    .prophecy-scripture {
+      background: #f5f0e8;
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 12px;
+      border-left: 4px solid #c9a84c;
+    }
+    .prophecy-scripture h4 {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: #722f37;
+      margin-bottom: 8px;
+    }
+    .prophecy-scripture p {
+      font-family: Georgia, serif;
+      font-size: 1rem;
+      color: #1a1a1a;
+      line-height: 1.8;
+      margin-bottom: 8px;
+    }
+    .prophecy-scripture .refs {
+      font-size: 0.75rem;
+      color: #6b5d4f;
+      font-style: italic;
+    }
+    .prophecy-evidence {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .prophecy-evidence-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8a7a60;
+      margin-bottom: 10px;
+    }
+    .evidence-item {
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+    }
+    .evidence-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .evidence-item .ev-culture {
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #b8860b;
+    }
+    .evidence-item .ev-source {
+      font-size: 0.78rem;
+      color: #c9a84c;
+    }
+    .evidence-item .ev-desc {
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      color: #b8860b;
+      line-height: 1.6;
+      margin-top: 4px;
+    }
+    .evidence-item .ev-location {
+      font-size: 0.7rem;
+      color: #6b5d4f;
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* ── Floating Search ───────────────────────────────── */
+    .floating-search {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 300;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .search-toggle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #722f37;
+      border: 2px solid #8a3a44;
+      color: #f5f0e8;
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      transition: background 0.2s;
+    }
+    .search-toggle:hover { background: #8a3a44; }
+    .search-box {
+      display: none;
+      width: 400px;
+      max-height: 70vh;
+      background: #1a0f0a;
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 12px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+      overflow: hidden;
+    }
+    .search-box.open { display: flex; flex-direction: column; }
+    .search-box-header {
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      display: flex;
+      gap: 8px;
+    }
+    .search-box-input {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(201,168,76,0.2);
+      background: rgba(245,240,232,0.05);
+      color: #f5f0e8;
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+    }
+    .search-box-input::placeholder { color: #6b5d4f; }
+    .search-box-input:focus { outline: none; border-color: #c9a84c; }
+    .search-box-btn {
+      padding: 8px 16px;
+      border-radius: 6px;
+      background: #722f37;
+      border: 1px solid #8a3a44;
+      color: #f5f0e8;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .search-box-btn:hover { background: #8a3a44; }
+    .search-box-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .search-box-results {
+      padding: 16px;
+      overflow-y: auto;
+      max-height: 55vh;
+    }
+    .search-loading {
+      text-align: center;
+      padding: 20px;
+      color: #c9a84c;
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+    .search-scripture-section {
+      background: #f5f0e8;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+      border-left: 4px solid #c9a84c;
+    }
+    .search-scripture-section h4 {
+      font-family: Georgia, serif;
+      font-size: 0.85rem;
+      color: #722f37;
+      margin-bottom: 8px;
+    }
+    .search-scripture-section p {
+      font-family: Georgia, serif;
+      font-size: 0.95rem;
+      color: #1a1a1a;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+    .search-scholarly-section {
+      background: rgba(201,168,76,0.06);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .search-scholarly-section h4 {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #8a7a60;
+      margin-bottom: 8px;
+    }
+    .search-scholarly-section p {
+      font-family: Georgia, serif;
+      font-size: 0.9rem;
+      color: #b8860b;
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    /* ── Responsive ────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .header-title { font-size: 1.6rem; }
+      .tab-btn { padding: 10px 14px; font-size: 0.78rem; }
+      .cat-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+      .verse-card { padding: 16px 18px; }
+      .lineage-timeline { display: none; }
+      .lineage-panel { width: 100%; }
+      .lineage-node { min-width: 80px; padding: 6px 10px; }
+    }
+
+    /* ── Map Tab ──────────────────────────────────────── */
+    #content-map { padding: 0; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 500; background: #1a0f0a; overflow: hidden; display: none; }
+    #content-map.active { display: block !important; }
+    #map-view { height: 100%; width: 100%; }
+    .map-back-btn {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1002;
+      padding: 6px 16px; border-radius: 6px; cursor: pointer;
+      background: rgba(26,15,10,0.9); border: 1px solid rgba(201,168,76,0.3);
+      color: #c9a84c; font-size: 0.8rem; font-weight: 600;
+    }
+    .map-back-btn:hover { background: rgba(26,15,10,1); border-color: #c9a84c; }
+    .map-peoples-filter {
+      position: absolute; top: 10px; left: 10px; z-index: 1000;
+      background: rgba(26,15,10,0.95); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; width: 220px; max-height: calc(100vh - 200px);
+      display: flex; flex-direction: column; overflow: hidden;
+    }
+    .map-peoples-header { padding: 8px; }
+    .map-peoples-search {
+      width: 100%; padding: 6px 10px; border-radius: 6px;
+      background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15);
+      color: #f5f0e8; font-size: 0.8rem;
+    }
+    .map-peoples-search::placeholder { color: #6b5d4f; }
+    .map-peoples-search:focus { outline: none; border-color: #c9a84c; }
+    .map-peoples-list { overflow-y: auto; max-height: 300px; padding: 0 8px 8px; }
+    .map-peoples-item {
+      padding: 6px 8px; margin-bottom: 2px; border-radius: 4px; cursor: pointer;
+      font-size: 0.78rem; color: #d4c5b0; transition: background 0.2s;
+    }
+    .map-peoples-item:hover { background: rgba(201,168,76,0.1); }
+    .map-peoples-item.active { background: rgba(201,168,76,0.2); color: #c9a84c; }
+    .map-peoples-item .peoples-ancestor { font-size: 0.68rem; color: #8a7a60; }
+    .map-peoples-clear {
+      margin: 8px; padding: 6px; border-radius: 6px; cursor: pointer;
+      background: rgba(114,47,55,0.3); border: 1px solid rgba(114,47,55,0.4);
+      color: #d4c5b0; font-size: 0.75rem;
+    }
+    .map-peoples-clear:hover { background: rgba(114,47,55,0.5); }
+    .map-era-slider {
+      position: absolute; bottom: 20px; left: 240px; right: 20px; z-index: 1000;
+      background: rgba(26,15,10,0.9); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; padding: 10px 16px; text-align: center;
+    }
+    .map-era-slider input[type="range"] { width: 100%; accent-color: #c9a84c; cursor: pointer; }
+    .map-era-label { font-size: 0.82rem; color: #c9a84c; margin-top: 4px; font-weight: 600; }
+    .map-narrative {
+      position: absolute; bottom: 80px; left: 240px; right: 20px; z-index: 1000;
+      background: rgba(26,15,10,0.92); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; padding: 12px 16px; font-size: 0.8rem; color: #d4c5b0; line-height: 1.5;
+    }
+    .map-narrative strong { color: #c9a84c; }
+    .map-toast {
+      position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+      z-index: 1001; background: rgba(26,15,10,0.95);
+      border: 1px solid rgba(201,168,76,0.3); border-radius: 8px;
+      padding: 8px 20px; font-size: 0.82rem; color: #c9a84c;
+      font-weight: 600; white-space: nowrap; transition: opacity 0.5s;
+    }
+    .map-legend {
+      position: absolute; bottom: 20px; left: 10px; z-index: 1000;
+      background: rgba(26,15,10,0.9); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; padding: 8px 12px; font-size: 0.7rem; color: #8a7a60;
+    }
+    .map-legend-item { display: flex; align-items: center; gap: 6px; margin-bottom: 3px; }
+    .legend-solid { display: inline-block; width: 20px; height: 3px; background: #c9a84c; border-radius: 2px; }
+    .legend-dotted { display: inline-block; width: 20px; height: 3px; border-top: 2px dashed #c9a84c; }
+    .legend-citystate { display: inline-block; width: 20px; height: 3px; border-top: 2px dashed #DAA520; }
+    .map-detail-panel {
+      position: absolute; top: 10px; right: 10px; z-index: 1000;
+      width: 340px; max-height: calc(100vh - 200px); overflow-y: auto;
+      background: rgba(26,15,10,0.95); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; padding: 16px;
+    }
+    .map-detail-panel .panel-close {
+      position: absolute; top: 8px; right: 12px; background: none; border: none;
+      color: #8a7a60; font-size: 1.2rem; cursor: pointer;
+    }
+    .map-detail-panel .panel-close:hover { color: #c9a84c; }
+    .map-detail-name { font-size: 1.1rem; color: #f5f0e8; font-weight: 700; margin-bottom: 4px; }
+    .map-detail-hebrew { font-size: 0.9rem; color: #c9a84c; margin-bottom: 8px; }
+    .map-detail-meta { font-size: 0.75rem; color: #8a7a60; margin-bottom: 4px; }
+    .map-detail-desc { font-size: 0.82rem; color: #d4c5b0; line-height: 1.5; margin: 10px 0; }
+    .map-detail-section { margin-top: 12px; }
+    .map-detail-section h4 { font-size: 0.78rem; color: #c9a84c; margin-bottom: 6px; text-transform: uppercase; }
+    .map-detail-link {
+      display: inline-block; padding: 3px 10px; margin: 2px; border-radius: 12px;
+      background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2);
+      color: #d4c5b0; font-size: 0.75rem; cursor: pointer; transition: background 0.2s;
+    }
+    .map-detail-link:hover { background: rgba(201,168,76,0.2); color: #c9a84c; }
+    .map-detail-explore {
+      display: block; width: 100%; margin-top: 12px; padding: 8px; border-radius: 6px;
+      background: rgba(114,47,55,0.3); border: 1px solid rgba(114,47,55,0.4);
+      color: #d4c5b0; font-size: 0.8rem; cursor: pointer; text-align: center;
+    }
+    .map-detail-explore:hover { background: rgba(114,47,55,0.5); }
+    .map-detail-accuracy { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.68rem; margin-bottom: 8px; }
+    .map-detail-accuracy.documented { background: rgba(201,168,76,0.15); color: #c9a84c; }
+    .map-detail-accuracy.approximate { background: rgba(114,47,55,0.2); color: #b0836b; }
+    .map-viewon-btn {
+      display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px;
+      border-radius: 12px; background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.2); color: #c9a84c;
+      font-size: 0.72rem; cursor: pointer; margin-top: 6px;
+    }
+    .map-viewon-btn:hover { background: rgba(201,168,76,0.2); }
+    .search-minimap { width: 100%; height: 250px; border-radius: 6px; margin-top: 8px; border: 1px solid rgba(201,168,76,0.15); }
+    @media (max-width: 768px) {
+      .map-peoples-filter { position: relative; top: 0; left: 0; width: 100%; max-height: none; border-radius: 0; border: none; border-bottom: 1px solid rgba(201,168,76,0.2); }
+      .map-peoples-list { max-height: 120px; }
+      .map-era-slider { left: 10px; bottom: 10px; }
+      .map-narrative { left: 10px; bottom: 70px; }
+      .map-detail-panel { position: fixed; top: auto; bottom: 0; left: 0; right: 0; width: 100%; max-height: 60vh; border-radius: 16px 16px 0 0; }
+      .map-legend { bottom: 80px; }
+      .map-landscape-hint { display: block; text-align: center; padding: 8px; background: rgba(201,168,76,0.1); color: #c9a84c; font-size: 0.75rem; border-bottom: 1px solid rgba(201,168,76,0.15); }
+    }
+    @media (min-width: 769px) { .map-landscape-hint { display: none; } }
+
+    /* Evidence Pins */
+    .evidence-controls {
+      position: absolute; top: 55px; right: 10px; z-index: 1001;
+      background: rgba(26,15,10,0.95); border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 8px; min-width: 200px; font-size: 0.78rem;
+    }
+    .evidence-controls-header {
+      padding: 8px 12px; cursor: pointer; color: #c9a84c; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .evidence-controls-body { padding: 0 12px 10px; display: none; }
+    .evidence-controls-body.open { display: block; }
+    .evidence-toggle { display: flex; align-items: center; gap: 8px; padding: 4px 0; color: #d4c5b0; cursor: pointer; font-size: 0.75rem; }
+    .evidence-toggle input { accent-color: #c9a84c; }
+    .evidence-toggle .count { color: #8a7a60; font-size: 0.7rem; }
+    .evidence-badge { display: inline-block; padding: 1px 6px; border-radius: 8px; font-size: 0.65rem; font-weight: 600; }
+    .evidence-badge.archaeological { background: rgba(212,136,15,0.2); color: #D4880F; }
+    .evidence-badge.cross_cultural { background: rgba(0,151,167,0.2); color: #0097A7; }
+    .evidence-badge.inscription { background: rgba(46,125,50,0.2); color: #2E7D32; }
+    .evidence-badge.confirmed { background: rgba(46,125,50,0.15); color: #4CAF50; }
+    .evidence-badge.debated { background: rgba(255,152,0,0.15); color: #FF9800; }
+    .evidence-badge.contested { background: rgba(244,67,54,0.15); color: #F44336; }
+    @keyframes evidence-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+    /* Historical Event Links */
+    .event-link { color: #C62828; cursor: pointer; text-decoration: underline; text-decoration-style: dotted; font-weight: 600; position: relative; }
+    .event-link:hover { color: #E53935; }
+    .event-tooltip {
+      position: fixed; z-index: 10000; max-width: 320px; padding: 12px 16px;
+      background: #1a0f0a; border: 1px solid rgba(201,168,76,0.3); border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5); font-size: 0.8rem; color: #d4c5b0; line-height: 1.5;
+      pointer-events: auto;
+    }
+    .event-tooltip .event-tooltip-name { font-size: 0.9rem; font-weight: 700; color: #c9a84c; margin-bottom: 2px; }
+    .event-tooltip .event-tooltip-date { font-size: 0.7rem; color: #8a7a60; margin-bottom: 6px; }
+    .event-tooltip .event-tooltip-close { position: absolute; top: 4px; right: 8px; color: #8a7a60; cursor: pointer; font-size: 1rem; }
+    .event-tooltip .event-tooltip-close:hover { color: #c9a84c; }
+  </style>
+</head>
+<body>
+<div class="app">
+
+  <a href="/" class="back-btn">&larr; Workbench</a>
+
+  <div class="header">
+    <div class="header-title">Trials of <span>Judah</span></div>
+    <div class="header-sub">"Thy word is a lamp unto my feet, and a light unto my path." &mdash; Psalm 119:105</div>
+    <div class="translation-toggle">
+      <button class="trans-btn active" id="btn-kjv" onclick="setTranslation('kjv')">KJV</button>
+      <button class="trans-btn" id="btn-esv" onclick="setTranslation('esv')">ESV</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" id="tab-trials" onclick="switchTab('trials')">Trials</button>
+    <button class="tab-btn" id="tab-guidance" onclick="switchTab('guidance')">Guidance</button>
+    <button class="tab-btn" id="tab-ask" onclick="switchTab('ask')">Ask</button>
+    <button class="tab-btn" id="tab-lineage" onclick="switchTab('lineage')">Lineage</button>
+    <button class="tab-btn" id="tab-prophecy" onclick="switchTab('prophecy')">Prophecy</button>
+    <button class="tab-btn" id="tab-map" onclick="switchTab('map')">Map</button>
+    <button class="tab-btn" onclick="window.location.href='/enoch'" style="color:#c9a84c;opacity:0.7;">Book of Enoch</button>
+  </div>
+
+  <!-- Trials Tab -->
+  <div class="tab-content active" id="content-trials">
+    <div id="trials-grid" class="cat-grid"></div>
+    <div id="trials-verses" style="display:none;"></div>
+  </div>
+
+  <!-- Guidance Tab -->
+  <div class="tab-content" id="content-guidance">
+    <div id="guidance-grid" class="cat-grid"></div>
+    <div id="guidance-verses" style="display:none;"></div>
+  </div>
+
+  <!-- Ask Tab -->
+  <div class="tab-content" id="content-ask">
+    <div class="ask-section">
+      <div id="ask-available">
+        <div class="ask-label">What are you going through? Describe your situation and receive guidance from scripture.</div>
+        <textarea class="ask-input" id="ask-input" placeholder="I am struggling with..."></textarea>
+        <button class="ask-submit" id="ask-submit" onclick="submitAsk()">Seek Guidance</button>
+      </div>
+      <div id="ask-unavailable" class="llm-unavailable" style="display:none;">
+        Study commentary is currently unavailable.<br>Please try again later.
+      </div>
+      <div class="ask-loading" id="ask-loading">Searching scripture&hellip;</div>
+      <div class="ask-response" id="ask-response"></div>
+    </div>
+  </div>
+
+  <!-- Lineage Tab -->
+  <div class="tab-content" id="content-lineage">
+    <div id="lineage-loading" class="empty-state">Loading lineage data...</div>
+    <div id="lineage-view" style="display:none;">
+      <div class="lineage-layout">
+        <div id="lineage-timeline" class="lineage-timeline"></div>
+        <div id="lineage-tree" class="lineage-tree"></div>
+      </div>
+    </div>
+    <!-- Detail Panel -->
+    <div id="lineage-panel" class="lineage-panel" style="display:none;">
+      <div class="lineage-panel-inner" id="lineage-panel-inner"></div>
+    </div>
+  </div>
+
+  <!-- Prophecy Tab -->
+  <div class="tab-content" id="content-prophecy">
+    <div id="prophecy-loading" class="empty-state">Loading prophecy timeline...</div>
+    <div id="prophecy-view" style="display:none;">
+      <div class="prophecy-timeline-wrap">
+        <div class="prophecy-timeline-bar" id="prophecy-timeline-bar"></div>
+      </div>
+      <div class="prophecy-filter-bar" id="prophecy-filter-bar"></div>
+      <div id="prophecy-cards"></div>
+    </div>
+  </div>
+
+  <!-- Map Tab -->
+  <div class="tab-content" id="content-map">
+    <div id="map-loading" class="empty-state">Loading map data...</div>
+    <div id="map-view" style="display:none; position:relative;">
+      <button class="map-back-btn" onclick="switchTab('trials')">&larr; Back to Trials of Judah</button>
+      <div class="map-landscape-hint">Rotate your device to landscape for the best map experience</div>
+      <div id="map-peoples-filter" class="map-peoples-filter">
+        <div class="map-peoples-header">
+          <input class="map-peoples-search" id="map-peoples-search" placeholder="Filter peoples..." oninput="filterPeoplesList()">
+        </div>
+        <div class="map-peoples-list" id="map-peoples-list"></div>
+        <button class="map-peoples-clear" id="map-peoples-clear" style="display:none;" onclick="clearPeoplesFilter()">Clear Filter</button>
+      </div>
+      <div id="map-container" style="height:100%; width:100%;"></div>
+      <div class="map-era-slider" id="map-era-slider">
+        <input type="range" id="map-era-range" min="0" max="15" value="0" oninput="onEraSliderChange(this.value)">
+        <div class="map-era-label" id="map-era-label"></div>
+      </div>
+      <div class="map-narrative" id="map-narrative" style="display:none;"></div>
+      <div class="map-toast" id="map-toast" style="display:none;"></div>
+      <div class="map-legend">
+        <div style="font-size:0.65rem;color:#c9a84c;font-weight:600;margin-bottom:4px;text-transform:uppercase;">Borders</div>
+        <div class="map-legend-item"><span class="legend-solid"></span> Kingdom</div>
+        <div class="map-legend-item"><span class="legend-dotted"></span> Approximate</div>
+        <div class="map-legend-item"><span class="legend-citystate"></span> City-state</div>
+        <div style="font-size:0.65rem;color:#c9a84c;font-weight:600;margin:6px 0 4px;text-transform:uppercase;">Cities</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:16px;height:16px;background:#c9a84c;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:9px;color:#fff;">&#127963;</span> Capital</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:14px;height:14px;background:#5c4a32;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:6px;color:#fff;">&#9642;</span> City</div>
+        <div style="font-size:0.65rem;color:#c9a84c;font-weight:600;margin:6px 0 4px;text-transform:uppercase;">Evidence</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:16px;height:16px;background:#D4880F;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:8px;color:#fff;">&#9874;</span> Archaeological</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:16px;height:16px;background:#0097A7;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:8px;color:#fff;">&#128220;</span> Cross-Cultural</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:16px;height:16px;background:#2E7D32;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:8px;color:#fff;">&#128223;</span> Inscription</div>
+        <div style="font-size:0.65rem;color:#c9a84c;font-weight:600;margin:6px 0 4px;text-transform:uppercase;">Martyrs</div>
+        <div class="map-legend-item"><span style="display:inline-flex;width:16px;height:16px;background:#8B0000;border:1.5px solid #fff;border-radius:50%;align-items:center;justify-content:center;font-size:10px;color:#fff;">&#10013;</span> Martyr</div>
+      </div>
+      <!-- Evidence & Martyrs Controls -->
+      <div class="evidence-controls" id="evidence-controls">
+        <div class="evidence-controls-header" onclick="toggleEvidencePanel()">
+          Evidence <span id="evidence-arrow">&#9650;</span>
+        </div>
+        <div class="evidence-controls-body open" id="evidence-body">
+          <label class="evidence-toggle"><input type="checkbox" id="evidence-show-all" onchange="onEvidenceFilterChange()"> Show All Eras</label>
+          <label class="evidence-toggle"><input type="checkbox" id="evidence-archaeological" checked onchange="onEvidenceFilterChange()"> <span style="display:inline-block;width:16px;height:16px;background:#D4880F;border-radius:50%;text-align:center;line-height:16px;font-size:9px;color:#fff;">&#9874;</span> Archaeological <span class="count" id="evidence-count-arch"></span></label>
+          <label class="evidence-toggle"><input type="checkbox" id="evidence-cross-cultural" checked onchange="onEvidenceFilterChange()"> <span style="display:inline-block;width:16px;height:16px;background:#0097A7;border-radius:50%;text-align:center;line-height:16px;font-size:9px;color:#fff;">&#128220;</span> Cross-Cultural <span class="count" id="evidence-count-cc"></span></label>
+          <label class="evidence-toggle"><input type="checkbox" id="evidence-inscription" checked onchange="onEvidenceFilterChange()"> <span style="display:inline-block;width:16px;height:16px;background:#2E7D32;border-radius:50%;text-align:center;line-height:16px;font-size:9px;color:#fff;">&#128223;</span> Inscriptions <span class="count" id="evidence-count-ins"></span></label>
+        </div>
+        <div style="border-top:1px solid rgba(201,168,76,0.15);"></div>
+        <div class="evidence-controls-header" onclick="toggleMartyrsPanel()">
+          Martyrs <span id="martyrs-arrow">&#9650;</span>
+        </div>
+        <div class="evidence-controls-body open" id="martyrs-body">
+          <label class="evidence-toggle"><input type="checkbox" id="martyrs-show" checked onchange="onMartyrsFilterChange()"> <span style="display:inline-block;width:16px;height:16px;background:#8B0000;border-radius:50%;text-align:center;line-height:16px;font-size:10px;color:#fff;">&#10013;</span> Show Martyrs <span class="count" id="martyrs-count"></span></label>
+          <label class="evidence-toggle"><input type="checkbox" id="martyrs-show-all" onchange="onMartyrsFilterChange()"> Show All Eras</label>
+        </div>
+      </div>
+      <div class="map-detail-panel" id="map-detail-panel" style="display:none;">
+        <div id="map-detail-inner"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Search -->
+  <div class="floating-search" id="floating-search">
+    <div class="search-box" id="search-box">
+      <div class="search-box-header">
+        <input class="search-box-input" id="search-input" placeholder="Look up a term, place, or person..." onkeydown="if(event.key==='Enter')submitLookup()">
+        <button class="search-box-btn" id="search-btn" onclick="submitLookup()">Search</button>
+      </div>
+      <div class="search-box-results" id="search-results"></div>
+    </div>
+    <button class="search-toggle" onclick="toggleSearch()" title="Look up biblical terms">&#128270;</button>
+  </div>
+
+  <div class="footer">
+    Scripture quotations marked (ESV) are from The ESV&reg; Bible, copyright &copy; 2001 by Crossway,
+    a publishing ministry of Good News Publishers. Used by permission.<br>
+    Trials of Judah &mdash; Built with reverence.
+  </div>
+</div>
+
+<script>
+  // ── State ──────────────────────────────────────────
+  var state = {
+    translation: 'kjv',
+    activeTab: 'trials',
+    categories: { trials: [], guidance: [] },
+    currentCategory: null,
+    llmAvailable: false,
+    askCooldown: false,
+    lineageLoaded: false,
+    prophecyLoaded: false,
+    prophecyData: null,
+    prophecyFilter: null,
+    lineageTree: null,
+    lineageExpanded: {},
+    mapLoaded: false,
+    mapInstance: null,
+    mapData: null,
+    mapEras: [],
+    mapLayers: {},
+    mapCityMarkers: [],
+    mapGeoJsonCache: {},
+    selectedKingdom: null,
+    selectedEra: null,
+    selectedPeople: null,
+    evidenceData: [],
+    evidenceLayers: [],
+    evidenceConnectionLines: [],
+    evidenceFilters: { showAll: false, archaeological: true, cross_cultural: true, inscription: true },
+    martyrsData: [],
+    martyrsLayers: [],
+    martyrsFilters: { show: true, showAll: false },
+    historicalEvents: {},
+    peoplesData: [],
+    miniMap: null,
+  };
+
+  function $(id) { return document.getElementById(id); }
+
+  async function apiFetch(url, options) {
+    try {
+      var res = await fetch(url, options);
+      if (!res.ok) {
+        var err = await res.json().catch(function() { return {}; });
+        throw new Error(err.error || 'HTTP ' + res.status);
+      }
+      return await res.json();
+    } catch (err) {
+      console.error('API error (' + url + '):', err);
+      throw err;
+    }
+  }
+
+  // ── Translation Toggle ─────────────────────────────
+  function setTranslation(code) {
+    state.translation = code;
+    $('btn-kjv').className = 'trans-btn' + (code === 'kjv' ? ' active' : '');
+    $('btn-esv').className = 'trans-btn' + (code === 'esv' ? ' active' : '');
+    // Reload current view if viewing verses
+    if (state.currentCategory) {
+      loadVerses(state.currentCategory.slug, state.currentCategory.tabType);
+    }
+  }
+
+  // ── Tab Switching ──────────────────────────────────
+  function switchTab(tab) {
+    state.activeTab = tab;
+    ['trials', 'guidance', 'ask', 'lineage', 'prophecy', 'map'].forEach(function(t) {
+      $('tab-' + t).className = 'tab-btn' + (t === tab ? ' active' : '');
+      if (t !== 'map') {
+        $('content-' + t).className = 'tab-content' + (t === tab ? ' active' : '');
+      }
+    });
+    // Map tab is a fixed fullscreen overlay — toggle separately
+    var mapContent = $('content-map');
+    if (tab === 'map') {
+      mapContent.style.display = 'block';
+      mapContent.className = 'tab-content active';
+      if (!state.mapLoaded) loadMap();
+      // Invalidate map size after display change
+      if (state.mapInstance) setTimeout(function() { state.mapInstance.invalidateSize(); }, 100);
+    } else {
+      mapContent.style.display = 'none';
+      mapContent.className = 'tab-content';
+    }
+    if (tab === 'trials') loadCategories('trial');
+    if (tab === 'guidance') loadCategories('guidance');
+    if (tab === 'lineage' && !state.lineageLoaded) loadLineage();
+    if (tab === 'prophecy' && !state.prophecyLoaded) loadProphecyTimeline();
+    document.querySelector('.app').style.maxWidth = (tab === 'lineage' || tab === 'prophecy') ? '100%' : '900px';
+  }
+
+  // ── Categories ─────────────────────────────────────
+  async function loadCategories(type) {
+    var gridId = type === 'trial' ? 'trials-grid' : 'guidance-grid';
+    var versesId = type === 'trial' ? 'trials-verses' : 'guidance-verses';
+    $(versesId).style.display = 'none';
+    $(gridId).style.display = 'grid';
+    state.currentCategory = null;
+
+    var cacheKey = type === 'trial' ? 'trials' : 'guidance';
+    if (state.categories[cacheKey].length) {
+      renderCategories(state.categories[cacheKey], gridId, type);
+      return;
+    }
+
+    try {
+      var data = await apiFetch('/api/categories?type=' + type);
+      state.categories[cacheKey] = data.categories || [];
+      renderCategories(state.categories[cacheKey], gridId, type);
+    } catch (err) {
+      $(gridId).innerHTML = '<div class="empty-state">Failed to load categories.</div>';
+    }
+  }
+
+  function renderCategories(cats, gridId, tabType) {
+    if (!cats.length) {
+      $(gridId).innerHTML = '<div class="empty-state">No categories found.</div>';
+      return;
+    }
+    var html = '';
+    cats.forEach(function(cat) {
+      html += '<div class="cat-card" onclick="loadVerses(\'' + cat.slug + '\', \'' + tabType + '\')">' +
+        '<div class="cat-icon">' + cat.icon + '</div>' +
+        '<div class="cat-name">' + cat.name + '</div>' +
+        '<div class="cat-desc">' + cat.description + '</div>' +
+        '</div>';
+    });
+    $(gridId).innerHTML = html;
+  }
+
+  // ── Verses ─────────────────────────────────────────
+  async function loadVerses(slug, tabType) {
+    var gridId = tabType === 'trial' ? 'trials-grid' : 'guidance-grid';
+    var versesId = tabType === 'trial' ? 'trials-verses' : 'guidance-verses';
+    $(gridId).style.display = 'none';
+    $(versesId).style.display = 'block';
+
+    var cacheKey = tabType === 'trial' ? 'trials' : 'guidance';
+    var cat = state.categories[cacheKey].find(function(c) { return c.slug === slug; });
+    state.currentCategory = cat ? { slug: slug, tabType: tabType, name: cat.name, icon: cat.icon } : { slug: slug, tabType: tabType, name: slug, icon: '' };
+
+    $(versesId).innerHTML = '<div class="empty-state">Loading verses...</div>';
+
+    try {
+      var data = await apiFetch('/api/verses?category=' + slug + '&translation=' + state.translation);
+      var verses = data.verses || [];
+
+      var html = '<div class="verse-header">' +
+        '<button class="verse-back" onclick="loadCategories(\'' + tabType + '\')">&larr; Back</button>' +
+        '<div class="verse-cat-title">' + (state.currentCategory.icon || '') + ' ' + state.currentCategory.name + '</div>' +
+        '</div>';
+
+      if (!verses.length) {
+        html += '<div class="empty-state">No verses found for this category.</div>';
+      } else {
+        verses.forEach(function(v) {
+          html += '<div class="verse-card">' +
+            '<div class="verse-ref">' + v.reference + '</div>' +
+            '<div class="verse-text">' + v.text + '</div>' +
+            (v.context_note ? '<div class="verse-context">' + v.context_note + '</div>' : '') +
+            (v.date_written ? '<div class="verse-context">Written: ' + v.date_written + '</div>' : '') +
+            '</div>';
+        });
+      }
+
+      $(versesId).innerHTML = html;
+    } catch (err) {
+      $(versesId).innerHTML = '<div class="empty-state">Failed to load verses.</div>';
+    }
+  }
+
+  // ── Ask ─────────────────────────────────────────────
+  async function submitAsk() {
+    var question = $('ask-input').value.trim();
+    if (!question || state.askCooldown) return;
+
+    $('ask-submit').disabled = true;
+    $('ask-loading').style.display = 'block';
+    $('ask-response').style.display = 'none';
+
+    try {
+      var data = await apiFetch('/api/ask', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: question, translation: state.translation }),
+      });
+
+      var html = '';
+
+      // Verse cards
+      if (data.verses && data.verses.length) {
+        data.verses.forEach(function(v) {
+          html += '<div class="verse-card">' +
+            '<div class="verse-ref">' + v.reference + '</div>' +
+            '<div class="verse-text">' + v.text + '</div>' +
+            (v.context_note ? '<div class="verse-context">' + v.context_note + '</div>' : '') +
+            (v.date_written ? '<div class="verse-context">Written: ' + v.date_written + '</div>' : '') +
+            '</div>';
+        });
+      }
+
+      // Commentary
+      if (data.commentary) {
+        html += '<div class="commentary-section">' +
+          '<div class="commentary-label">Study Commentary (AI-Generated)</div>' +
+          '<div class="commentary-text">' + escapeHtml(data.commentary) + '</div>' +
+          '</div>';
+      }
+
+      // Verification badge
+      if (data.verified) {
+        html += '<div class="verify-badge verified">&#10003; Verified against scripture database</div>';
+      } else if (data.flags && data.flags.length) {
+        html += '<div class="verify-badge flagged">&#9888; This commentary could not be fully verified against scripture</div>';
+        html += '<div class="flag-details">';
+        data.flags.forEach(function(f) {
+          html += '<div>' + f.type + ': ' + f.detail + '</div>';
+        });
+        html += '</div>';
+      }
+
+      $('ask-response').innerHTML = html;
+      $('ask-response').style.display = 'block';
+
+    } catch (err) {
+      $('ask-response').innerHTML = '<div class="empty-state">Error: ' + err.message + '</div>';
+      $('ask-response').style.display = 'block';
+    }
+
+    $('ask-loading').style.display = 'none';
+    $('ask-submit').disabled = false;
+
+    // Cooldown
+    state.askCooldown = true;
+    $('ask-submit').disabled = true;
+    setTimeout(function() {
+      state.askCooldown = false;
+      $('ask-submit').disabled = false;
+    }, 3000);
+  }
+
+  function escapeHtml(text) {
+    var div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // ── Init ────────────────────────────────────────────
+  // ── Lineage Tab ──────────────────────────────────────
+  async function loadLineage() {
+    try {
+      var data = await apiFetch('/api/lineage/tree');
+      state.lineageTree = data;
+      state.lineageLoaded = true;
+      $('lineage-loading').style.display = 'none';
+      $('lineage-view').style.display = 'block';
+      renderLineageTree(data);
+      loadTimelineEras();
+    } catch (err) {
+      $('lineage-loading').innerHTML = '<div class="empty-state">Failed to load lineage data.</div>';
+    }
+  }
+
+  function renderLineageTree(data) {
+    var nodes = data.nodes;
+    var edges = data.edges;
+
+    // Build parent->children map
+    var childrenOf = {};
+    edges.forEach(function(e) {
+      if (!childrenOf[e.parent_id]) childrenOf[e.parent_id] = [];
+      childrenOf[e.parent_id].push(e.child_id);
+    });
+
+    // Build node lookup
+    var nodeMap = {};
+    nodes.forEach(function(n) { nodeMap[n.id] = n; });
+
+    // Group by generation
+    var generations = {};
+    nodes.forEach(function(n) {
+      if (!generations[n.generation]) generations[n.generation] = [];
+      generations[n.generation].push(n);
+    });
+
+    // Find root nodes (no parents)
+    var hasParent = {};
+    edges.forEach(function(e) { hasParent[e.child_id] = true; });
+
+    var container = $('lineage-tree');
+    var html = '';
+
+    // Sort generation keys
+    var genKeys = Object.keys(generations).map(Number).sort(function(a,b){ return a-b; });
+
+    genKeys.forEach(function(gen) {
+      var genNodes = generations[gen];
+      genNodes.sort(function(a,b){ return a.sort_order - b.sort_order; });
+
+      html += '<div class="lineage-gen-row" data-gen="' + gen + '">';
+      html += '<div class="lineage-gen-label">Gen ' + gen + '</div>';
+      html += '<div style="display:flex; flex-wrap:wrap; gap:10px;">';
+
+      genNodes.forEach(function(n) {
+        var childCount = (childrenOf[n.id] || []).length;
+        var branchClass = 'branch-' + n.branch;
+        var isExpanded = state.lineageExpanded[n.id];
+
+        html += '<div class="lineage-node ' + branchClass + '" data-id="' + n.id + '" onclick="openPersonPanel(' + n.id + ')">';
+        html += '<div class="node-name">' + n.name_english + '</div>';
+        if (n.name_meaning) html += '<div class="node-meaning">' + n.name_meaning + '</div>';
+        if (childCount > 0) {
+          html += '<div class="node-expand" onclick="event.stopPropagation(); toggleLineageExpand(' + n.id + ')">';
+          html += isExpanded ? '−' : '+' + childCount;
+          html += '</div>';
+        }
+        html += '</div>';
+      });
+
+      html += '</div></div>';
+    });
+
+    container.innerHTML = html;
+  }
+
+  function toggleLineageExpand(nodeId) {
+    state.lineageExpanded[nodeId] = !state.lineageExpanded[nodeId];
+
+    // If collapsing, also collapse all descendants
+    if (!state.lineageExpanded[nodeId]) {
+      var edges = state.lineageTree.edges;
+      var toCollapse = [nodeId];
+      while (toCollapse.length) {
+        var pid = toCollapse.shift();
+        edges.forEach(function(e) {
+          if (e.parent_id === pid) {
+            state.lineageExpanded[e.child_id] = false;
+            toCollapse.push(e.child_id);
+          }
+        });
+      }
+    }
+
+    renderLineageTree(state.lineageTree);
+  }
+
+  async function openPersonPanel(personId) {
+    var panel = $('lineage-panel');
+    var inner = $('lineage-panel-inner');
+    panel.style.display = 'block';
+    inner.innerHTML = '<div class="empty-state">Loading...</div>';
+
+    try {
+      var data = await apiFetch('/api/lineage/person/' + personId);
+      var p = data.person;
+      var html = '<button class="panel-close" onclick="closePersonPanel()">&times;</button>';
+
+      // Header
+      html += '<div class="panel-name">' + p.name_english + '</div>';
+      if (p.name_hebrew) html += '<div class="panel-hebrew">' + p.name_hebrew + '</div>';
+      if (p.name_meaning) html += '<div class="panel-meaning">"' + p.name_meaning + '"</div>';
+      if (p.lifespan) html += '<div class="panel-lifespan">Lived ' + p.lifespan + ' years';
+      if (p.birth_year_am) html += ' (Year ' + p.birth_year_am + ' - ' + (p.death_year_am || '?') + ' AM)';
+      html += '</div>';
+
+      // Scripture section
+      html += '<div class="panel-scripture">';
+      if (p.life_summary) {
+        html += '<h4>Life Summary</h4>';
+        html += '<p>' + p.life_summary + '</p>';
+      }
+      if (p.meaning_connection) {
+        html += '<h4>The Meaning of Their Name</h4>';
+        html += '<p>' + p.meaning_connection + '</p>';
+      }
+      if (p.scripture_refs) {
+        html += '<div class="refs">' + p.scripture_refs + '</div>';
+      }
+      html += '</div>';
+
+      // Modern connections (scholarly)
+      if (data.modern_connections && data.modern_connections.length) {
+        html += '<div class="panel-scholarly">';
+        html += '<div class="panel-scholarly-label">Scholarly Research</div>';
+        data.modern_connections.forEach(function(mc) {
+          html += '<p><strong>' + mc.modern_group + '</strong>';
+          if (mc.region) html += ' — ' + mc.region;
+          html += '</p>';
+          if (mc.notes) html += '<p>' + mc.notes + '</p>';
+          if (mc.source) html += '<div class="source-attr">Source: ' + mc.source + '</div>';
+        });
+        html += '</div>';
+      }
+
+      // Family links
+      html += '<div class="panel-links">';
+      if (data.parents.length) {
+        html += '<h4>Parents</h4>';
+        data.parents.forEach(function(rel) {
+          html += '<span class="panel-link-item" onclick="openPersonPanel(' + rel.id + ')">' + rel.name_english + '</span>';
+        });
+      }
+      if (data.spouses.length) {
+        html += '<h4>Spouse</h4>';
+        data.spouses.forEach(function(rel) {
+          html += '<span class="panel-link-item" onclick="openPersonPanel(' + rel.id + ')">' + rel.name_english + '</span>';
+        });
+      }
+      if (data.children.length) {
+        html += '<h4>Children</h4>';
+        data.children.forEach(function(rel) {
+          html += '<span class="panel-link-item" onclick="openPersonPanel(' + rel.id + ')">' + rel.name_english + '</span>';
+        });
+      }
+      html += '</div>';
+
+      // View on Map button
+      if (data.map_location) {
+        html += '<div style="margin-top:10px;">';
+        html += '<button class="map-viewon-btn" onclick="switchTab(\'map\'); setTimeout(function(){ selectKingdom(\'' + data.map_location.kingdom_id + '\'); },800);">View on Map &rarr; ' + data.map_location.kingdom_name + '</button>';
+        html += '</div>';
+      }
+
+      inner.innerHTML = html;
+    } catch (err) {
+      inner.innerHTML = '<div class="empty-state">Failed to load person details.</div>';
+    }
+  }
+
+  function closePersonPanel() {
+    $('lineage-panel').style.display = 'none';
+  }
+
+  async function loadTimelineEras() {
+    try {
+      var data = await apiFetch('/api/lineage/timeline');
+      var timeline = $('lineage-timeline');
+      var html = '';
+      data.eras.forEach(function(era) {
+        html += '<div class="timeline-era" data-gen-start="' + era.generation_start + '" data-gen-end="' + era.generation_end + '">';
+        html += era.name;
+        html += '</div>';
+      });
+      timeline.innerHTML = html;
+
+      // IntersectionObserver for era highlighting
+      var genRows = document.querySelectorAll('.lineage-gen-row');
+      if (genRows.length && window.IntersectionObserver) {
+        var observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              var gen = parseInt(entry.target.dataset.gen);
+              var eraEls = document.querySelectorAll('.timeline-era');
+              eraEls.forEach(function(el) {
+                var start = parseInt(el.dataset.genStart);
+                var end = parseInt(el.dataset.genEnd);
+                el.classList.toggle('active', gen >= start && gen <= end);
+              });
+            }
+          });
+        }, { threshold: 0.5 });
+        genRows.forEach(function(row) { observer.observe(row); });
+      }
+    } catch (err) {
+      console.error('Timeline load error:', err);
+    }
+  }
+
+  // ── Prophecy Tab ─────────────────────────────────────
+  async function loadProphecyTimeline() {
+    try {
+      var data = await apiFetch('/api/prophecy/timeline');
+      state.prophecyData = data;
+      state.prophecyLoaded = true;
+      $('prophecy-loading').style.display = 'none';
+      $('prophecy-view').style.display = 'block';
+      renderProphecyTimeline(data);
+      renderProphecyFilterBar();
+      renderProphecyCards(data.prophecies);
+    } catch (err) {
+      $('prophecy-loading').innerHTML = '<div class="empty-state">Failed to load prophecy data.</div>';
+    }
+  }
+
+  function renderProphecyTimeline(data) {
+    var bar = $('prophecy-timeline-bar');
+    var html = '';
+    data.eras.forEach(function(era) {
+      var count = data.prophecies.filter(function(p) {
+        var yr = p.fulfillment_year || 9999;
+        if (era.year_end === null) return p.status === 'awaiting';
+        return yr >= era.year_start && yr < era.year_end;
+      }).length;
+      var cls = era.year_end === null ? 'prophecy-era unfulfilled-era' : 'prophecy-era';
+      html += '<div class="' + cls + '" style="background:' + era.color + ';" title="' + era.name + ' (' + count + ')">';
+      html += era.name;
+      html += '<span class="era-count">' + count + '</span>';
+      html += '</div>';
+    });
+    bar.innerHTML = html;
+  }
+
+  function renderProphecyFilterBar() {
+    var cats = ['all', 'messianic', 'nations', 'tribes', 'global', 'unfulfilled'];
+    var labels = {'all':'All','messianic':'Messianic','nations':'Nations','tribes':'Twelve Tribes','global':'Global','unfulfilled':'Unfulfilled'};
+    var html = '';
+    cats.forEach(function(c) {
+      var active = (state.prophecyFilter === c || (!state.prophecyFilter && c === 'all')) ? ' active' : '';
+      html += '<button class="prophecy-filter-pill' + active + '" onclick="filterProphecies(\'' + c + '\')">' + labels[c] + '</button>';
+    });
+    $('prophecy-filter-bar').innerHTML = html;
+  }
+
+  function filterProphecies(category) {
+    state.prophecyFilter = category === 'all' ? null : category;
+    renderProphecyFilterBar();
+    if (!state.prophecyData) return;
+    var filtered = state.prophecyData.prophecies;
+    if (state.prophecyFilter) {
+      filtered = filtered.filter(function(p) { return p.category === state.prophecyFilter; });
+    }
+    renderProphecyCards(filtered);
+  }
+
+  function renderProphecyCards(prophecies) {
+    var container = $('prophecy-cards');
+    if (!prophecies.length) {
+      container.innerHTML = '<div class="empty-state">No prophecies match this filter.</div>';
+      return;
+    }
+    var html = '';
+    prophecies.forEach(function(p) {
+      var unfulfilled = p.status === 'awaiting' ? ' unfulfilled' : '';
+      var dateStr = p.fulfillment_year ? (p.fulfillment_year < 0 ? Math.abs(p.fulfillment_year) + ' BC' : p.fulfillment_year + ' AD') : 'Awaiting';
+      var statusCls = p.status === 'fulfilled' ? 'fulfilled' : 'awaiting';
+      html += '<div class="prophecy-card' + unfulfilled + '" onclick="toggleProphecyDetail(' + p.id + ', this)">';
+      html += '<div class="prophecy-card-header">';
+      html += '<div class="prophecy-title">' + p.title + '</div>';
+      html += '<div style="display:flex;gap:8px;align-items:center;">';
+      html += '<span class="prophecy-date-badge">' + dateStr + '</span>';
+      html += '<span class="prophecy-cat-pill">' + p.category + '</span>';
+      html += '<span class="prophecy-status-badge ' + statusCls + '">' + p.status.toUpperCase() + '</span>';
+      html += '</div></div>';
+      html += '<div class="prophecy-summary">' + (p.summary || '') + '</div>';
+      html += '<div class="prophecy-detail" id="prophecy-detail-' + p.id + '"></div>';
+      html += '</div>';
+    });
+    container.innerHTML = html;
+  }
+
+  async function toggleProphecyDetail(id, cardEl) {
+    var detail = $('prophecy-detail-' + id);
+    if (detail.classList.contains('open')) {
+      detail.classList.remove('open');
+      return;
+    }
+    // Close all others
+    document.querySelectorAll('.prophecy-detail.open').forEach(function(el) { el.classList.remove('open'); });
+
+    detail.innerHTML = '<div style="padding:12px;color:#8a7a60;font-style:italic;">Loading...</div>';
+    detail.classList.add('open');
+
+    try {
+      var data = await apiFetch('/api/prophecy/' + id);
+      var p = data.prophecy;
+      var html = '';
+
+      // Scripture section
+      html += '<div class="prophecy-scripture">';
+      html += '<h4>The Prophecy</h4>';
+      if (p.prophecy_text) html += '<p>' + p.prophecy_text + '</p>';
+      if (p.prophecy_refs) html += '<div class="refs">' + p.prophecy_refs + ' (' + (p.prophecy_date_approx || '') + ')</div>';
+      if (p.fulfillment_text) {
+        html += '<h4 style="margin-top:16px;">The Fulfillment</h4>';
+        html += '<p>' + p.fulfillment_text + '</p>';
+        if (p.fulfillment_refs) html += '<div class="refs">' + p.fulfillment_refs + ' (' + (p.fulfillment_date_approx || '') + ')</div>';
+      }
+      if (p.modern_status) {
+        html += '<div class="refs" style="margin-top:8px;"><strong>Today:</strong> ' + p.modern_status + '</div>';
+      }
+      html += '</div>';
+
+      // Cultural evidence
+      if (data.cultural_evidence && data.cultural_evidence.length) {
+        html += '<div class="prophecy-evidence">';
+        html += '<div class="prophecy-evidence-label">Historical & Cross-Cultural Evidence</div>';
+        data.cultural_evidence.forEach(function(ce) {
+          html += '<div class="evidence-item">';
+          html += '<div class="ev-culture">' + ce.culture + '</div>';
+          html += '<div class="ev-source">' + ce.source_name + '</div>';
+          if (ce.description) html += '<div class="ev-desc">' + ce.description + '</div>';
+          if (ce.source_location) html += '<div class="ev-location">' + ce.source_location + (ce.date_approx ? ' (' + ce.date_approx + ')' : '') + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+      }
+
+      detail.innerHTML = html;
+    } catch (err) {
+      detail.innerHTML = '<div class="empty-state">Failed to load prophecy details.</div>';
+    }
+  }
+
+  // ── Floating Search / Unified Search ────────────────
+  function toggleSearch() {
+    var box = $('search-box');
+    box.classList.toggle('open');
+    if (box.classList.contains('open')) {
+      $('search-input').focus();
+    }
+  }
+
+  async function submitLookup() {
+    var query = $('search-input').value.trim();
+    if (!query) return;
+
+    var btn = $('search-btn');
+    var results = $('search-results');
+    btn.disabled = true;
+    results.innerHTML = '<div class="search-loading">Searching scripture...</div>';
+
+    try {
+      var data = await apiFetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: query }),
+      });
+
+      var html = '';
+
+      // Bible verses
+      if (data.bible_verses && data.bible_verses.length) {
+        html += '<div class="search-scripture-section">';
+        html += '<h4>Bible Verses (' + data.bible_verses.length + ')</h4>';
+        data.bible_verses.slice(0, 5).forEach(function(v) {
+          html += '<p style="margin-bottom:6px;"><strong>' + v.book + ' ' + v.chapter + ':' + v.verse + '</strong> — ' + v.text + '</p>';
+        });
+        html += '</div>';
+      }
+
+      // Persons from lineage
+      if (data.persons && data.persons.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">LINEAGE</div>';
+        data.persons.forEach(function(p) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'lineage\'); setTimeout(function(){openPersonPanel(' + p.id + ')},500);">' + p.name_english + '</span>';
+        });
+        html += '</div>';
+      }
+
+      // Prophecies
+      if (data.prophecies && data.prophecies.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">PROPHECIES</div>';
+        data.prophecies.forEach(function(p) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'prophecy\');">' + p.title + '</span>';
+        });
+        html += '</div>';
+      }
+
+      // Map kingdoms
+      if (data.map_kingdoms && data.map_kingdoms.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">MAP — KINGDOMS</div>';
+        data.map_kingdoms.forEach(function(k) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'map\'); setTimeout(function(){ selectKingdom(\'' + k.id + '\'); },800);">' + k.name + '</span>';
+        });
+        html += '</div>';
+      }
+      if (data.map_cities && data.map_cities.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">MAP — CITIES</div>';
+        data.map_cities.forEach(function(c) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'map\');">' + c.name + '</span>';
+        });
+        html += '</div>';
+      }
+      if (data.map_peoples && data.map_peoples.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">MAP — PEOPLES</div>';
+        data.map_peoples.forEach(function(p) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'map\'); setTimeout(function(){ selectPeople(' + p.id + '); },800);">' + p.modern_name + ' (' + p.biblical_ancestor + ')</span>';
+        });
+        html += '</div>';
+      }
+      // Evidence results
+      if (data.map_evidence && data.map_evidence.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">EVIDENCE</div>';
+        data.map_evidence.forEach(function(e) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'map\');">';
+          html += '<span class="evidence-badge ' + e.type + '" style="margin-right:4px;">' + (e.type || '').replace('_','-') + '</span>';
+          html += e.name + '</span>';
+        });
+        html += '</div>';
+      }
+      // Martyrs results
+      if (data.map_martyrs && data.map_martyrs.length) {
+        html += '<div style="margin-bottom:12px;">';
+        html += '<div style="font-size:0.78rem;color:#8a7a60;font-weight:700;margin-bottom:6px;">MARTYRS</div>';
+        data.map_martyrs.forEach(function(m) {
+          html += '<span class="panel-link-item" onclick="switchTab(\'map\');">';
+          html += '<span style="color:#8B0000;margin-right:4px;">&#10013;</span>';
+          html += m.name;
+          if (m.location) html += ' <span style="color:#8a7a60;font-size:0.7rem;">(' + m.location + ')</span>';
+          html += '</span>';
+        });
+        html += '</div>';
+      }
+      // Mini-map
+      if ((data.map_kingdoms && data.map_kingdoms.length) || (data.map_cities && data.map_cities.length)) {
+        html += '<div id="search-minimap-container" class="search-minimap"></div>';
+      }
+
+      // Commentary
+      if (data.commentary && data.commentary.scripture) {
+        html += '<div class="search-scripture-section">';
+        html += '<h4>What Scripture Says</h4>';
+        html += '<p>' + escapeHtml(data.commentary.scripture) + '</p>';
+        html += '</div>';
+      }
+      if (data.commentary && data.commentary.scholarly) {
+        html += '<div class="search-scholarly-section">';
+        html += '<h4>Scholarly Context</h4>';
+        html += '<p>' + escapeHtml(data.commentary.scholarly) + '</p>';
+        html += '</div>';
+      }
+
+      // Verification
+      if (data.verified) {
+        html += '<div class="verify-badge verified" style="margin-top:8px;">&#10003; Verified against scripture database</div>';
+      } else if (data.flags && data.flags.length) {
+        html += '<div class="verify-badge flagged" style="margin-top:8px;">&#9888; Some claims could not be fully verified</div>';
+        html += '<div class="flag-details" style="margin-top:6px;">';
+        data.flags.forEach(function(f) {
+          html += '<div>' + f.detail + '</div>';
+        });
+        html += '</div>';
+      }
+
+      // Disclaimer
+      html += '<div style="margin-top:12px; padding:10px 14px; border-radius:6px; background:rgba(231,76,60,0.06); border:1px solid rgba(231,76,60,0.12); font-size:0.72rem; color:#8a7a60; line-height:1.5;">';
+      html += '<strong style="color:#e74c3c;">Important:</strong> AI-generated content may contain errors. Always verify claims against your own Bible.';
+      html += '</div>';
+
+      results.innerHTML = html;
+
+      // Initialize mini-map if container exists
+      setTimeout(function() {
+        var container = document.getElementById('search-minimap-container');
+        if (!container) return;
+        if (state.miniMap) { state.miniMap.remove(); state.miniMap = null; }
+        var firstCity = (data.map_cities && data.map_cities.length) ? data.map_cities[0] : null;
+        var center = firstCity ? [firstCity.lat, firstCity.lng] : [31.5, 35.0];
+        var zoom = firstCity ? 6 : 4;
+        state.miniMap = L.map(container, { center: center, zoom: zoom, zoomControl: false, attributionControl: false });
+        L.tileLayer(MAP_TERRAIN_FULL_URL, { maxZoom: 18 }).addTo(state.miniMap);
+        L.tileLayer(MAP_WATERCOLOR_URL, { maxZoom: 18, opacity: 0.35 }).addTo(state.miniMap);
+        var pane = state.miniMap.getPane('tilePane');
+        if (pane) pane.style.filter = 'saturate(200%) contrast(115%) brightness(88%) blur(0.3px)';
+        if (firstCity) {
+          L.circleMarker([firstCity.lat, firstCity.lng], {
+            radius: 8, color: '#c9a84c', fillColor: '#c9a84c', fillOpacity: 0.6,
+          }).addTo(state.miniMap).bindTooltip(firstCity.name, { permanent: true, direction: 'top' });
+        }
+      }, 100);
+    } catch (err) {
+      results.innerHTML = '<div class="empty-state">Error: ' + err.message + '</div>';
+    }
+
+    btn.disabled = false;
+  }
+
+  // ── Map Tab ────────────────────────────────────────
+  // SAMPLE 9: ESRI World Imagery — satellite/aerial photos
+  var MAP_TERRAIN_FULL_URL = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
+  // CartoDB Voyager no labels — soft color overlay with blue water (free)
+  var MAP_WATERCOLOR_URL = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png';
+  // For mini-map
+  var MAP_TILE_URL = MAP_TERRAIN_FULL_URL;
+  var MAP_TILE_ATTR = '&copy; OpenStreetMap &copy; OpenTopoMap &copy; CARTO';
+
+  async function loadMap() {
+    try {
+      var eraData = await apiFetch('/api/map/eras');
+      state.mapEras = eraData.eras || [];
+      var peoplesData = await apiFetch('/api/map/peoples');
+      state.peoplesData = peoplesData.peoples || [];
+      var evidenceResp = await apiFetch('/api/map/evidence');
+      state.evidenceData = evidenceResp.evidence || [];
+      var martyrsResp = await apiFetch('/api/map/martyrs');
+      state.martyrsData = martyrsResp.martyrs || [];
+      // Load historical events for contextual links
+      try {
+        var eventsResp = await apiFetch('/api/events');
+        (eventsResp.events || []).forEach(function(e) { state.historicalEvents[e.id] = e; });
+      } catch (err) { /* events optional */ }
+
+      state.mapLoaded = true;
+      $('map-loading').style.display = 'none';
+      $('map-view').style.display = 'block';
+
+      state.mapInstance = L.map('map-container', {
+        center: [31.5, 35.0], zoom: 4, minZoom: 2, maxZoom: 10,
+        worldCopyJump: false, maxBoundsViscosity: 1.0,
+        maxBounds: [[-85, -180], [85, 180]],
+      });
+
+      // Layer 1: Base terrain
+      L.tileLayer(MAP_TERRAIN_FULL_URL, {
+        attribution: MAP_TILE_ATTR, maxZoom: 18,
+      }).addTo(state.mapInstance);
+
+      // Slight brightness boost for satellite imagery
+      var tilePane = state.mapInstance.getPane('tilePane');
+      if (tilePane) tilePane.style.filter = 'saturate(130%) brightness(105%) contrast(108%)';
+
+      // Layer 3: Modern country borders — OpenMapTiles boundaries-only vector overlay
+      var borderPane = state.mapInstance.createPane('borderPane');
+      borderPane.style.zIndex = 350;
+      borderPane.style.pointerEvents = 'none';
+      // Fetch world country borders GeoJSON and draw as thin lines
+      fetch('https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson')
+        .then(function(r) { return r.json(); })
+        .then(function(geojson) {
+          L.geoJSON(geojson, {
+            style: { color: 'rgba(255,255,255,0.55)', weight: 1.8, fillOpacity: 0, interactive: false },
+            pane: 'borderPane',
+          }).addTo(state.mapInstance);
+        })
+        .catch(function() { /* borders optional */ });
+
+      // Layer 4: Modern country labels — also above the filter
+      var labelPane = state.mapInstance.createPane('labelPane');
+      labelPane.style.zIndex = 360;
+      labelPane.style.pointerEvents = 'none';
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
+        maxZoom: 18, opacity: 0.9, pane: 'labelPane', subdomains: 'abcd',
+      }).addTo(state.mapInstance);
+
+      var slider = $('map-era-range');
+      slider.max = state.mapEras.length - 1;
+      slider.value = 0;
+
+      renderPeoplesList(state.peoplesData);
+
+      state.selectedEra = state.mapEras[0].id;
+      updateEraLabel(state.selectedEra);
+      await loadEra(state.selectedEra);
+    } catch (err) {
+      $('map-loading').innerHTML = '<div class="empty-state">Failed to load map data. <button onclick="loadMap()">Retry</button></div>';
+    }
+  }
+
+  function updateEraLabel(eraId) {
+    var era = state.mapEras.find(function(e) { return e.id === eraId; });
+    if (era) $('map-era-label').textContent = era.name + ' (' + era.date_approx + ')';
+  }
+
+  async function onEraSliderChange(value) {
+    var idx = parseInt(value);
+    if (idx < 0 || idx >= state.mapEras.length) return;
+    var eraId = state.mapEras[idx].id;
+    if (eraId === state.selectedEra) return;
+    state.selectedEra = eraId;
+    updateEraLabel(eraId);
+    await loadEra(eraId);
+  }
+
+  async function loadEra(eraId) {
+    if (!state.mapGeoJsonCache[eraId]) {
+      var data = await apiFetch('/api/map/era/' + eraId);
+      state.mapGeoJsonCache[eraId] = data;
+    }
+    var data = state.mapGeoJsonCache[eraId];
+
+    if (data.era) showMapToast(data.era.date_approx + ' — ' + data.era.name + ' — ' + (data.era.scripture_refs ? data.era.scripture_refs[0] : ''));
+
+    // Clear existing layers
+    Object.keys(state.mapLayers).forEach(function(key) { state.mapInstance.removeLayer(state.mapLayers[key]); });
+    state.mapLayers = {};
+    state.mapCityMarkers.forEach(function(m) { state.mapInstance.removeLayer(m); });
+    state.mapCityMarkers = [];
+
+    // Draw kingdoms — white glow border + gold inner line
+    (data.kingdoms || []).forEach(function(k) {
+      if (!k.geojson) return;
+      // Skip sub-regions (shown only when parent is selected)
+      if (k.parent_kingdom) return;
+      var isDotted = k.border_accuracy === 'approximate';
+      var isCityState = k.type === 'city_state';
+
+      // Layer 1: Shadow/glow behind border
+      var glowLayer = L.geoJSON(k.geojson, {
+        style: {
+          color: isCityState ? '#8B6914' : '#000000',
+          weight: isCityState ? 5 : (isDotted ? 6 : 8),
+          opacity: isCityState ? 0.3 : 0.25,
+          fillColor: 'transparent', fillOpacity: 0,
+          dashArray: isCityState ? '4 4' : (isDotted ? '8 6' : null),
+          lineCap: 'round', lineJoin: 'round',
+        },
+        interactive: false,
+      });
+      glowLayer.addTo(state.mapInstance);
+
+      // Layer 2: Border line — white for kingdoms, golden amber for city-states
+      var layer = L.geoJSON(k.geojson, {
+        style: {
+          color: isCityState ? '#DAA520' : '#ffffff',
+          weight: isCityState ? 2 : (isDotted ? 2.5 : 3.5),
+          opacity: 0.9,
+          fillColor: isCityState ? '#DAA520' : '#ffffff',
+          fillOpacity: isCityState ? 0.1 : 0.06,
+          dashArray: isCityState ? '6 3' : (isDotted ? '6 4' : null),
+          lineCap: 'round', lineJoin: 'round',
+        },
+      });
+      layer.kingdomId = k.id;
+      layer.kingdomData = k;
+      layer.glowLayer = glowLayer;
+      layer.on('click', function() { selectKingdom(k.id); });
+      layer.bindTooltip(k.name, {
+        permanent: false, direction: 'center',
+        className: 'map-kingdom-tooltip',
+      });
+      layer.addTo(state.mapInstance);
+      state.mapLayers['kingdom-' + k.id] = layer;
+      state.mapLayers['glow-' + k.id] = glowLayer;
+    });
+
+    // Draw major cities (on top of kingdom polygons)
+    (data.cities || []).filter(function(c) { return c.is_major; }).forEach(function(c) {
+      var sz = c.is_capital ? 24 : 18;
+      var bg = c.is_capital ? '#c9a84c' : '#5c4a32';
+      var iconChar = c.is_capital ? '\uD83C\uDFDB' : '\u25AA';
+      var fsz = c.is_capital ? 13 : 8;
+      var cityIcon = L.divIcon({
+        className: '',
+        html: '<div style="width:' + sz + 'px;height:' + sz + 'px;background:' + bg + ';border:2px solid rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:' + fsz + 'px;color:#fff;box-shadow:0 2px 4px rgba(0,0,0,0.4);cursor:pointer;">' + iconChar + '</div>',
+        iconSize: [sz, sz],
+        iconAnchor: [sz / 2, sz / 2],
+      });
+      var marker = L.marker([c.lat, c.lng], { icon: cityIcon, bubblingMouseEvents: false });
+      marker.bindTooltip(c.name, { permanent: false, direction: 'top', offset: [0, -sz / 2] });
+      marker.on('click', function() { showCityPopup(c, marker); });
+      marker.addTo(state.mapInstance);
+      state.mapCityMarkers.push(marker);
+    });
+
+    if (state.selectedPeople) applyPeoplesFilter(state.selectedPeople);
+    updateNarrative(eraId);
+    renderEvidencePins(eraId);
+    renderMartyrsPins(eraId);
+  }
+
+  function showMapToast(text) {
+    var toast = $('map-toast');
+    toast.textContent = text;
+    toast.style.display = 'block';
+    toast.style.opacity = '1';
+    setTimeout(function() {
+      toast.style.opacity = '0';
+      setTimeout(function() { toast.style.display = 'none'; }, 500);
+    }, 3000);
+  }
+
+  // ── Historical Event Links ──────────────────────────
+  function processEventLinks(text) {
+    if (!text) return text;
+    return text.replace(/\{\{(\w+)\}\}/g, function(match, eventId) {
+      var evt = state.historicalEvents[eventId];
+      if (!evt) return match;
+      return '<span class="event-link" onclick="showEventTooltip(event, \'' + eventId + '\')">' + evt.name + '</span>';
+    });
+  }
+
+  function showEventTooltip(evt, eventId) {
+    evt.stopPropagation();
+    // Remove any existing tooltip
+    hideEventTooltip();
+    var event = state.historicalEvents[eventId];
+    if (!event) return;
+    var tooltip = document.createElement('div');
+    tooltip.className = 'event-tooltip';
+    tooltip.id = 'event-tooltip-active';
+    tooltip.innerHTML = '<span class="event-tooltip-close" onclick="hideEventTooltip()">&times;</span>' +
+      '<div class="event-tooltip-name">' + event.name + '</div>' +
+      '<div class="event-tooltip-date">' + (event.date_range || '') + (event.region ? ' — ' + event.region : '') + '</div>' +
+      '<div>' + event.summary + '</div>' +
+      (event.scripture_refs && event.scripture_refs.length ? '<div style="margin-top:6px;font-size:0.7rem;color:#8a7a60;">' + event.scripture_refs.join(' | ') + '</div>' : '');
+    document.body.appendChild(tooltip);
+    // Position near click
+    var x = evt.clientX;
+    var y = evt.clientY;
+    var tw = tooltip.offsetWidth;
+    var th = tooltip.offsetHeight;
+    if (x + tw + 10 > window.innerWidth) x = window.innerWidth - tw - 10;
+    if (y + th + 10 > window.innerHeight) y = y - th - 10;
+    tooltip.style.left = x + 'px';
+    tooltip.style.top = (y + 15) + 'px';
+  }
+
+  function hideEventTooltip() {
+    var existing = document.getElementById('event-tooltip-active');
+    if (existing) existing.remove();
+  }
+
+  // Close tooltip when clicking elsewhere
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.event-link') && !e.target.closest('.event-tooltip')) {
+      hideEventTooltip();
+    }
+  });
+
+  function showCityPopup(city, marker) {
+    var html = '<div style="max-width:280px; font-family:system-ui;">';
+    html += '<div style="font-size:1rem; font-weight:700; color:#1a0f0a; margin-bottom:2px;">' + city.name + '</div>';
+    if (city.name_hebrew) html += '<div style="font-size:0.85rem; color:#722f37; margin-bottom:6px;">' + city.name_hebrew + '</div>';
+    if (city.role) html += '<div style="font-size:0.7rem; color:#666; text-transform:uppercase; margin-bottom:4px;">' + city.role + '</div>';
+    if (city.description) {
+      html += '<div style="font-size:0.8rem; color:#333; line-height:1.4; margin-bottom:8px;">' + processEventLinks(city.description) + '</div>';
+    }
+    if (city.scholarly_context) {
+      html += '<div style="font-size:0.72rem; color:#555; line-height:1.4; margin-bottom:8px; padding-top:6px; border-top:1px solid #ddd;">';
+      html += '<strong style="color:#722f37;">Archaeological Notes:</strong> ' + city.scholarly_context + '</div>';
+    }
+    if (city.scripture_refs && city.scripture_refs.length) {
+      html += '<div style="font-size:0.7rem; color:#8a7a60; margin-top:4px;">';
+      html += city.scripture_refs.join(' | ') + '</div>';
+    }
+    html += '</div>';
+    marker.unbindPopup();
+    marker.bindPopup(html, { maxWidth: 300, className: 'city-popup' }).openPopup();
+  }
+
+  async function selectKingdom(kingdomId) {
+    state.selectedKingdom = kingdomId;
+    Object.keys(state.mapLayers).forEach(function(key) {
+      var layer = state.mapLayers[key];
+      if (key.startsWith('glow-')) {
+        if (key === 'glow-' + kingdomId) {
+          layer.setStyle({ opacity: 0.7, color: '#ffffff', weight: 9 });
+        } else {
+          layer.setStyle({ opacity: 0 });
+        }
+      } else if (layer.kingdomId === kingdomId) {
+        layer.setStyle({ fillOpacity: 0.12, opacity: 1, color: '#ffffff', weight: 5 });
+        state.mapInstance.fitBounds(layer.getBounds(), { padding: [50, 50] });
+      } else if (layer.kingdomId) {
+        layer.setStyle({ fillOpacity: 0.02, opacity: 0.15 });
+      }
+    });
+
+    // Drill-down: show sub-regions when parent kingdom is selected
+    // Remove any existing sub-region layers first
+    Object.keys(state.mapLayers).forEach(function(key) {
+      if (key.startsWith('sub-') || key.startsWith('subglow-')) {
+        state.mapInstance.removeLayer(state.mapLayers[key]);
+        delete state.mapLayers[key];
+      }
+    });
+    var eraData = state.mapGeoJsonCache[state.selectedEra];
+    if (eraData) {
+      // Find sub-regions whose parent_kingdom matches the selected kingdom
+      (eraData.kingdoms || []).forEach(function(k) {
+        // Sub-regions were filtered out of the main render, but they're still in the data
+      });
+    }
+    // Re-fetch era data to get sub-regions (they have parent_kingdom field)
+    var fullEraData = await apiFetch('/api/map/era/' + state.selectedEra);
+    (fullEraData.kingdoms || []).forEach(function(k) {
+      if (k.parent_kingdom === kingdomId && k.geojson) {
+        // Draw sub-region with a distinct style (thinner, colored dashed line)
+        var subGlow = L.geoJSON(k.geojson, {
+          style: { color: '#E8B84B', weight: 4, opacity: 0.3, fillColor: 'transparent', fillOpacity: 0, dashArray: '4 3', lineCap: 'round' },
+          interactive: false,
+        });
+        subGlow.addTo(state.mapInstance);
+        state.mapLayers['subglow-' + k.id] = subGlow;
+
+        var subLayer = L.geoJSON(k.geojson, {
+          style: { color: '#F0C75E', weight: 2, opacity: 0.85, fillColor: '#F0C75E', fillOpacity: 0.08, dashArray: '5 3', lineCap: 'round' },
+        });
+        subLayer.kingdomId = k.id;
+        subLayer.kingdomData = k;
+        subLayer.on('click', function() { selectKingdom(k.id); });
+        subLayer.bindTooltip(k.name, { permanent: true, direction: 'center', className: 'map-kingdom-tooltip' });
+        subLayer.addTo(state.mapInstance);
+        state.mapLayers['sub-' + k.id] = subLayer;
+      }
+    });
+
+    // Show all cities in this kingdom
+    var eraData = state.mapGeoJsonCache[state.selectedEra];
+    if (eraData) {
+      state.mapCityMarkers.forEach(function(m) { state.mapInstance.removeLayer(m); });
+      state.mapCityMarkers = [];
+      (eraData.cities || []).forEach(function(c) {
+        var isThisKingdom = c.current_kingdom_id === kingdomId;
+        if (isThisKingdom || c.is_major) {
+          var sz = c.is_capital ? 24 : isThisKingdom ? 18 : 14;
+          var bg = isThisKingdom ? (c.is_capital ? '#c9a84c' : '#5c4a32') : '#333';
+          var iconChar = c.is_capital ? '\uD83C\uDFDB' : '\u25AA';
+          var fsz = c.is_capital ? 13 : isThisKingdom ? 8 : 6;
+          var op = isThisKingdom ? 1.0 : 0.3;
+          var cityIcon = L.divIcon({
+            className: '',
+            html: '<div style="width:' + sz + 'px;height:' + sz + 'px;background:' + bg + ';border:2px solid rgba(255,255,255,' + (isThisKingdom ? '0.9' : '0.3') + ');border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:' + fsz + 'px;color:#fff;opacity:' + op + ';box-shadow:0 2px 4px rgba(0,0,0,0.4);cursor:pointer;">' + iconChar + '</div>',
+            iconSize: [sz, sz],
+            iconAnchor: [sz / 2, sz / 2],
+          });
+          var marker = L.marker([c.lat, c.lng], { icon: cityIcon, bubblingMouseEvents: false });
+          marker.bindTooltip(c.name, { permanent: isThisKingdom, direction: 'top', offset: [0, -sz / 2] });
+          marker.on('click', function() { showCityPopup(c, marker); });
+          marker.addTo(state.mapInstance);
+          state.mapCityMarkers.push(marker);
+        }
+      });
+    }
+    await loadKingdomDetail(kingdomId);
+  }
+
+  function deselectKingdom() {
+    state.selectedKingdom = null;
+    $('map-detail-panel').style.display = 'none';
+    // Restore all layers — just reload the era cleanly
+    loadEra(state.selectedEra);
+  }
+
+  async function loadKingdomDetail(kingdomId) {
+    var panel = $('map-detail-panel');
+    var inner = $('map-detail-inner');
+    panel.style.display = 'block';
+    inner.innerHTML = '<div class="empty-state">Loading...</div>';
+    try {
+      var data = await apiFetch('/api/map/kingdom/' + kingdomId + '?era=' + state.selectedEra);
+      var k = data.kingdom;
+      var html = '<button class="panel-close" onclick="deselectKingdom()">&times;</button>';
+      html += '<div class="map-detail-name">' + k.name + '</div>';
+      if (k.name_hebrew) html += '<div class="map-detail-hebrew">' + k.name_hebrew + '</div>';
+      html += '<span class="map-detail-accuracy ' + k.border_accuracy + '">' + k.border_accuracy + ' boundaries</span>';
+      html += '<div class="map-detail-meta">Ancestor: ' + (k.ancestor || 'N/A') + ' (' + (k.ancestor_ref || '') + ')</div>';
+      html += '<div class="map-detail-meta">Capital: ' + (k.capital || 'N/A') + '</div>';
+      html += '<div class="map-detail-meta">Modern region: ' + (k.modern_region || 'N/A') + '</div>';
+      html += '<div class="map-detail-desc">' + processEventLinks(k.description || '') + '</div>';
+      if (k.scripture_refs && k.scripture_refs.length) {
+        html += '<div class="map-detail-section"><h4>Key Scriptures</h4>';
+        k.scripture_refs.forEach(function(ref) { html += '<span class="map-detail-link">' + ref + '</span>'; });
+        html += '</div>';
+      }
+      if (data.related_prophecies && data.related_prophecies.length) {
+        html += '<div class="map-detail-section"><h4>Related Prophecies</h4>';
+        data.related_prophecies.forEach(function(p) {
+          html += '<span class="map-detail-link" onclick="switchTab(\'prophecy\')">' + p.title + '</span>';
+        });
+        html += '</div>';
+      }
+      if (data.related_persons && data.related_persons.length) {
+        html += '<div class="map-detail-section"><h4>Lineage Connections</h4>';
+        data.related_persons.forEach(function(p) {
+          html += '<span class="map-detail-link" onclick="switchTab(\'lineage\'); setTimeout(function(){openPersonPanel(' + p.id + ')},500);">' + p.name_english + '</span>';
+        });
+        html += '</div>';
+      }
+      if (data.cities && data.cities.length) {
+        html += '<div class="map-detail-section"><h4>Cities (' + data.cities.length + ')</h4>';
+        data.cities.forEach(function(c) { html += '<span class="map-detail-link">' + c.name + '</span>'; });
+        html += '</div>';
+      }
+      if (k.scholarly_context) {
+        html += '<button class="map-detail-explore" onclick="this.nextElementSibling.style.display=\'block\'; this.style.display=\'none\';">Explore Further</button>';
+        html += '<div style="display:none;"><div class="map-detail-section"><h4>Scholarly Context</h4>';
+        html += '<div class="map-detail-desc">' + k.scholarly_context + '</div></div></div>';
+      }
+      inner.innerHTML = html;
+    } catch (err) {
+      inner.innerHTML = '<div class="empty-state">Failed to load kingdom details.</div>';
+    }
+  }
+
+  function renderPeoplesList(peoples) {
+    var html = '';
+    peoples.forEach(function(p) {
+      html += '<div class="map-peoples-item" data-id="' + p.id + '" onclick="selectPeople(' + p.id + ')">';
+      html += '<div>' + p.modern_name + '</div>';
+      html += '<div class="peoples-ancestor">' + p.biblical_ancestor + ' — ' + p.ancestor_ref + '</div>';
+      html += '</div>';
+    });
+    $('map-peoples-list').innerHTML = html;
+  }
+
+  function filterPeoplesList() {
+    var query = $('map-peoples-search').value.toLowerCase();
+    var items = document.querySelectorAll('.map-peoples-item');
+    items.forEach(function(item) {
+      item.style.display = item.textContent.toLowerCase().indexOf(query) >= 0 ? 'block' : 'none';
+    });
+  }
+
+  async function selectPeople(peopleId) {
+    var people = state.peoplesData.find(function(p) { return p.id === peopleId; });
+    if (!people) return;
+    state.selectedPeople = people;
+    $('map-peoples-clear').style.display = 'block';
+    document.querySelectorAll('.map-peoples-item').forEach(function(item) {
+      item.classList.toggle('active', parseInt(item.dataset.id) === peopleId);
+    });
+    applyPeoplesFilter(people);
+    updateNarrative(state.selectedEra);
+  }
+
+  function applyPeoplesFilter(people) {
+    var kingdomIds = people.kingdom_ids || [];
+    Object.keys(state.mapLayers).forEach(function(key) {
+      var layer = state.mapLayers[key];
+      if (key.startsWith('glow-')) {
+        var kid = key.replace('glow-', '');
+        layer.setStyle({ opacity: kingdomIds.indexOf(kid) >= 0 ? 0.7 : 0 });
+      } else if (layer.kingdomId) {
+        if (kingdomIds.indexOf(layer.kingdomId) >= 0) {
+          layer.setStyle({ fillOpacity: 0.12, opacity: 1, color: '#ffffff', weight: 5 });
+        } else {
+          layer.setStyle({ fillOpacity: 0.02, opacity: 0.15 });
+        }
+      }
+    });
+  }
+
+  function updateNarrative(eraId) {
+    var narrative = $('map-narrative');
+    if (!state.selectedPeople) { narrative.style.display = 'none'; return; }
+    var people = state.selectedPeople;
+    var eraNarrative = (people.era_narratives || []).find(function(n) { return n.era_id === eraId; });
+    if (eraNarrative) {
+      narrative.innerHTML = '<strong>' + people.modern_name + ' (' + people.biblical_ancestor + ')</strong><br>' + eraNarrative.text;
+    } else {
+      narrative.innerHTML = '<strong>' + people.modern_name + ' (' + people.biblical_ancestor + ')</strong><br><em>No specific narrative for this era.</em>';
+    }
+    narrative.style.display = 'block';
+  }
+
+  function clearPeoplesFilter() {
+    state.selectedPeople = null;
+    $('map-peoples-clear').style.display = 'none';
+    $('map-narrative').style.display = 'none';
+    document.querySelectorAll('.map-peoples-item').forEach(function(item) { item.classList.remove('active'); });
+    // Reload era to restore all layers cleanly
+    loadEra(state.selectedEra);
+  }
+
+  // ── Evidence Pins ──────────────────────────────────
+  function renderEvidencePins(eraId) {
+    state.evidenceLayers.forEach(function(m) { state.mapInstance.removeLayer(m); });
+    state.evidenceLayers = [];
+    hideConnections();
+
+    var filters = state.evidenceFilters;
+    var eraOrder = state.mapEras.map(function(e) { return e.id; });
+    var eraIdx = eraOrder.indexOf(eraId);
+
+    state.evidenceData.forEach(function(e) {
+      if (e.type === 'archaeological' && !filters.archaeological) return;
+      if (e.type === 'cross_cultural' && !filters.cross_cultural) return;
+      if (e.type === 'inscription' && !filters.inscription) return;
+
+      var startIdx = eraOrder.indexOf(e.era_start);
+      var endIdx = eraOrder.indexOf(e.era_end);
+      var inEra = (startIdx >= 0 && endIdx >= 0 && startIdx <= eraIdx && eraIdx <= endIdx);
+      if (!filters.showAll && !inEra) return;
+
+      var colors = { archaeological: '#D4880F', cross_cultural: '#0097A7', inscription: '#2E7D32' };
+      // Unicode icons: trowel for archaeological, scroll for cross-cultural, tablet for inscription
+      var iconChars = { archaeological: '\u2692', cross_cultural: '\uD83D\uDCDC', inscription: '\uD83D\uDDFF' };
+      var color = colors[e.type] || '#D4880F';
+      var iconChar = iconChars[e.type] || '\u25CF';
+      var isRegion = e.coordinate_type === 'cultural_region';
+      var baseOpacity = (filters.showAll && !inEra) ? 0.3 : 1.0;
+      var sz = isRegion ? 30 : 26;
+      var fontSz = { archaeological: Math.round(sz * 0.55), cross_cultural: Math.round(sz * 0.5), inscription: Math.round(sz * 0.55) };
+      var fsz = fontSz[e.type] || Math.round(sz * 0.45);
+
+      var divIcon = L.divIcon({
+        className: '',
+        html: '<div style="width:' + sz + 'px;height:' + sz + 'px;background:' + color + ';border:2px solid rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:' + fsz + 'px;color:#fff;opacity:' + baseOpacity + ';box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer;transition:transform 0.2s;">' + iconChar + '</div>',
+        iconSize: [sz, sz],
+        iconAnchor: [sz / 2, sz / 2],
+      });
+
+      var marker = L.marker([e.lat, e.lng], { icon: divIcon, bubblingMouseEvents: false });
+      marker.bindTooltip(e.name, { permanent: false, direction: 'top', offset: [0, -sz / 2] });
+      marker.on('click', function() { showEvidencePopup(e, marker); });
+      marker.addTo(state.mapInstance);
+      state.evidenceLayers.push(marker);
+    });
+    updateEvidenceCounts();
+  }
+
+  async function showEvidencePopup(summary, marker) {
+    var e;
+    try {
+      e = await apiFetch('/api/map/evidence/' + summary.id);
+    } catch (err) {
+      e = summary;
+    }
+    var html = '<div style="max-width:300px; font-family:system-ui;">';
+    html += '<div style="font-size:1rem; font-weight:700; color:#1a0f0a;">' + e.name + '</div>';
+    html += '<div style="margin:4px 0;">';
+    html += '<span class="evidence-badge ' + e.type + '">' + (e.type || '').replace('_', '-') + '</span> ';
+    html += '<span class="evidence-badge ' + (e.reliability || '') + '">' + (e.reliability || '') + '</span>';
+    html += '</div>';
+    if (e.culture) html += '<div style="font-size:0.75rem; color:#666;">Culture: ' + e.culture + '</div>';
+    if (e.description) html += '<div style="font-size:0.8rem; color:#333; line-height:1.4; margin:6px 0;">' + processEventLinks(e.description) + '</div>';
+    if (e.scholarly_detail) {
+      html += '<div style="font-size:0.72rem; color:#555; padding-top:6px; border-top:1px solid #ddd; line-height:1.4;">';
+      html += '<strong style="color:#722f37;">Scholarly Detail:</strong> ' + e.scholarly_detail + '</div>';
+    }
+    if (e.museum) html += '<div style="font-size:0.7rem; color:#8a7a60; margin-top:4px;">Housed: ' + e.museum + '</div>';
+    if (e.scripture_refs && e.scripture_refs.length) {
+      html += '<div style="font-size:0.7rem; color:#8a7a60; margin-top:4px;">' + e.scripture_refs.join(' | ') + '</div>';
+    }
+    if (e.biblical_event_id) {
+      html += '<button onclick="showConnections(\'' + e.biblical_event_id + '\')" style="margin-top:8px; padding:5px 14px; border-radius:12px; background:rgba(0,151,167,0.15); border:1px solid rgba(0,151,167,0.3); color:#0097A7; font-size:0.75rem; cursor:pointer; font-weight:600;">Show Connections</button>';
+    }
+    html += '</div>';
+    marker.unbindPopup();
+    marker.bindPopup(html, { maxWidth: 320 }).openPopup();
+  }
+
+  async function showConnections(biblicalEventId) {
+    hideConnections();
+    var data = await apiFetch('/api/map/evidence/connections?event=' + biblicalEventId);
+    if (!data.event || !data.pins || !data.pins.length) return;
+
+    var eventLat = data.event.lat;
+    var eventLng = data.event.lng;
+    if (eventLat === null || eventLng === null) {
+      var center = state.mapInstance.getCenter();
+      eventLat = center.lat;
+      eventLng = center.lng;
+    }
+
+    // Draw event origin marker
+    var originMarker = L.circleMarker([eventLat, eventLng], {
+      radius: 10, color: '#FF5722', fillColor: '#FF5722', fillOpacity: 0.8, weight: 2,
+      bubblingMouseEvents: false,
+    });
+    originMarker.bindTooltip(data.event.name, { permanent: true, direction: 'top' });
+    originMarker.addTo(state.mapInstance);
+    state.evidenceConnectionLines.push(originMarker);
+
+    // Draw radiating lines with staggered animation
+    data.pins.forEach(function(pin, i) {
+      setTimeout(function() {
+        var line = L.polyline([[eventLat, eventLng], [pin.lat, pin.lng]], {
+          color: '#0097A7', weight: 1.5, opacity: 0.5, dashArray: '6 4',
+        });
+        line.addTo(state.mapInstance);
+        state.evidenceConnectionLines.push(line);
+      }, i * 20);
+    });
+
+    showMapToast(data.pins.length + ' cultures recorded: ' + data.event.name);
+  }
+
+  function hideConnections() {
+    state.evidenceConnectionLines.forEach(function(layer) { state.mapInstance.removeLayer(layer); });
+    state.evidenceConnectionLines = [];
+  }
+
+  function toggleEvidencePanel() {
+    var body = $('evidence-body');
+    var arrow = $('evidence-arrow');
+    body.classList.toggle('open');
+    arrow.innerHTML = body.classList.contains('open') ? '&#9650;' : '&#9660;';
+  }
+
+  function onEvidenceFilterChange() {
+    state.evidenceFilters.showAll = $('evidence-show-all').checked;
+    state.evidenceFilters.archaeological = $('evidence-archaeological').checked;
+    state.evidenceFilters.cross_cultural = $('evidence-cross-cultural').checked;
+    state.evidenceFilters.inscription = $('evidence-inscription').checked;
+    renderEvidencePins(state.selectedEra);
+  }
+
+  function updateEvidenceCounts() {
+    var arch = 0, cc = 0, ins = 0;
+    state.evidenceData.forEach(function(e) {
+      if (e.type === 'archaeological') arch++;
+      if (e.type === 'cross_cultural') cc++;
+      if (e.type === 'inscription') ins++;
+    });
+    var el;
+    el = $('evidence-count-arch'); if (el) el.textContent = '(' + arch + ')';
+    el = $('evidence-count-cc'); if (el) el.textContent = '(' + cc + ')';
+    el = $('evidence-count-ins'); if (el) el.textContent = '(' + ins + ')';
+  }
+
+  // ── Martyrs Pins ────────────────────────────────────
+  function renderMartyrsPins(eraId) {
+    state.martyrsLayers.forEach(function(m) { state.mapInstance.removeLayer(m); });
+    state.martyrsLayers = [];
+
+    if (!state.martyrsFilters.show) return;
+
+    var eraOrder = state.mapEras.map(function(e) { return e.id; });
+    var eraIdx = eraOrder.indexOf(eraId);
+
+    state.martyrsData.forEach(function(m) {
+      var mEraIdx = eraOrder.indexOf(m.era_id);
+      var inEra = (mEraIdx === eraIdx);
+      if (!state.martyrsFilters.showAll && !inEra) return;
+
+      var baseOpacity = (state.martyrsFilters.showAll && !inEra) ? 0.3 : 1.0;
+      var sz = 22;
+
+      var divIcon = L.divIcon({
+        className: '',
+        html: '<div style="width:' + sz + 'px;height:' + sz + 'px;background:#8B0000;border:2px solid rgba(255,255,255,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;opacity:' + baseOpacity + ';box-shadow:0 2px 6px rgba(0,0,0,0.5);cursor:pointer;">\u271D</div>',
+        iconSize: [sz, sz],
+        iconAnchor: [sz / 2, sz / 2],
+      });
+
+      var marker = L.marker([m.lat, m.lng], { icon: divIcon, bubblingMouseEvents: false });
+      marker.bindTooltip(m.name, { permanent: false, direction: 'top', offset: [0, -sz / 2] });
+      marker.on('click', function() { showMartyrPopup(m, marker); });
+      marker.addTo(state.mapInstance);
+      state.martyrsLayers.push(marker);
+    });
+    updateMartyrsCount();
+  }
+
+  async function showMartyrPopup(summary, marker) {
+    var m;
+    try { m = await apiFetch('/api/map/martyrs/' + summary.id); } catch (err) { m = summary; }
+    var html = '<div style="max-width:320px; font-family:system-ui;">';
+    html += '<div style="font-size:1rem; font-weight:700; color:#8B0000;">' + m.name + '</div>';
+    if (m.title) html += '<div style="font-size:0.8rem; color:#555; margin-bottom:4px;">' + m.title + '</div>';
+    html += '<div style="margin:4px 0;">';
+    var recBy = m.recognized_by || m.approved_by || '';
+    if (recBy) html += '<div style="font-size:0.72rem; color:#8a7a60; margin-bottom:4px;">Recognized as martyr by: <strong style="color:#8B0000;">' + recBy + '</strong></div>';
+    html += '</div>';
+    html += '<div style="font-size:0.75rem; color:#666;">' + (m.location || '') + ' &mdash; ' + (m.date_of_death || '') + '</div>';
+    if (m.method) html += '<div style="font-size:0.8rem; color:#8B0000; font-weight:600; margin:6px 0;">' + m.method + '</div>';
+    if (m.description) html += '<div style="font-size:0.8rem; color:#333; line-height:1.4; margin:6px 0;">' + processEventLinks(m.description) + '</div>';
+    if (m.image_url) {
+      html += '<div style="margin:8px 0; text-align:center;">';
+      html += '<img src="' + m.image_url + '" style="max-width:100%; max-height:200px; border-radius:6px; border:1px solid #ddd;" onerror="this.style.display=\'none\'">';
+      if (m.image_attribution) html += '<div style="font-size:0.65rem; color:#888; margin-top:3px;">' + m.image_attribution + '</div>';
+      html += '</div>';
+    }
+    if (m.feast_day) html += '<div style="font-size:0.7rem; color:#8a7a60; margin-top:4px;">Feast: ' + m.feast_day + '</div>';
+    if (m.scripture_refs && m.scripture_refs.length) {
+      html += '<div style="font-size:0.7rem; color:#8a7a60; margin-top:4px;">' + m.scripture_refs.join(' | ') + '</div>';
+    }
+    if (m.approval_source) html += '<div style="font-size:0.65rem; color:#aaa; margin-top:4px;">Source: ' + m.approval_source + '</div>';
+    html += '</div>';
+    marker.unbindPopup();
+    marker.bindPopup(html, { maxWidth: 340 }).openPopup();
+  }
+
+  function toggleMartyrsPanel() {
+    var body = $('martyrs-body');
+    var arrow = $('martyrs-arrow');
+    body.classList.toggle('open');
+    arrow.innerHTML = body.classList.contains('open') ? '&#9650;' : '&#9660;';
+  }
+
+  function onMartyrsFilterChange() {
+    state.martyrsFilters.show = $('martyrs-show').checked;
+    state.martyrsFilters.showAll = $('martyrs-show-all').checked;
+    renderMartyrsPins(state.selectedEra);
+  }
+
+  function updateMartyrsCount() {
+    var el = $('martyrs-count');
+    if (el) el.textContent = '(' + state.martyrsData.length + ')';
+  }
+
+  // ── Init ────────────────────────────────────────────
+  async function init() {
+    try {
+      var health = await apiFetch('/api/health');
+      state.llmAvailable = health.llm_available;
+      if (!state.llmAvailable) {
+        $('ask-available').style.display = 'none';
+        $('ask-unavailable').style.display = 'block';
+      }
+    } catch (e) {
+      console.error('Health check failed:', e);
+    }
+    loadCategories('trial');
+  }
+
+  init();
+</script>
+</body>
+</html>

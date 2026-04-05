@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Teman", "era": "District of Edom" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.2, 30.0], [35.6, 30.0], [35.7, 29.7], [35.6, 29.4], [35.2, 29.3], [35.0, 29.5], [35.0, 29.8], [35.2, 30.0] ]]
+  }
+}

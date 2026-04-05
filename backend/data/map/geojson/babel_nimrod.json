@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Babel (City of Nimrod)", "era": "City of Nimrod (~2300-2000 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [44.2, 32.7], [44.6, 32.7], [44.6, 32.4], [44.2, 32.4], [44.2, 32.7] ]]
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Lydia / Lud", "era": "Early Lydian Period (~1200-700 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [27.0, 39.5], [28.5, 39.5], [30.0, 39.0], [30.5, 38.5], [30.0, 38.0], [29.0, 37.5], [27.5, 37.5], [26.5, 38.0], [26.5, 39.0], [27.0, 39.5] ]]
+  }
+}

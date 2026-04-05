@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Hazor (Canaanite Kingdom)", "era": "Canaanite City-State (~1800-1200 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.4, 33.2], [35.7, 33.2], [35.8, 33.0], [35.7, 32.8], [35.4, 32.7], [35.2, 32.9], [35.3, 33.1], [35.4, 33.2] ]]
+  }
+}

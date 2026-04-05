@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Nineveh (City-State)", "era": "City of Nimrod" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [43.0, 36.5], [43.3, 36.5], [43.3, 36.2], [43.0, 36.2], [43.0, 36.5] ]]
+  }
+}

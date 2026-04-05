@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Ammon", "era": "Early Iron Age (~1100-900 BC)" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [35.6, 32.3], [36.3, 32.2], [36.6, 31.8], [36.6, 31.3], [36.3, 30.9], [35.7, 30.9], [35.4, 31.2], [35.4, 31.8], [35.6, 32.3] ]]
+  }
+}

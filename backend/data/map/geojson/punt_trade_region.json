@@ -1,0 +1,8 @@
+{
+  "type": "Feature",
+  "properties": { "kingdom": "Land of Punt", "era": "Trade Region" },
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[ [41.0, 14.0], [43.0, 14.5], [45.0, 14.0], [48.0, 12.0], [49.0, 10.0], [48.0, 8.0], [46.0, 7.0], [44.0, 7.5], [42.0, 9.0], [41.0, 11.0], [41.0, 14.0] ]]
+  }
+}
