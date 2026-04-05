@@ -15,6 +15,11 @@ DATA_DIR.mkdir(exist_ok=True)
 SERVER_HOST = os.getenv("HOST", "0.0.0.0")
 SERVER_PORT = int(os.getenv("PORT", "8202"))
 
+# Auth
+ACCESS_CODE = os.getenv("ACCESS_CODE", "")
+SESSION_SECRET = os.getenv("SESSION_SECRET", "trials-of-judah-default-secret-change-me")
+SESSION_MAX_AGE_DAYS = int(os.getenv("SESSION_MAX_AGE_DAYS", "7"))
+
 # LLM
 OLLAMA_URL = os.getenv("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "mixtral")

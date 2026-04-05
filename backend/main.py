@@ -1,13 +1,20 @@
 """Trials of Judah — Main API"""
 import asyncio
+import hashlib
+import hmac
 import re
+import time
 from contextlib import asynccontextmanager
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, Field
+from starlette.middleware.base import BaseHTTPMiddleware
 
-from backend.config import SERVER_HOST, SERVER_PORT, FRONTEND_DIR, DATA_DIR
+from backend.config import (
+    SERVER_HOST, SERVER_PORT, FRONTEND_DIR, DATA_DIR,
+    ACCESS_CODE, SESSION_SECRET, SESSION_MAX_AGE_DAYS,
+)
 from backend.models.database import db
 from backend.services.llm_service import llm
 from backend.services.verse_service import verse_service
@@ -48,7 +55,95 @@ async def lifespan(app):
 app = FastAPI(title="Trials of Judah", version="0.1.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
+
+# ── Auth helpers ──────────────────────────────────
+_COOKIE_NAME = "toj_session"
+_MAX_AGE = SESSION_MAX_AGE_DAYS * 86400  # seconds
+
+def _sign_token(timestamp: int) -> str:
+    """Create an HMAC-signed session token."""
+    msg = f"toj:{timestamp}".encode()
+    sig = hmac.new(SESSION_SECRET.encode(), msg, hashlib.sha256).hexdigest()
+    return f"{timestamp}:{sig}"
+
+def _verify_token(token: str) -> bool:
+    """Verify a session token is valid and not expired."""
+    try:
+        ts_str, sig = token.split(":", 1)
+        ts = int(ts_str)
+    except (ValueError, AttributeError):
+        return False
+    if time.time() - ts > _MAX_AGE:
+        return False
+    expected = hmac.new(
+        SESSION_SECRET.encode(), f"toj:{ts}".encode(), hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(sig, expected)
+
+# Routes that don't require auth
+_PUBLIC_PATHS = {"/api/auth", "/api/health", "/api/auth/check"}
+
+
+class AuthMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        # Skip auth if no access code is configured
+        if not ACCESS_CODE:
+            return await call_next(request)
+
+        path = request.url.path
+
+        # Allow public paths
+        if path in _PUBLIC_PATHS:
+            return await call_next(request)
+
+        # Check session cookie
+        token = request.cookies.get(_COOKIE_NAME)
+        if token and _verify_token(token):
+            return await call_next(request)
+
+        # Not authenticated — serve login page for browser requests, 401 for API
+        if path.startswith("/api/"):
+            return JSONResponse({"error": "unauthorized"}, status_code=401)
+
+        # Serve the login gate page
+        login_html = FRONTEND_DIR / "login.html"
+        if login_html.exists():
+            return FileResponse(str(login_html))
+        return JSONResponse({"error": "unauthorized"}, status_code=401)
+
+
+app.add_middleware(AuthMiddleware)
+
 _llm_semaphore = asyncio.Semaphore(1)
+
+
+# ── Auth endpoints ─────────────────────────────────
+class AuthRequest(BaseModel):
+    code: str
+
+@app.post("/api/auth")
+async def auth(body: AuthRequest, response: Response):
+    if not ACCESS_CODE:
+        return {"status": "ok", "message": "No access code required"}
+    if hmac.compare_digest(body.code.strip(), ACCESS_CODE):
+        token = _sign_token(int(time.time()))
+        response.set_cookie(
+            key=_COOKIE_NAME,
+            value=token,
+            max_age=_MAX_AGE,
+            httponly=True,
+            secure=True,
+            samesite="lax",
+        )
+        return {"status": "ok"}
+    return JSONResponse({"error": "Invalid access code"}, status_code=403)
+
+@app.get("/api/auth/check")
+async def auth_check(request: Request):
+    if not ACCESS_CODE:
+        return {"authenticated": True}
+    token = request.cookies.get(_COOKIE_NAME)
+    return {"authenticated": bool(token and _verify_token(token))}
 
 
 # ── Health ──────────────────────────────────────────
