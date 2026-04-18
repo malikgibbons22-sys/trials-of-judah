@@ -108,7 +108,10 @@ class AuthMiddleware(BaseHTTPMiddleware):
         # Serve the login gate page
         login_html = FRONTEND_DIR / "login.html"
         if login_html.exists():
-            return FileResponse(str(login_html))
+            return FileResponse(
+                str(login_html),
+                headers={"Cache-Control": "no-store"},
+            )
         return JSONResponse({"error": "unauthorized"}, status_code=401)
 
 
