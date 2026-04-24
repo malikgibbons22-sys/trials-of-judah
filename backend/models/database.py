@@ -46,7 +46,6 @@ CREATE INDEX IF NOT EXISTS idx_categories_type ON categories(type);
 
 INSERT OR IGNORE INTO translations (code, name) VALUES ('kjv', 'King James Version');
 INSERT OR IGNORE INTO translations (code, name) VALUES ('esv', 'English Standard Version');
-INSERT OR IGNORE INTO translations (code, name) VALUES ('dra', 'Douay-Rheims (Challoner)');
 
 CREATE TABLE IF NOT EXISTS persons (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -105,26 +104,6 @@ CREATE TABLE IF NOT EXISTS bible_kjv (
 
 CREATE INDEX IF NOT EXISTS idx_bible_kjv_book ON bible_kjv(book);
 CREATE INDEX IF NOT EXISTS idx_bible_kjv_ref ON bible_kjv(book, chapter);
-
-CREATE TABLE IF NOT EXISTS bible_dra (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    book TEXT NOT NULL,
-    chapter INTEGER NOT NULL,
-    verse INTEGER NOT NULL,
-    text TEXT NOT NULL,
-    UNIQUE(book, chapter, verse)
-);
-CREATE INDEX IF NOT EXISTS idx_bible_dra_book ON bible_dra(book);
-CREATE INDEX IF NOT EXISTS idx_bible_dra_ref ON bible_dra(book, chapter);
-
-CREATE TABLE IF NOT EXISTS psalm_numbering (
-    kjv_chapter INTEGER NOT NULL,
-    kjv_verse_min INTEGER NOT NULL DEFAULT 1,
-    kjv_verse_max INTEGER NOT NULL DEFAULT 999,
-    dra_chapter INTEGER NOT NULL,
-    verse_offset INTEGER NOT NULL DEFAULT 0,
-    PRIMARY KEY (kjv_chapter, kjv_verse_min)
-);
 
 CREATE TABLE IF NOT EXISTS prophecies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,

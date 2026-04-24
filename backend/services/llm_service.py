@@ -147,7 +147,7 @@ If there is no scholarly context to add, omit that section entirely."""
         if verse_context:
             bible_section = f"""
 
-Here are the actual Bible verses that mention "{query}":
+Here are the actual Bible verses (KJV) that mention "{query}":
 {verse_context}
 
 Use ONLY these verses as your source material. Do NOT cite any verse that is not listed above."""

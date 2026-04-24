@@ -18,56 +18,7 @@ class VerseService:
             )
         return [dict(r) for r in rows]
 
-    async def _rewrite_psalm_ref(self, db, row: dict, translation: str) -> dict:
-        """If the row is a Psalm and translation is DRA, rewrite chapter/verse/reference
-        to match DRA numbering. No-op for other translations and other books.
-
-        Edge case: for curated ranges that cross a DRA chapter boundary within
-        KJV Psalms 116 or 147 (e.g. KJV Ps 116:5-15, which spans DRA 114 and 115),
-        only the start verse determines the DRA chapter. This is rare in curated
-        data; if a genuine cross-boundary reference appears, split it into two
-        curated rows rather than extending this logic.
-        """
-        if translation != "dra" or row.get("book") != "Psalms":
-            return row
-        chapter = row["chapter"]
-        vs = row["verse_start"]
-        ve_raw = row.get("verse_end")
-        ve = ve_raw if ve_raw is not None else vs
-
-        mapping = await db.execute(
-            """SELECT dra_chapter, verse_offset FROM psalm_numbering
-               WHERE kjv_chapter=? AND kjv_verse_min<=? AND kjv_verse_max>=?""",
-            (chapter, vs, vs)
-        )
-        if not mapping:
-            return row
-        dra_chapter, offset = mapping[0][0], mapping[0][1]
-        dra_vs = vs + offset
-        dra_ve = ve + offset
-
-        row["chapter"] = dra_chapter
-        row["verse_start"] = dra_vs
-        row["verse_end"] = (ve + offset) if ve_raw is not None else None
-        if dra_vs == dra_ve:
-            row["reference"] = f"Psalm {dra_chapter}:{dra_vs}"
-        else:
-            row["reference"] = f"Psalm {dra_chapter}:{dra_vs}-{dra_ve}"
-
-        # Defensive: log if curated range crosses DRA chapter boundary (KJV Ps 116/147).
-        if ve_raw is not None and ve_raw != vs:
-            end_mapping = await db.execute(
-                """SELECT dra_chapter FROM psalm_numbering
-                   WHERE kjv_chapter=? AND kjv_verse_min<=? AND kjv_verse_max>=?""",
-                (chapter, ve_raw, ve_raw)
-            )
-            if end_mapping and end_mapping[0][0] != dra_chapter:
-                print(f"[verse_service] WARNING: curated Psalm range KJV {chapter}:{vs}-{ve_raw} "
-                      f"crosses DRA chapter boundary (start→DRA {dra_chapter}, end→DRA {end_mapping[0][0]}). "
-                      f"Reference shown uses start's DRA chapter only.")
-        return row
-
-    async def get_verses(self, db, category_slug: str, translation: str = "dra") -> list:
+    async def get_verses(self, db, category_slug: str, translation: str = "kjv") -> list:
         """Get all verses for a category in the specified translation."""
         rows = await db.execute(
             """SELECT v.id, v.book, v.chapter, v.verse_start, v.verse_end,
@@ -80,10 +31,9 @@ class VerseService:
                ORDER BY v.id""",
             (category_slug, translation)
         )
-        result = [dict(r) for r in rows]
-        return [await self._rewrite_psalm_ref(db, r, translation) for r in result]
+        return [dict(r) for r in rows]
 
-    async def search_verses(self, db, keywords: list, translation: str = "dra", limit: int = 30) -> list:
+    async def search_verses(self, db, keywords: list, translation: str = "kjv", limit: int = 30) -> list:
         """Search verses by keywords for LLM candidate narrowing."""
         if not keywords:
             rows = await db.execute(
@@ -97,8 +47,7 @@ class VerseService:
                    ORDER BY RANDOM() LIMIT ?""",
                 (translation, limit)
             )
-            result = [dict(r) for r in rows]
-            return [await self._rewrite_psalm_ref(db, r, translation) for r in result]
+            return [dict(r) for r in rows]
 
         conditions = []
         params = []
@@ -125,6 +74,7 @@ class VerseService:
                 LIMIT ?""",
             tuple(params)
         )
+        # Rank by keyword match count
         results = [dict(r) for r in rows]
         for r in results:
             searchable = (r.get("text", "") + " " + r.get("category_name", "")).lower()
@@ -132,10 +82,10 @@ class VerseService:
         results.sort(key=lambda x: x["_score"], reverse=True)
         for r in results:
             del r["_score"]
-        return [await self._rewrite_psalm_ref(db, r, translation) for r in results]
+        return results
 
     async def get_verse_by_reference(self, db, book: str, chapter: int, verse_start: int,
-                                      translation: str = "dra") -> dict | None:
+                                      translation: str = "kjv") -> dict | None:
         """Look up a single verse by reference. Used by watchdog."""
         rows = await db.execute(
             """SELECT v.id, v.reference, vt.text
@@ -149,7 +99,7 @@ class VerseService:
             return dict(rows[0])
         return None
 
-    async def get_all_verse_texts(self, db, translation: str = "dra") -> list:
+    async def get_all_verse_texts(self, db, translation: str = "kjv") -> list:
         """Get all verse texts for watchdog fuzzy matching."""
         rows = await db.execute(
             """SELECT v.reference, vt.text
