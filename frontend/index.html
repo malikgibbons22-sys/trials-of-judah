@@ -1095,10 +1095,10 @@
 
   <div class="header">
     <div class="header-title">Trials of <span>Judah</span></div>
-    <div class="header-sub">"Thy word is a lamp unto my feet, and a light unto my path." &mdash; Psalm 119:105</div>
+    <div class="header-sub" id="header-tagline">"Thy word is a lamp to my feet, and a light to my paths." &mdash; Psalm 118:105</div>
     <div class="translation-toggle">
-      <button class="trans-btn active" id="btn-kjv" onclick="setTranslation('kjv')">KJV</button>
-      <button class="trans-btn" id="btn-esv" onclick="setTranslation('esv')">ESV</button>
+      <button class="trans-btn active" id="btn-dra" onclick="setTranslation('dra')">DRA</button>
+      <button class="trans-btn" id="btn-kjv" onclick="setTranslation('kjv')">KJV</button>
     </div>
   </div>
 
@@ -1250,7 +1250,7 @@
 <script>
   // ── State ──────────────────────────────────────────
   var state = {
-    translation: 'kjv',
+    translation: 'dra',
     activeTab: 'trials',
     categories: { trials: [], guidance: [] },
     currentCategory: null,
@@ -1303,8 +1303,16 @@
   // ── Translation Toggle ─────────────────────────────
   function setTranslation(code) {
     state.translation = code;
+    $('btn-dra').className = 'trans-btn' + (code === 'dra' ? ' active' : '');
     $('btn-kjv').className = 'trans-btn' + (code === 'kjv' ? ' active' : '');
-    $('btn-esv').className = 'trans-btn' + (code === 'esv' ? ' active' : '');
+    var tagline = $('header-tagline');
+    if (tagline) {
+      if (code === 'dra') {
+        tagline.innerHTML = '"Thy word is a lamp to my feet, and a light to my paths." &mdash; Psalm 118:105';
+      } else {
+        tagline.innerHTML = '"Thy word is a lamp unto my feet, and a light unto my path." &mdash; Psalm 119:105';
+      }
+    }
     // Reload current view if viewing verses
     if (state.currentCategory) {
       loadVerses(state.currentCategory.slug, state.currentCategory.tabType);

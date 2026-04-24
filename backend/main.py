@@ -34,7 +34,10 @@ async def lifespan(app):
     await db.init()
     await llm.is_available()
 
-    from backend.data.seed import seed, seed_lineage, seed_bible_kjv, seed_prophecies
+    from backend.data.seed import (
+        seed, seed_lineage, seed_bible_kjv, seed_prophecies,
+        seed_bible_dra, seed_psalm_numbering, seed_verse_texts_dra,
+    )
     seeded = await seed(db)
     if seeded:
         print("[Trials of Judah] Database seeded with verse data.")
@@ -44,6 +47,15 @@ async def lifespan(app):
     seeded_bible = await seed_bible_kjv(db)
     if seeded_bible:
         print("[Trials of Judah] Full KJV Bible seeded (31,100 verses).")
+    seeded_dra = await seed_bible_dra(db)
+    if seeded_dra:
+        print("[Trials of Judah] Full Douay-Rheims Bible seeded.")
+    seeded_psalms = await seed_psalm_numbering(db)
+    if seeded_psalms:
+        print("[Trials of Judah] Psalm numbering map seeded.")
+    seeded_verse_texts_dra = await seed_verse_texts_dra(db)
+    if seeded_verse_texts_dra:
+        print("[Trials of Judah] DRA verse_texts seeded for curated verses.")
     seeded_prophecies = await seed_prophecies(db)
     if seeded_prophecies:
         print("[Trials of Judah] Prophecy data seeded.")
@@ -168,7 +180,7 @@ async def get_categories(type: str = Query(None, alias="type")):
 
 # ── Verses ──────────────────────────────────────────
 @app.get("/api/verses")
-async def get_verses(category: str, translation: str = "kjv"):
+async def get_verses(category: str, translation: str = "dra"):
     verses = await verse_service.get_verses(db, category, translation)
     return {"verses": verses, "translation": translation}
 
@@ -183,7 +195,7 @@ async def get_translations():
 # ── Ask ─────────────────────────────────────────────
 class AskRequest(BaseModel):
     question: str = Field(..., min_length=3, max_length=500)
-    translation: str = Field(default="kjv", pattern="^(kjv|esv)$")
+    translation: str = Field(default="dra", pattern="^(kjv|dra)$")
 
 
 @app.post("/api/ask")

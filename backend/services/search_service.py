@@ -4,15 +4,21 @@ from backend.services.evidence_service import evidence_service
 from backend.services.martyrs_service import martyrs_service
 
 
+def _bible_table(translation: str) -> str:
+    """Map a translation code to its full-text table name. Defaults to DRA."""
+    return {"kjv": "bible_kjv", "dra": "bible_dra"}.get(translation, "bible_dra")
+
+
 class SearchService:
 
-    async def search(self, db, query: str) -> dict:
+    async def search(self, db, query: str, translation: str = "dra") -> dict:
         """Search across all data types."""
         q = f"%{query.lower()}%"
+        table = _bible_table(translation)
 
         bible = await db.execute(
-            """SELECT book, chapter, verse, text FROM bible_kjv
-               WHERE LOWER(text) LIKE ? LIMIT 10""", (q,))
+            f"""SELECT book, chapter, verse, text FROM {table}
+                WHERE LOWER(text) LIKE ? LIMIT 10""", (q,))
 
         persons = await db.execute(
             """SELECT id, name_english, name_hebrew, name_meaning, generation

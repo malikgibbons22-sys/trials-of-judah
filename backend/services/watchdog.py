@@ -16,6 +16,11 @@ QUOTE_PATTERN = re.compile(r'(?:^|(?<=\s))["\u201c]([A-Z][^"\u201d\n]{50,})["\u2
 SIMILARITY_THRESHOLD = 0.85
 
 
+def _bible_table(translation: str) -> str:
+    """Map a translation code to its full-text table name. Defaults to DRA."""
+    return {"kjv": "bible_kjv", "dra": "bible_dra"}.get(translation, "bible_dra")
+
+
 class Watchdog:
 
     def extract_references(self, text: str) -> list:
@@ -55,7 +60,7 @@ class Watchdog:
         return filtered
 
     async def _check_verse_in_range(self, db, book: str, chapter: int, verse_num: int,
-                                      translation: str = "kjv") -> bool:
+                                      translation: str = "dra") -> bool:
         """Check if a verse number falls within a stored verse range.
 
         e.g., if DB has Galatians 5:19-21 and LLM references Galatians 5:21,
@@ -70,7 +75,7 @@ class Watchdog:
         )
         return len(rows) > 0
 
-    async def verify(self, commentary: str, db, translation: str = "kjv") -> dict:
+    async def verify(self, commentary: str, db, translation: str = "dra") -> dict:
         """Verify LLM commentary against the scripture database.
 
         Returns: {verified: bool, flags: [{type, reference, detail}]}
@@ -122,9 +127,10 @@ class Watchdog:
         }
 
 
-    async def verify_quotes_only(self, commentary: str, db, translation: str = "kjv") -> dict:
+    async def verify_quotes_only(self, commentary: str, db, translation: str = "dra") -> dict:
         """Verify quoted text in lookup responses against the full KJV Bible.
         """
+        table = _bible_table(translation)
         flags = []
         quotes = self.extract_quotes(commentary)
         if quotes:
@@ -147,7 +153,7 @@ class Watchdog:
                 params = tuple(f"%{w}%" for w in search_words)
                 candidates = await db.execute(
                     f"""SELECT book || ' ' || chapter || ':' || verse as ref, text
-                       FROM bible_kjv WHERE {conditions} LIMIT 50""",
+                       FROM {table} WHERE {conditions} LIMIT 50""",
                     params
                 )
 
@@ -164,7 +170,7 @@ class Watchdog:
                     flags.append({
                         "type": "unverified_quote",
                         "reference": best_ref if best_score > 0.2 else "unknown",
-                        "detail": f"A quoted passage could not be verified against the KJV Bible text (best match: {best_score:.0%}).",
+                        "detail": f"A quoted passage could not be verified against the Bible text (best match: {best_score:.0%}).",
                     })
 
         return {
